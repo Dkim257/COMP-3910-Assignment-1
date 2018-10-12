@@ -7,24 +7,23 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>IGNORED</title>
+	<title>#{msgs.loginTitle}</title>
 </h:head>
 <h:body>
-	<ui:composition template="/templates/masterLayout.xhtml">
-		<ui:define name="windowTitle">
-            title
-         </ui:define>
+	<h:form>
+		<p:growl id="msgs" showDetail="true" />
 
-		<!--  <ui:define name="content">
-			<div class="ui-g ui-fluid">
-				<div class="ui-g-12 ui-md-4">
-					<div class="ui-inputgroup">
-						<span class="ui-inputgroup-addon"><i class="fa fa-user"></i></span>
-						<p:inputText placeholder="Username" />
-					</div>
-				</div>
-			</div>
-		</ui:define> -->
-	</ui:composition>
+		<p:fieldset legend="Login" style="margin-bottom:20px; width:350px;">
+			<h:panelGrid columns="2" cellpadding="5">
+				<p:graphicImage name="/images/login_img.png" width="90px" />
+				<p:inputText id="id" required="true" />
+				<p:watermark for="id" value="#{msgs.enterID}" />
+				<p:inputText id="password" required="true" />
+				<p:watermark for="password" value="#{msgs.enterPassword}" />
+				<p:commandButton value="#{msgs.loginTitle}" id="loginBtn" 
+					styleClass="ui-button-text-only" ajax="false" />
+			</h:panelGrid>
+		</p:fieldset>
+	</h:form>
 </h:body>
 </html>
