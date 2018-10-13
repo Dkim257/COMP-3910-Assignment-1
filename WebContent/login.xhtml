@@ -8,22 +8,46 @@
 	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>#{msgs.loginTitle}</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" />
+    <h:outputStylesheet library="css" name="style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </h:head>
-<h:body>
-	<h:form>
-		<p:growl id="msgs" showDetail="true" />
-
-		<p:fieldset legend="Login" style="margin-bottom:20px; width:350px;">
-			<h:panelGrid columns="2" cellpadding="5">
-				<p:graphicImage name="/images/login_img.png" width="90px" />
-				<p:inputText id="id" required="true" />
-				<p:watermark for="id" value="#{msgs.enterID}" />
-				<p:inputText id="password" required="true" />
-				<p:watermark for="password" value="#{msgs.enterPassword}" />
-				<p:commandButton value="#{msgs.loginTitle}" id="loginBtn" 
-					styleClass="ui-button-text-only" ajax="false" />
-			</h:panelGrid>
-		</p:fieldset>
-	</h:form>
+<h:body styleClass="grey lighten-3">
+	<div class="valign-wrapper" id="login-page" >
+		<div class="container">
+			<div class="center-align">
+				<div class="row">
+					<div class="col s6 offset-s3">
+						<div class="card">
+							<div class="card-content">
+								<p:graphicImage name="/images/login_img.png" width="80px" class="responsive-img"/>
+								<div class="left-align">
+									<h:form id="login-form">
+										<p:growl autoUpdate="true" />
+										<div class="row ">
+											<div class="col s12 input-field">
+												<p:inputText id="id" required="true" requiredMessage="#{msgs.idReq}"/>
+												<h:outputLabel for="id" value="#{msgs.enterID}" />
+											</div>
+											<div class="col s12 input-field">
+												<p:password id="password" required="true" requiredMessage="#{msgs.passReq}"/>
+												<h:outputLabel for="password" value="#{msgs.enterPassword}" />
+											</div>
+											<div class="col s12 card-action" id="loginBtn">
+												<p:link value="#{msgs.loginTitle}" id="loginBtn" styleClass="btn-large waves-effect waves-light"
+													outcome="timesheet" />
+											</div>
+										</div>
+									</h:form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="js/materialize.min.js" />
 </h:body>
 </html>

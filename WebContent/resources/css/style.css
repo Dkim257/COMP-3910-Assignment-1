@@ -1,1 +1,44 @@
 @charset "ISO-8859-1";
+body {
+	font-family: Roboto;
+	width: 100%;
+	height: 100%;
+}
+
+.content {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+	min-height: 100%;
+  	margin: 0 auto -50px;
+}
+
+.header {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 60px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.footer {
+	width: 70%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#login-page {
+	margin-top: 150px;
+}
+
+#loginBtn {
+	padding-top: 20px;
+	padding-bottom: 0;
+}

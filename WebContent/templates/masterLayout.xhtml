@@ -1,31 +1,37 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-   
-   <h:head>
-      <title><ui:insert name="windowTitle"/></title>
-      <h:outputStylesheet library="css" name="styles.css"/>
-   </h:head>
-   
-   <h:body>   
-      <div id="heading">
-         <ui:insert name="heading">
-            <ui:include src="/sections/header.xhtml"/>
-         </ui:insert>
-      </div>
-      
-      <div id="content">
-         <ui:insert name="content"/>
-      </div>
-      
-      <div id="footer">
-         <ui:insert name="footer">
-            <ui:include src="/sections/footer.xhtml"/>
-         </ui:insert>
-      </div> 
-      <ui:debug/>
-   </h:body>
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+	<title><ui:insert name="windowTitle" /></title>
+	<link rel="stylesheet"
+		href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" />
+	<h:outputStylesheet library="css" name="style.css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</h:head>
+
+<h:body>
+	<div id="heading">
+		<ui:insert name="heading">
+			<ui:include src="/sections/header.xhtml" />
+		</ui:insert>
+	</div>
+
+	<div class="content" id="content">
+		<ui:insert name="content" />
+	</div>
+
+	<div id="footer">
+		<ui:insert name="footer">
+			<ui:include src="/sections/footer.xhtml" />
+		</ui:insert>
+	</div>
+	<ui:debug />
+	<script type="text/javascript" src="js/materialize.min.js" />
+</h:body>
 </html>
