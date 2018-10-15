@@ -1,15 +1,30 @@
 package ca.bcit.comp3910;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 
 import ca.bcit.infosys.employee.Employee;
 import ca.bcit.infosys.timesheet.Timesheet;
 import ca.bcit.infosys.timesheet.TimesheetCollection;
 
-public class TimesheetTableData implements TimesheetCollection {
+@Named("tabledata")
+@ApplicationScoped
+public class TimesheetTableData implements TimesheetCollection, Serializable {
 
-    ArrayList<Timesheet> timesheets;
+    
+    private static List<Timesheet> timesheets;
+    static {
+        timesheets = new ArrayList<>();
+    }
+    
+    public TimesheetTableData() {
+        
+    }
+    
     
     @Override
     public List<Timesheet> getTimesheets() {

@@ -22,8 +22,8 @@
 			<h:form id="form">
 				<p:growl id="msgs" showDetail="true" />
 
-				<p:dataTable id="cars1" widgetVar="cars1" var="timesheet"
-					value="#{dtEditView.cars1}" editable="true"
+				<p:dataTable id="cars1" widgetVar="cars1" var="row"
+					value="#{timesheet.rows}" editable="true"
 					style="margin-bottom:20px; padding-top:20px">
 					<f:facet name="header">
            				#{msgs.name}
@@ -37,10 +37,10 @@
 					<p:column headerText="#{msgs.project}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{timesheet.project}" />
+								<h:outputText value="#{row.project}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="projectInput" value="#{timesheet.project}"
+								<p:inputText id="projectInput" value="#{row.project}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -48,10 +48,10 @@
 					<p:column headerText="#{msgs.wp}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{timesheet.wp}" />
+								<h:outputText value="#{row.wp}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="wpInput" value="#{timesheet.wp}"
+								<p:inputText id="wpInput" value="#{row.wp}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -59,10 +59,10 @@
 					<p:column headerText="#{msgs.total}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{timesheet.total}" />
+								<h:outputText value="#{row.total}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="totalInput" value="#{timesheet.total}"
+								<p:inputText id="totalInput" value="#{row.total}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -70,10 +70,10 @@
 					<p:column headerText="#{msgs.sun}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{timesheet.sun}" />
+								<h:outputText value="#{row.sun}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="sunInput" value="#{timesheet.sun}"
+								<p:inputText id="sunInput" value="#{row.sun}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -81,10 +81,10 @@
 					<p:column headerText="#{msgs.mon}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{timesheet.mon}" />
+								<h:outputText value="#{row.mon}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="monInput" value="#{timesheet.mon}"
+								<p:inputText id="monInput" value="#{row.mon}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -92,10 +92,10 @@
 					<p:column headerText="#{msgs.tue}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{timesheet.tue}" />
+								<h:outputText value="#{row.tue}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="tueInput" value="#{timesheet.tue}"
+								<p:inputText id="tueInput" value="#{row.tue}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -103,10 +103,10 @@
 					<p:column headerText="#{msgs.wed}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{timesheet.wed}" />
+								<h:outputText value="#{row.wed}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="wedInput" value="#{timesheet.wed}"
+								<p:inputText id="wedInput" value="#{row.wed}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -114,10 +114,10 @@
 					<p:column headerText="#{msgs.thu}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{timesheet.thu}" />
+								<h:outputText value="#{row.thu}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="thuInput" value="#{timesheet.thu}"
+								<p:inputText id="thuInput" value="#{row.thu}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -125,10 +125,10 @@
 					<p:column headerText="#{msgs.fri}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{timesheet.fri}" />
+								<h:outputText value="#{row.fri}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="friInput" value="#{timesheet.fri}"
+								<p:inputText id="friInput" value="#{row.fri}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -136,10 +136,10 @@
 					<p:column headerText="#{msgs.sat}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{timesheet.sat}" />
+								<h:outputText value="#{row.sat}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="satInput" value="#{timesheet.sat}"
+								<p:inputText id="satInput" value="#{row.sat}"
 									style="width:100%" />
 							</f:facet>
 						</p:cellEditor>
@@ -147,10 +147,10 @@
 					<p:column headerText="#{msgs.notes}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="#{timesheet.notes}" />
+								<h:outputText value="#{row.notes}" />
 							</f:facet>
 							<f:facet name="input">
-								<p:inputText id="notesInput" value="#{timesheet.notes}"
+								<p:inputText id="notesInput" value="#{row.notes}"
 									style="width:130%" />
 							</f:facet>
 						</p:cellEditor>
@@ -165,7 +165,7 @@
 					<div class="ui-g-12">
 						<p:commandButton value="#{msgs.newRow}"
 							styleClass="ui-priority-primary" process="@this"
-							update=":form:msgs" actionListener="#{dtAddRowView.onAddNew()}"
+							update=":form:msgs" actionListener="#{timesheet.addRow()}"
 							oncomplete="PF('cars1').addRow();" />
 					</div>
 				</div>

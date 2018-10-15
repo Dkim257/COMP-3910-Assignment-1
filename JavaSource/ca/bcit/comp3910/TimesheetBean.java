@@ -10,9 +10,9 @@ import ca.bcit.infosys.timesheet.Timesheet;
 @Named("timesheet")
 @ApplicationScoped
 public class TimesheetBean extends Timesheet implements Serializable{
-
+    
     public TimesheetBean() {
-        super();
+        
     }
     
 }
