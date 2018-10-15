@@ -19,6 +19,11 @@ body {
 	margin-right: auto;
 }
 
+.dropdown-content {
+	top: 64px !important;
+	width: fit-content !important;
+}
+
 footer {
     position: absolute;
     left: 0;
