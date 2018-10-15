@@ -12,8 +12,7 @@ import javax.enterprise.context.ApplicationScoped;
 public class EmployeeBean extends Employee implements Serializable{
     
     public EmployeeBean() {
-        
+        super();
     }
-    
     
 }

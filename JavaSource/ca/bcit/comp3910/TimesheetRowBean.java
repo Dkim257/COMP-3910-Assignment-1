@@ -11,4 +11,8 @@ import javax.enterprise.context.ApplicationScoped;
 @ApplicationScoped
 public class TimesheetRowBean extends TimesheetRow implements Serializable {
 
+    public TimesheetRowBean() {
+        super();
+    }
+    
 }
