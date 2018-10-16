@@ -81,7 +81,7 @@
 					<p:column headerText="#{msgs.sun}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="" />
+								<h:outputText value="#{row.getHour(1)}" />
 							</f:facet>
 							<f:facet name="input">
 								<p:inputText id="sunInput"  
@@ -92,7 +92,7 @@
 					<p:column headerText="#{msgs.mon}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="" />
+								<h:outputText value="#{row.getHour(2)}" />
 							</f:facet>
 							<f:facet name="input">
 								<p:inputText id="monInput"  
@@ -103,7 +103,7 @@
 					<p:column headerText="#{msgs.tue}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="" />
+								<h:outputText value="#{row.getHour(3)}" />
 							</f:facet>
 							<f:facet name="input">
 								<p:inputText id="tueInput"  
@@ -114,7 +114,7 @@
 					<p:column headerText="#{msgs.wed}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="" />
+								<h:outputText value="#{row.getHour(4)}" />
 							</f:facet>
 							<f:facet name="input">
 								<p:inputText id="wedInput"  
@@ -125,7 +125,7 @@
 					<p:column headerText="#{msgs.thu}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="" />
+								<h:outputText value="#{row.getHour(5)}" />
 							</f:facet>
 							<f:facet name="input">
 								<p:inputText id="thuInput"  
@@ -136,7 +136,7 @@
 					<p:column headerText="#{msgs.fri}">
 						<p:cellEditor>
 							<f:facet name="output">
-								<h:outputText value="" />
+								<h:outputText value="#{row.getHour(6)}" />
 							</f:facet>
 							<f:facet name="input">
 								<p:inputText id="friInput"  
@@ -164,7 +164,7 @@
 				<div class="ui-g">
 					<div class="ui-g-12">
 						<p:commandButton value="#{msgs.newRow}"
-							styleClass="waves-effect waves-light btn" process="@this"
+							styleClass="waves-effect waves-light btn blue-grey darken-4" process="@this"
 							update=":form:msgs" action="#{timesheet.addRow()}"
 							oncomplete="submit()" />
 					</div>
