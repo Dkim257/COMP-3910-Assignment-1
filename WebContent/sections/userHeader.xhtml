@@ -14,7 +14,7 @@
 		<h:form>
 			<!-- Dropdown Structure -->
 			<ul id="dropdown1" class="dropdown-content">
-				<li><p:commandLink>#{msgs.changePass}
+				<li><p:commandLink ajax="false">#{msgs.changePass}
 					<p:confirm header="#{msgs.changePass}" />
 					</p:commandLink></li>
 				<li><a href="/assignment1">Logout</a></li>
@@ -44,8 +44,8 @@
 				</f:facet>
 				<p:commandLink type="button" ajax="false" styleClass="waves-effect waves-light btn-small blue-grey darken-2">
 					<i class="material-icons left">clear</i>#{msgs.cancel}</p:commandLink>
-				<p:commandLink type="button" actionListener="#{growlView.changePassSuccess}" ajax="false"
-					styleClass="waves-effect waves-light btn-small blue-grey darken-2" update="growl">
+				<p:commandLink type="button" ajax="false"
+					styleClass="waves-effect waves-light btn-small blue-grey darken-2" >
 					<i class="material-icons left">check</i>#{msgs.save}</p:commandLink>
 			</p:confirmDialog>
 		</h:form>
