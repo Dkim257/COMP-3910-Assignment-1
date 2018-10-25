@@ -30,7 +30,7 @@ public class EmployeeTable implements Serializable {
     @Inject private Credential credential;
     private Employee currentUser, admin;
     
-    public EmployeeTableData() {
+    public EmployeeTable() {
         setAdmin(employees.get(0)); //Tony is admin cuz he's cool
     }
     
