@@ -1,6 +1,7 @@
 package ca.bcit.comp3910;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
@@ -17,7 +18,11 @@ public class TimesheetTable implements Serializable {
     }
 
     public List<Timesheet> getTimesheets(Employee e) {
-        return null;
+        List<Timesheet> returnList = new ArrayList<>();
+        for(Timesheet ts : timesheets)
+            if(ts.getEmployee().equals(e))
+                returnList.add(ts);
+        return returnList;
     }
 
     public Timesheet getCurrentTimesheet(Employee e) {
