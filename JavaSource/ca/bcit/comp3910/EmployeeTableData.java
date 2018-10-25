@@ -10,6 +10,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.jboss.security.auth.spi.Users;
+
 @Named("employeeTable")
 @SessionScoped
 public class EmployeeTableData implements Serializable {
@@ -83,11 +85,14 @@ public class EmployeeTableData implements Serializable {
     }
 
     void deleteEmployee(Employee userToDelete) {
-        
+        if(employees.contains(userToDelete))
+            employees.remove(userToDelete);
     }
 
     void addEmployee(Employee newEmployee) {
-        
+        if(!employees.contains(newEmployee)) {
+            employees.add(newEmployee);
+        }
     }
 
     public Employee getCurrentUser() {
