@@ -14,47 +14,34 @@
 		<ui:define name="windowTitle">
             #{msgs.windowTitle}
          </ui:define>
-         <ui:define name="heading">
-         	<ui:include src="/sections/userHeader.xhtml" />
-         </ui:define>
-         
+		<ui:define name="heading">
+			<ui:include src="/sections/userHeader.xhtml" />
+		</ui:define>
+
 		<ui:define name="content">
-			<div class="valign-wrapper" id="login-page">
-				<div class="container">
-					<div class="center-align">
-						<div class="row">
-							<div class="col s6 offset-s3">
-								<div class="card">
-									<div class="card-content">
-										<p:graphicImage name="/images/login_img.png" width="80px"
-											class="responsive-img" />
-										<div class="left-align">
-											<h:form id="login-form">
-												<p:growl autoUpdate="true" />
-												<div class="row ">
-													<div class="col s12 input-field">
-														<p:inputText id="id" required="true"
-															requiredMessage="#{msgs.idReq}" />
-														<h:outputLabel for="id" value="#{msgs.enterId}" />
-													</div>
-													<div class="col s12 input-field">
-														<p:password id="password" required="true"
-															requiredMessage="#{msgs.passReq}" />
-														<h:outputLabel for="password"
-															value="#{msgs.enterPassword}" />
-													</div>
-													<div class="col s12 card-action" id="loginBtn">
-														<p:link value="#{msgs.loginTitle}" id="loginBtn"
-															outcome="timesheet"
-															styleClass="btn-large waves-effect waves-light blue-grey darken-2" />
-													</div>
-												</div>
-											</h:form>
-										</div>
-									</div>
+			<div class="card">
+				<div class="card-content">
+					<div class="left-align">
+						<h:form id="login-form">
+							<p:growl />
+							<div class="row ">
+								<div class="col s12 input-field">
+									<p:inputText id="id" required="true"
+										requiredMessage="#{msgs.idReq}" />
+									<h:outputLabel for="id" value="#{msgs.enterId}" />
+								</div>
+								<div class="col s12 input-field">
+									<p:password id="password" required="true"
+										requiredMessage="#{msgs.passReq}" />
+									<h:outputLabel for="password" value="#{msgs.enterPassword}" />
+								</div>
+								<div class="col s12 card-action" id="loginBtn">
+									<p:link value="#{msgs.loginTitle}" id="loginBtn"
+										outcome="timesheet"
+										styleClass="btn-large waves-effect waves-light blue-grey darken-2" />
 								</div>
 							</div>
-						</div>
+						</h:form>
 					</div>
 				</div>
 			</div>

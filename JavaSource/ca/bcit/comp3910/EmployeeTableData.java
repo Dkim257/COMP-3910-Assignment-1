@@ -5,10 +5,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
+
 import ca.bcit.infosys.employee.Credentials;
 import ca.bcit.infosys.employee.Employee;
 import ca.bcit.infosys.employee.EmployeeList;
 
+@Named("dbEmployee")
+@ApplicationScoped
 public class EmployeeTableData implements EmployeeList {
 
     private ArrayList<Employee> employees;

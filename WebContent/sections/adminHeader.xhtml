@@ -1,25 +1,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://java.sun.com/jsf/html"
+	xmlns:h="http://java.sun.com/jsf/html">
 <head>
-	<title>IGNORED</title>
+<title>IGNORED</title>
 </head>
 <body>
 	<ui:composition>
-		<nav>
+		<h:form>
+			<nav>
 			<div class="nav-wrapper blue-grey darken-2">
 				<div class="header">
 					<a href="#!" class="brand-logo">Logo</a>
 					<ul class="right hide-on-med-and-down">
-						<li><a href="#!">#{msgs.users}</a></li>
-						<li><a href="#!">#{msgs.viewTimesheet}</a></li>
-						<li><a href="#!">#{msgs.newTimesheet}</a></li>
-						<li><a href="#!">#{msgs.logout}</a></li>
+						<li><p:commandLink href="../createUser.xhtml" ajax="false">#{msgs.users}</p:commandLink></li>
+						<li><p:commandLink href="#!" ajax="false">#{msgs.viewTimesheet}</p:commandLink></li>
+						<li><p:commandLink href="#!" ajax="false">#{msgs.newTimesheet}</p:commandLink></li>
+						<li><p:commandLink href="#!" ajax="false">#{msgs.logout}</p:commandLink></li>
 					</ul>
 				</div>
 			</div>
-		</nav>
+			</nav>
+		</h:form>
 	</ui:composition>
 </body>
 </html>

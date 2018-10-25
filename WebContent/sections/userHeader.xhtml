@@ -1,35 +1,59 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
 <head>
 <title>IGNORED</title>
 </head>
 <body>
 	<ui:composition>
-		<!-- Dropdown Structure -->
-		<ul id="dropdown1" class="dropdown-content">
-			<li><a href="#!">Change Password</a></li>
-			<li><a href="/assignment1">Logout</a></li>
-		</ul>
-		<nav>
-		<div class="nav-wrapper blue-grey darken-2">
-			<div class="header">
-				<a href="#!" class="brand-logo">Logo</a>
-				<ul class="right hide-on-med-and-down">
-					<li><a href="#!">#{msgs.viewTimesheet}</a></li>
-					<li><a href="#!">#{msgs.newTimesheet}</a></li>
-					<li><a class="dropdown-trigger" href="#!"
-						data-target="dropdown1">#{msgs.user}<i class="material-icons right">arrow_drop_down</i></a></li>
-				</ul>
+	<p:growl id="message" life="2000" showDetail="true" />
+		<h:form>
+			<!-- Dropdown Structure -->
+			<ul id="dropdown1" class="dropdown-content">
+				<li><p:commandLink>#{msgs.changePass}
+					<p:confirm header="#{msgs.changePass}" />
+					</p:commandLink></li>
+				<li><a href="/assignment1">Logout</a></li>
+			</ul>
+
+			<nav>
+			<div class="nav-wrapper blue-grey darken-2">
+				<div class="header">
+					<a href="#!" class="brand-logo">Logo</a>
+					<ul class="right hide-on-med-and-down">
+						<li><a href="#!">#{msgs.viewTimesheet}</a></li>
+						<li><a href="#!">#{msgs.newTimesheet}</a></li>
+						<li><a class="dropdown-trigger" href="#!"
+							data-target="dropdown1">#{msgs.user}<i
+								class="material-icons right">arrow_drop_down</i></a></li>
+					</ul>
+				</div>
 			</div>
-		</div>
-		</nav>
+			</nav>
+
+			<!-- Dialog for change password input form -->
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<f:facet name="message">
+					<!-- add value so new password is saved -->
+					<p:password id="newPassword" feedback="true" inline="true" />
+					<h:outputLabel for="newPassword" value="#{msgs.newPass}" />
+				</f:facet>
+				<p:commandLink type="button" ajax="false" styleClass="waves-effect waves-light btn-small blue-grey darken-2">
+					<i class="material-icons left">clear</i>#{msgs.cancel}</p:commandLink>
+				<p:commandLink type="button" actionListener="#{growlView.changePassSuccess}" ajax="false"
+					styleClass="waves-effect waves-light btn-small blue-grey darken-2" update="growl">
+					<i class="material-icons left">check</i>#{msgs.save}</p:commandLink>
+			</p:confirmDialog>
+		</h:form>
 		<script type="text/javascript">
 				jQuery(document).ready(function() {
 					$(".dropdown-trigger").dropdown();
 				});
-			</script>
+		</script>
 	</ui:composition>
 </body>
 </html>

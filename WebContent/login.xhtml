@@ -24,14 +24,16 @@
 								<p:graphicImage name="/images/login_img.png" width="80px" class="responsive-img"/>
 								<div class="left-align">
 									<h:form id="login-form">
-										<p:growl autoUpdate="true" />
+										<p:growl />
 										<div class="row ">
 											<div class="col s12 input-field">
-												<p:inputText id="id" required="true" requiredMessage="#{msgs.idReq}"/>
+												<p:inputText id="id" required="true" requiredMessage="#{msgs.idReq}"
+													binding="#{usernameField}" />
 												<h:outputLabel for="id" value="#{msgs.enterId}" />
 											</div>
 											<div class="col s12 input-field">
-												<p:password id="password" required="true" requiredMessage="#{msgs.passReq}"/>
+												<p:password id="password" required="true" requiredMessage="#{msgs.passReq}"
+													binding="#{passwordField}" />
 												<h:outputLabel for="password" value="#{msgs.enterPassword}" />
 											</div>
 											<div class="col s12 card-action" id="loginBtn">
@@ -48,6 +50,5 @@
 			</div>
 		</div>
 	</div>
-	<script type="text/javascript" src="js/materialize.min.js" />
 </h:body>
 </html>
