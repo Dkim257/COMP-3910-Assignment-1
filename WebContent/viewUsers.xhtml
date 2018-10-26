@@ -26,7 +26,7 @@
 				<h:form id="form">
 					<p:growl id="msgs" showDetail="true" />
 
-					<p:dataTable id="employees" var="employee"
+					<p:dataTable id="employees" var="user"
 						value="#{employeeTable.employees}" style="margin-bottom:20px;" >
 						<f:facet name="header">
            				#{msgs.name}
@@ -36,17 +36,17 @@
 							<f:facet name="header" >
 								<h:outputText value="#{msgs.empNum}" />
 							</f:facet>
-							<h:outputText value="#{employee.empNumber}" />
+							<h:outputText value="#{user.empNumber}" />
 						</p:column>
 						<p:column headerText="#{msgs.name}">
-							<h:outputText value="#{employee.name}" />
+							<h:outputText value="#{user.name}" />
 						</p:column>
 						<p:column headerText="#{msgs.username}">
-							<h:outputText value="#{employee.userName}" />
+							<h:outputText value="#{user.userName}" />
 						</p:column>
 						<p:column headerText="#{msgs.edit}">
 							<h:commandButton value="#{msgs.edit}"
-								action="#{employeeTable.editEmployee(employee)}" />
+								action="#{employeeTable.editEmployee(user)}" />
 						</p:column>
 					</p:dataTable>
 
