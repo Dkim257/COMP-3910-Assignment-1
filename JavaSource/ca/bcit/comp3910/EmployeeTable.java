@@ -20,6 +20,7 @@ public class EmployeeTable implements Serializable {
     private static List<Employee> employees;
     private static Employee admin;
     private static Map<String, String> credsMap;
+    private static String defaultPassword = "1234";
     
     static {
         employees = new ArrayList<Employee>();
@@ -35,7 +36,7 @@ public class EmployeeTable implements Serializable {
     }
     
     @Inject private Credential credential;
-    private Employee currentUser;
+    private Employee currentUser, currentEditUser;
     
     public EmployeeTable() {}
     
@@ -56,6 +57,10 @@ public class EmployeeTable implements Serializable {
     
     public void changePassword(Employee e, String password) {
         credsMap.put(e.getUserName(), password);
+    }
+    
+    public void resetPassword(Employee e) {
+        changePassword(e, defaultPassword);
     }
 
     public Employee getAdministrator() {
@@ -101,12 +106,12 @@ public class EmployeeTable implements Serializable {
         if(!employees.contains(currentUser)) {
             employees.add(currentUser);
         }
+        setCurrentUser(admin);
         return "viewUsers";
     }
     
     public String editEmployee(Employee userToEdit) {
-        if (userToEdit != null)
-            setCurrentUser(userToEdit);
+        setCurrentEditUser(userToEdit);
         
         return "editUser";
     }
@@ -117,6 +122,14 @@ public class EmployeeTable implements Serializable {
 
     public void setCurrentUser(Employee currentUser) {
         this.currentUser = currentUser;
+    }
+    
+    public Employee getCurrentEditUser() {
+        return currentEditUser;
+    }
+    
+    public void setCurrentEditUser(Employee currentEditUser) {
+        this.currentEditUser = currentEditUser;
     }
 
     public static Employee getAdmin() {
