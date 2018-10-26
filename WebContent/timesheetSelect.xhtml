@@ -52,16 +52,6 @@
 							<p:rowEditor />
 						</p:column>
 					</p:dataTable>
-
-					<div class="ui-g">
-						<div class="ui-g-12">
-							<p:commandButton value="#{msgs.newRow}"
-								styleClass="waves-effect waves-light btn blue-grey darken-4"
-								process="@this" update=":form:msgs"
-								action="#{timesheet.addRow()}" oncomplete="submit()" />
-						</div>
-					</div>
-
 				</h:form>
 			</div>
 		</ui:define>

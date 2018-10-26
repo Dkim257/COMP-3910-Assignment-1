@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -52,10 +53,6 @@ public class EmployeeTable implements Serializable {
 
     public Map<String, String> getLoginCombos() {
         return credsMap;
-    }
-
-    public Employee getCurrentEmployee() {
-        return currentUser;
     }
 
     public Employee getAdministrator() {
@@ -125,6 +122,15 @@ public class EmployeeTable implements Serializable {
 
     public static void setAdmin(Employee a) {
         admin = a;
+    }
+    
+    public static EmployeeTable getInstance() {
+        FacesContext fc = FacesContext.getCurrentInstance();
+        return (EmployeeTable) fc.getApplication().getELResolver().getValue(fc.getELContext(), null, "EmployeeTable");
+    }
+    
+    public boolean isAdmin() {
+        return currentUser == admin;
     }
     
 }
