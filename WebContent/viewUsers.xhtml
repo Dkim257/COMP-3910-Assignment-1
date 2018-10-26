@@ -20,20 +20,22 @@
 
 		<ui:define name="content">
 			<div class="s12">
-				<h3 class="pageHeading">#{msgs.users}</h3>
+				<h3>#{msgs.users}</h3>
 			</div>
 			<div class="row s12">
 				<h:form id="form">
 					<p:growl id="msgs" showDetail="true" />
 
-					<p:dataTable id="employees" widgetVar="employees" var="employee"
-						value="#{employeeTable.employees}" editable="false"
-						style="margin-bottom:20px; padding-top:20px">
+					<p:dataTable id="employees" var="employee"
+						value="#{employeeTable.employees}" style="margin-bottom:20px;" >
 						<f:facet name="header">
            				#{msgs.name}
        				</f:facet>
 
-						<p:column headerText="#{msgs.empNum}">
+						<p:column>
+							<f:facet name="header" >
+								<h:outputText value="#{msgs.empNum}" />
+							</f:facet>
 							<h:outputText value="#{employee.empNumber}" />
 						</p:column>
 						<p:column headerText="#{msgs.name}">
@@ -42,12 +44,16 @@
 						<p:column headerText="#{msgs.username}">
 							<h:outputText value="#{employee.userName}" />
 						</p:column>
+						<p:column headerText="#{msgs.edit}">
+							<h:commandButton value="#{msgs.edit}"
+								action="#{employeeTable.editEmployee(employee)}" />
+						</p:column>
 					</p:dataTable>
 
 					<div class="ui-g">
 						<div class="ui-g-12">
-							<p:commandButton value="#{msgs.newUser}" action="editUser"
-								styleClass="waves-effect waves-light btn blue-grey darken-4" />
+							<p:link value="#{msgs.newUser}" outcome="editUser"
+								styleClass="btn-large waves-effect waves-light blue-grey darken-2" />
 						</div>
 					</div>
 

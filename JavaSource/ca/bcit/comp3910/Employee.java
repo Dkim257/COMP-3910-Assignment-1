@@ -10,11 +10,11 @@ import javax.inject.Named;
 public class Employee implements Serializable {
 
     private String name, userName;
-    private int empNumber;
+    private Integer empNumber;
     
     public Employee() {}
     
-    public Employee(final String empName, final int number, final String id) {
+    public Employee(final String empName, final Integer number, final String id) {
         name = empName;
         empNumber = number;
         userName = id;
@@ -36,11 +36,11 @@ public class Employee implements Serializable {
         this.userName = userName;
     }
 
-    public int getEmpNumber() {
+    public Integer getEmpNumber() {
         return empNumber;
     }
 
-    public void setEmpNumber(int empNumber) {
+    public void setEmpNumber(Integer empNumber) {
         this.empNumber = empNumber;
     }
 }

@@ -19,16 +19,15 @@
 		</ui:define>
 
 		<ui:define name="content">
-			<div class="s12 pageHeading">
-				<h3 class="pageHeading">#{msgs.timesheet}</h3>
+			<div class="s12">
+				<h3>#{msgs.timesheet}</h3>
 			</div>
 			<div class="row s12">
 				<h:form id="form">
 					<p:growl id="msgs" showDetail="true" />
 
 					<p:dataTable id="timesheet" widgetVar="timesheet" var="row"
-						value="#{timesheet.details}" editable="true"
-						style="margin-bottom:20px; padding-top:20px">
+						value="#{timesheet.details}" editable="true" style="margin-bottom:20px;" >
 						<f:facet name="header">
            				#{msgs.name}
        				</f:facet>

@@ -12,6 +12,7 @@ import javax.inject.Named;
 
 import org.jboss.security.auth.spi.Users;
 
+
 @Named("employeeTable")
 @SessionScoped
 public class EmployeeTable implements Serializable {
@@ -19,9 +20,10 @@ public class EmployeeTable implements Serializable {
     private static List<Employee> employees;
     private static Map<String, String> credsMap;
     static {
-        employees = new ArrayList<>();
+        employees = new ArrayList<Employee>();
         employees.add(new Employee("Tony Pacheco", 1, "tp1"));
         employees.add(new Employee("Danny DiOreo", 2, "dd2"));
+        employees.add(new Employee("Bruce Link", 3, "bl3"));
         credsMap = new HashMap<>();
         credsMap.put("tp1", "pass");
         credsMap.put("dd2", "pass");
@@ -89,10 +91,18 @@ public class EmployeeTable implements Serializable {
             employees.remove(userToDelete);
     }
 
-    public void addEmployee(Employee newEmployee) {
-        if(!employees.contains(newEmployee)) {
-            employees.add(newEmployee);
+    public String addEmployee() {
+        if(!employees.contains(currentUser)) {
+            employees.add(currentUser);
         }
+        return "viewUsers";
+    }
+    
+    public String editEmployee(Employee userToEdit) {
+        if (userToEdit != null)
+            setCurrentUser(userToEdit);
+        
+        return "editUser";
     }
 
     public Employee getCurrentUser() {

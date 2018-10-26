@@ -16,9 +16,9 @@
 					<a href="#!" class="brand-logo">Logo</a>
 					<ul class="right hide-on-med-and-down">
 						<li><p:commandLink action="viewUsers" ajax="false" >#{msgs.users}</p:commandLink></li>
-						<li><p:commandLink href="#!" ajax="false">#{msgs.viewTimesheet}</p:commandLink></li>
-						<li><p:commandLink href="#!" ajax="false">#{msgs.newTimesheet}</p:commandLink></li>
-						<li><p:commandLink href="#!" ajax="false">#{msgs.logout}</p:commandLink></li>
+						<li><p:commandLink action="timesheet" ajax="false">#{msgs.viewTimesheet}</p:commandLink></li>
+						<li><p:commandLink action="timesheet" ajax="false">#{msgs.newTimesheet}</p:commandLink></li>
+						<li><p:commandLink action="#{employeeTable.logout(employee)}" ajax="false">#{msgs.logout}</p:commandLink></li>
 					</ul>
 				</div>
 			</div>

@@ -25,12 +25,12 @@
 			<div class="card">
 				<div class="card-content">
 					<div class="left-align">
-						<h:form id="login-form">
+						<h:form id="user-form">
 							<p:growl />
 							<div class="row ">
 								<div class="col s5 input-field">
 									<i class="material-icons prefix">account_circle</i>
-									<p:inputText id="empNumber" required="true" />
+									<p:inputText value="#{employeeTable.currentUser.empNumber}" id="empNumber" required="true" />
 									<h:outputLabel for="empNumber" value="#{msgs.empNumber}" />
 								</div><br/><br/><br/><br/>
 								<div class="col s5 input-field">
@@ -49,8 +49,8 @@
 									<h:outputLabel for="password" value="#{msgs.password}" />
 								</div>
 								<div class="col s12 card-action" id="saveBtn">
-									<p:link value="#{msgs.save}" id="saveBtn"
-										outcome="timesheet"
+									<p:commandButton value="#{msgs.save}" id="saveBtn"
+										action="#{employeeTable.addEmployee()}"
 										styleClass="btn-large waves-effect waves-light blue-grey darken-2" />
 								</div>
 							</div>
