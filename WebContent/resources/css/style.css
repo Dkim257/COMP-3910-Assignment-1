@@ -59,3 +59,11 @@ footer {
 	color: white !important;
     margin-right: 10px;
 }
+
+.centerTableColumn {
+	align: center;
+}
+
+.dropdown-trigger {
+	font-size: 1.1rem;
+}
