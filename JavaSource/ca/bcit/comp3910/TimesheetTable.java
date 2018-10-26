@@ -11,7 +11,12 @@ import javax.inject.Named;
 @SessionScoped
 public class TimesheetTable implements Serializable {
     
-    List<Timesheet> timesheets;
+    private static List<Timesheet> timesheets;
+    static {
+        timesheets = new ArrayList<>();
+    }
+    
+    private Timesheet currentSheet;
     
     public List<Timesheet> getTimesheets() {
         return timesheets;
@@ -26,7 +31,7 @@ public class TimesheetTable implements Serializable {
     }
 
     public Timesheet getCurrentTimesheet(Employee e) {
-        return null;
+        return currentSheet;
     }
 
     public String addTimesheet() {

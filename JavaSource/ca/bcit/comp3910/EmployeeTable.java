@@ -16,25 +16,28 @@ import org.jboss.security.auth.spi.Users;
 @Named("employeeTable")
 @SessionScoped
 public class EmployeeTable implements Serializable {
-
+    
     private static List<Employee> employees;
+    private static Employee admin;
     private static Map<String, String> credsMap;
+    
     static {
         employees = new ArrayList<Employee>();
         employees.add(new Employee("Tony Pacheco", 1, "tp1"));
         employees.add(new Employee("Danny DiOreo", 2, "dd2"));
         employees.add(new Employee("Bruce Link", 3, "bl3"));
+        
+        admin = employees.get(0); //Tony gets to be Admin cuz he's coolio
+        
         credsMap = new HashMap<>();
         credsMap.put("tp1", "pass");
         credsMap.put("dd2", "pass");
     }
     
     @Inject private Credential credential;
-    private Employee currentUser, admin;
+    private Employee currentUser;
     
-    public EmployeeTable() {
-        setAdmin(employees.get(0)); //Tony is admin cuz he's cool
-    }
+    public EmployeeTable() {}
     
     public List<Employee> getEmployees() {
         return employees;
@@ -116,12 +119,12 @@ public class EmployeeTable implements Serializable {
         this.currentUser = currentUser;
     }
 
-    public Employee getAdmin() {
+    public static Employee getAdmin() {
         return admin;
     }
 
-    public void setAdmin(Employee admin) {
-        this.admin = admin;
+    public static void setAdmin(Employee a) {
+        admin = a;
     }
     
 }
