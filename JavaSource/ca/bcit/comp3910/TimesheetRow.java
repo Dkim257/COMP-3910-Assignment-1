@@ -46,6 +46,9 @@ public class TimesheetRow implements Serializable {
     private BigDecimal[] hoursForWeek = new BigDecimal[Timesheet.DAYS_IN_WEEK];
     /** Any notes added to the end of a row. */
     private String notes;
+    
+    private BigDecimal sunHrs, monHrs, tueHrs, wedHrs, thuHrs, friHrs, satHrs;
+    
 
     /**
      * Creates a TimesheetDetails object and sets the editable state to true.
@@ -220,11 +223,76 @@ public class TimesheetRow implements Serializable {
     public void onRowEdit(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Row Edited");
         FacesContext.getCurrentInstance().addMessage(null, msg);
+        setHour(0, satHrs);
+        setHour(1, sunHrs);
+        setHour(2, monHrs);
+        setHour(3, tueHrs);
+        setHour(4, wedHrs);
+        setHour(5, thuHrs);
+        setHour(6, friHrs);
     }
     
     public void onRowCancel(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Edit Cancelled");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+
+    public BigDecimal getSunHrs() {
+        return sunHrs;
+    }
+
+    public void setSunHrs(BigDecimal sunHrs) {
+        this.sunHrs = sunHrs;
+    }
+
+    public BigDecimal getMonHrs() {
+        return monHrs;
+    }
+
+    public void setMonHrs(BigDecimal monHrs) {
+        this.monHrs = monHrs;
+    }
+
+    public BigDecimal getTueHrs() {
+        return tueHrs;
+    }
+
+    public void setTueHrs(BigDecimal tueHrs) {
+        this.tueHrs = tueHrs;
+    }
+
+    public BigDecimal getWedHrs() {
+        return wedHrs;
+    }
+
+    public void setWedHrs(BigDecimal wedHrs) {
+        this.wedHrs = wedHrs;
+    }
+
+    public BigDecimal getThuHrs() {
+        return thuHrs;
+    }
+
+    public void setThuHrs(BigDecimal thuHrs) {
+        this.thuHrs = thuHrs;
+    }
+
+    public BigDecimal getFriHrs() {
+        return friHrs;
+    }
+
+    public void setFriHrs(BigDecimal friHrs) {
+        this.friHrs = friHrs;
+    }
+
+    public BigDecimal getSatHrs() {
+        return satHrs;
+    }
+
+    public void setSatHrs(BigDecimal satHrs) {
+        this.satHrs = satHrs;
+    }
+    
+    
     
 }

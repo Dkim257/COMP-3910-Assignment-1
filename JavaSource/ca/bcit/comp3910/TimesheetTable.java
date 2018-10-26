@@ -34,12 +34,14 @@ public class TimesheetTable implements Serializable {
     }
 
     public Timesheet getCurrentTimesheet(Employee e) {
+        if(getTimesheets(e).isEmpty())
+            return null;
         return getTimesheets(e).get(getTimesheets(e).size()-1);
     }
     
-    public Timesheet getViewedTimesheet() {
+    public Timesheet getViewedTimesheet(Employee e) {
         if(viewedTimesheet == null)
-            viewedTimesheet = new Timesheet();
+            viewedTimesheet = getCurrentTimesheet(e);
         return viewedTimesheet;
     }
     
@@ -47,14 +49,26 @@ public class TimesheetTable implements Serializable {
         viewedTimesheet = ts;
     }
 
-    public String addTimesheet() {
+    public String addTimesheet(Employee e) {
         Timesheet sheet = new Timesheet();
+        sheet.setEmployee(e);
         sheet.addRow();
         sheet.addRow();
         sheet.addRow();
         sheet.addRow();
         sheet.addRow();
         viewedTimesheet = sheet;
+        return "timesheet.xhtml";
+    }
+    
+    public String saveChanges() {
+        if(!timesheets.contains(viewedTimesheet)) 
+            timesheets.add(viewedTimesheet);
+        return "timesheet.xhtml";
+    }
+    
+    public String viewTimesheet(Timesheet ts) {
+        viewedTimesheet = ts;
         return "timesheet.xhtml";
     }
 }

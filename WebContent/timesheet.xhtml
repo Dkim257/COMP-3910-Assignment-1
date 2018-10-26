@@ -26,24 +26,24 @@
 				<h:form id="form">
 					<p:growl id="msgs" showDetail="true" />
 
-					<p:dataTable id="timesheet" widgetVar="timesheet" var="row"
-						value="#{timesheettable.viewedTimesheet.details}" editable="true" style="margin-bottom:20px;" >
+					<p:dataTable id="timesheet" widgetVar="timesheet" var="timesheetrow"
+						value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).details}" editable="true" style="margin-bottom:20px;" >
 						<f:facet name="header">
            				#{msgs.name}
        				</f:facet>
 
-						<p:ajax event="rowEdit" listener="#{row.onRowEdit}"
+						<p:ajax event="rowEdit" listener="#{timesheetrow.onRowEdit}"
 							update=":form:msgs" />
-						<p:ajax event="rowEditCancel" listener="#{row.onRowCancel}"
+						<p:ajax event="rowEditCancel" listener="#{timesheetrow.onRowCancel}"
 							update=":form:msgs" />
 
 						<p:column headerText="#{msgs.project}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{row.projectID}" />
+									<h:outputText value="#{timesheetrow.projectID}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="projectInput" value="#{row.projectID}"
+									<p:inputText id="projectInput" value="#{timesheetrow.projectID}"
 										style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
@@ -51,10 +51,10 @@
 						<p:column headerText="#{msgs.wp}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{row.workPackage}" />
+									<h:outputText value="#{timesheetrow.workPackage}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="workPackageInput" value="#{row.workPackage}"
+									<p:inputText id="workPackageInput" value="#{timesheetrow.workPackage}"
 										style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
@@ -62,7 +62,7 @@
 						<p:column headerText="#{msgs.total}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="" />
+									<h:outputText value="#{timesheetrow.sum}" />
 								</f:facet>
 								<f:facet name="input">
 									<p:inputText id="totalInput" style="width:100%" />
@@ -72,80 +72,80 @@
 						<p:column headerText="#{msgs.sat}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{row.getHour(0)}" />
+									<h:outputText value="#{timesheetrow.getHour(0)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="satInput" style="width:100%" />
+									<p:inputText id="satInput" value="#{timesheetrow.satHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 						<p:column headerText="#{msgs.sun}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{row.getHour(1)}" />
+									<h:outputText value="#{timesheetrow.getHour(1)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="sunInput" style="width:100%" />
+									<p:inputText id="sunInput" value="#{timesheetrow.sunHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 						<p:column headerText="#{msgs.mon}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{row.getHour(2)}" />
+									<h:outputText value="#{timesheetrow.getHour(2)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="monInput" style="width:100%" />
+									<p:inputText id="monInput"  value="#{timesheetrow.monHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 						<p:column headerText="#{msgs.tue}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{row.getHour(3)}" />
+									<h:outputText value="#{timesheetrow.getHour(3)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="tueInput" style="width:100%" />
+									<p:inputText id="tueInput"  value="#{timesheetrow.tueHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 						<p:column headerText="#{msgs.wed}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{row.getHour(4)}" />
+									<h:outputText value="#{timesheetrow.getHour(4)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="wedInput" style="width:100%" />
+									<p:inputText id="wedInput"  value="#{timesheetrow.wedHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 						<p:column headerText="#{msgs.thu}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{row.getHour(5)}" />
+									<h:outputText value="#{timesheetrow.getHour(5)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="thuInput" style="width:100%" />
+									<p:inputText id="thuInput"  value="#{timesheetrow.thuHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 						<p:column headerText="#{msgs.fri}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{row.getHour(6)}" />
+									<h:outputText value="#{timesheetrow.getHour(6)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="friInput" style="width:100%" />
+									<p:inputText id="friInput"  value="#{timesheetrow.friHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
 						<p:column headerText="#{msgs.notes}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{row.notes}" />
+									<h:outputText value="#{timesheetrow.notes}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="notesInput" value="#{row.notes}"
+									<p:inputText id="notesInput" value="#{timesheetrow.notes}"
 										style="width:130%" />
 								</f:facet>
 							</p:cellEditor>
@@ -162,6 +162,12 @@
 								styleClass="waves-effect waves-light btn blue-grey darken-4"
 								process="@this" update=":form:msgs"
 								action="#{timesheet.addRow()}" oncomplete="submit()" />
+						</div>
+						<div class="ui-g-12">
+							<p:commandButton value="Save Timesheet"
+								styleClass="waves-effect waves-light btn blue-grey darken-4"
+								process="@this" update=":form:msgs"
+								action="#{timesheettable.saveChanges()}" oncomplete="submit()" />
 						</div>
 					</div>
 
