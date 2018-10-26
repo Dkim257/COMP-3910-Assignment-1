@@ -10,7 +10,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import org.jboss.security.auth.spi.Users;
 
 
 @Named("employeeTable")
@@ -122,6 +121,11 @@ public class EmployeeTable implements Serializable {
 
     public void setAdmin(Employee admin) {
         this.admin = admin;
+    }
+    
+    public String add() {
+        currentUser = new Employee();
+        return "editUser";
     }
     
 }

@@ -22,16 +22,16 @@
 			<div class="s12">
 				<h3>#{msgs.newEditUser}</h3>
 			</div>
-			<div class="card">
-				<div class="card-content">
-					<div class="left-align">
-						<h:form id="user-form">
+			<h:form id="user-form">
+				<div class="card">
+					<div class="card-content">
+						<div class="left-align">
 							<p:growl />
 							<div class="row ">
 								<div class="col s5 input-field">
 									<i class="material-icons prefix">account_circle</i>
-									<p:inputText value="#{employeeTable.currentUser.empNumber}" id="empNumber" required="true" />
-									<h:outputLabel for="empNumber" value="#{msgs.empNumber}" />
+									<p:inputText value="#{employeeTable.currentUser.empNumber}" id="employeeNum" required="true" />
+									<h:outputLabel for="employeeNum" value="#{msgs.empNum}" />
 								</div><br/><br/><br/><br/>
 								<div class="col s5 input-field">
 									<i class="material-icons prefix">account_circle</i>
@@ -45,19 +45,25 @@
 								</div><br/><br/><br/><br/>
 								<div class="col s5 input-field">
 									<i class="material-icons prefix">lock</i>
-									<p:password id="password" required="true"  />
+									<p:password id="password"  />
 									<h:outputLabel for="password" value="#{msgs.password}" />
 								</div>
-								<div class="col s12 card-action" id="saveBtn">
-									<p:commandButton value="#{msgs.save}" id="saveBtn"
-										action="#{employeeTable.addEmployee()}"
-										styleClass="btn-large waves-effect waves-light blue-grey darken-2" />
+								
+								<!-- Add method to reset password -->
+								<div class="col s12" >
+									<p:link value="#{msgs.resetPass}" id="resetPassBtn"
+										styleClass="btn waves-effect waves-light blue-grey darken-2" />
 								</div>
 							</div>
-						</h:form>
+						</div>
 					</div>
 				</div>
-			</div>
+				<div class="col s12" id="saveBtn">
+					<p:commandButton value="#{msgs.save}" id="saveBtn"
+						action="#{employeeTable.addEmployee()}"
+						styleClass="btn-large waves-effect waves-light blue-grey darken-2" />
+				</div>
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </h:body>
