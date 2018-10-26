@@ -35,12 +35,12 @@
 								</div><br/><br/><br/><br/>
 								<div class="col s5 input-field">
 									<i class="material-icons prefix">account_circle</i>
-									<p:inputText id="name" required="true" />
+									<p:inputText value="#{employeeTable.currentUser.name}" id="name" required="true" />
 									<h:outputLabel for="name" value="#{msgs.name}" />
 								</div><br/><br/><br/><br/>
 								<div class="col s5 input-field">
 									<i class="material-icons prefix">cloud_circle</i>
-									<p:inputText id="username" required="true" />
+									<p:inputText value="#{employeeTable.currentUser.userName}" id="username" required="true" />
 									<h:outputLabel for="username" value="#{msgs.username}" />
 								</div><br/><br/><br/><br/>
 								<div class="col s5 input-field">
