@@ -11,9 +11,6 @@ import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Named;
 
-import ca.bcit.infosys.employee.Employee;
-import ca.bcit.infosys.timesheet.TimesheetRow;
-
 @Named("timesheet")
 @ApplicationScoped
 public class Timesheet implements Serializable {

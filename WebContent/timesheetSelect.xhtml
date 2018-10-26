@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>IGNORED</title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="windowTitle">
+            #{msgs.windowTitle}
+         </ui:define>
+		<ui:define name="heading">
+			<ui:include src="/sections/adminHeader.xhtml" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div class="s12">
+				<h3>#{msgs.timesheet}</h3>
+			</div>
+			<div class="row s12">
+				<h:form id="form">
+					<p:growl id="msgs" showDetail="true" />
+
+					<p:dataTable id="timesheet" widgetVar="timesheet" var="row"
+						value="#{timesheettable.timesheets}" editable="true" style="margin-bottom:20px;" >
+						<f:facet name="header">
+           				TIMESHEETS
+       				</f:facet>
+
+						<p:ajax event="rowEdit" listener="#{row.onRowEdit}"
+							update=":form:msgs" />
+						<p:ajax event="rowEditCancel" listener="#{row.onRowCancel}"
+							update=":form:msgs" />
+
+						<p:column headerText="Timesheet Date">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{row.endWeek}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="projectInput" value="#{row.endWeek}"
+										style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column style="width:32px">
+							<p:rowEditor />
+						</p:column>
+					</p:dataTable>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
