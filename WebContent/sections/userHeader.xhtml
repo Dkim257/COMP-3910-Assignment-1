@@ -28,8 +28,8 @@
 					<ul class="right hide-on-med-and-down">
 						<li><p:commandLink action="viewUsers" ajax="false"
 							rendered="#{employeeTable.admin}" >#{msgs.users}</p:commandLink></li>
-						<li><p:commandLink action="timesheet" ajax="false">#{msgs.viewTimesheet}</p:commandLink></li>
-						<li><p:commandLink action="timesheet" ajax="false">#{msgs.newTimesheet}</p:commandLink></li>
+						<li><p:commandLink action="timesheetSelect" ajax="false">#{msgs.viewTimesheet}</p:commandLink></li>
+						<li><p:commandLink action="#{timesheettable.addTimesheet(employeetable.currentUser)}" ajax="false">#{msgs.newTimesheet}</p:commandLink></li>
 						<li><a class="dropdown-trigger" href="#!"
 							data-target="dropdown1">#{msgs.user}<i
 								class="material-icons right">arrow_drop_down</i></a></li>

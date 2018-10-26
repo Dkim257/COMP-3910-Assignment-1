@@ -15,7 +15,7 @@
             #{msgs.windowTitle}
          </ui:define>
 		<ui:define name="heading">
-			<ui:include src="/sections/adminHeader.xhtml" />
+			<ui:include src="/sections/userHeader.xhtml" />
 		</ui:define>
 
 		<ui:define name="content">
@@ -28,28 +28,8 @@
 
 					<p:dataTable id="timesheet" widgetVar="timesheet" var="ts"
 						value="#{timesheettable.getTimesheets(employeetable.currentUser)}" editable="true" style="margin-bottom:20px;" >
-						<f:facet name="header">
-           				TIMESHEETS
-       				</f:facet>
-
-						<p:ajax event="rowEdit" listener="#{ts.onRowEdit}"
-							update=":form:msgs" />
-						<p:ajax event="rowEditCancel" listener="#{ts.onRowCancel}"
-							update=":form:msgs" />
-
-						<p:column headerText="Timesheet Date">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{ts.endWeek}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText id="projectInput" value="#{ts.endWeek}"
-										style="width:100%" />
-								</f:facet>
-							</p:cellEditor>
-						</p:column>
-						<p:column style="width:32px">
-							<p:rowEditor />
+						<p:column headerText="Timesheets For : #{employeetable.currentUser.name}">
+							<p:commandLink value="#{ts.endWeek}" action="#{timesheettable.viewTimesheet(ts)}"/>
 						</p:column>
 					</p:dataTable>
 				</h:form>
