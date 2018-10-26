@@ -27,7 +27,7 @@
 					<p:growl id="msgs" showDetail="true" />
 
 					<p:dataTable id="timesheet" widgetVar="timesheet" var="row"
-						value="#{timesheet.details}" editable="true" style="margin-bottom:20px;" >
+						value="#{timesheettable.viewedTimesheet.details}" editable="true" style="margin-bottom:20px;" >
 						<f:facet name="header">
            				#{msgs.name}
        				</f:facet>

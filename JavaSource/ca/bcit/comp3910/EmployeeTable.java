@@ -123,11 +123,6 @@ public class EmployeeTable implements Serializable {
         admin = a;
     }
     
-    public static EmployeeTable getInstance() {
-        FacesContext fc = FacesContext.getCurrentInstance();
-        return (EmployeeTable) fc.getApplication().getELResolver().getValue(fc.getELContext(), null, "EmployeeTable");
-    }
-    
     public boolean isAdmin() {
         return currentUser == admin;
     }

@@ -17,16 +17,15 @@ public class TimesheetTable implements Serializable {
         timesheets = new ArrayList<>();
     }
 
-    private Timesheet currentSheet;
+    private Timesheet viewedTimesheet;
     
     public List<Timesheet> getTimesheets() {
-        if(EmployeeTable.getInstance().isAdmin())
-            return timesheets;
-        else
-            return getTimesheets(EmployeeTable.getInstance().getCurrentUser());
+        return timesheets;
     }
 
     public List<Timesheet> getTimesheets(Employee e) {
+        if(e == EmployeeTable.getAdmin())
+            return getTimesheets();
         List<Timesheet> returnList = new ArrayList<>();
         for(Timesheet ts : timesheets)
             if(ts.getEmployee() == e)
@@ -37,10 +36,25 @@ public class TimesheetTable implements Serializable {
     public Timesheet getCurrentTimesheet(Employee e) {
         return getTimesheets(e).get(getTimesheets(e).size()-1);
     }
+    
+    public Timesheet getViewedTimesheet() {
+        if(viewedTimesheet == null)
+            viewedTimesheet = new Timesheet();
+        return viewedTimesheet;
+    }
+    
+    public void setViewedTimesheet(Timesheet ts) {
+        viewedTimesheet = ts;
+    }
 
     public String addTimesheet() {
         Timesheet sheet = new Timesheet();
-        timesheets.add(sheet);
+        sheet.addRow();
+        sheet.addRow();
+        sheet.addRow();
+        sheet.addRow();
+        sheet.addRow();
+        viewedTimesheet = sheet;
         return "timesheet.xhtml";
     }
 }
