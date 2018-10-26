@@ -57,7 +57,7 @@ footer {
 
 .btn-small, btn, btn-large {
 	color: white !important;
-    margin-right: 10px;
+    margin-right: 10px !important;
 }
 
 .centerTableColumn {
@@ -66,4 +66,9 @@ footer {
 
 .dropdown-trigger {
 	font-size: 1.1rem;
+}
+
+.modal {
+	width: 35% !important;
+	padding: 10px !important;
 }

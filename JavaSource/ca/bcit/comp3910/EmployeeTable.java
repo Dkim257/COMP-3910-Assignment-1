@@ -53,6 +53,10 @@ public class EmployeeTable implements Serializable {
     public Map<String, String> getLoginCombos() {
         return credsMap;
     }
+    
+    public void changePassword(Employee e, String password) {
+        credsMap.put(e.getUserName(), password);
+    }
 
     public Employee getAdministrator() {
         return admin;
