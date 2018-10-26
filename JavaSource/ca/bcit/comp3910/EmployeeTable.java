@@ -41,11 +41,14 @@ public class EmployeeTable implements Serializable {
     }
 
     public Employee getEmployee(String name) {
+        for(Employee emp : employees)
+            if(emp.getName().equals(name))
+                return emp;
         return null;
     }
 
     public Map<String, String> getLoginCombos() {
-        return null;
+        return credsMap;
     }
 
     public Employee getCurrentEmployee() {
@@ -53,7 +56,7 @@ public class EmployeeTable implements Serializable {
     }
 
     public Employee getAdministrator() {
-        return null;
+        return admin;
     }
     
     public Credential getCredential() {
