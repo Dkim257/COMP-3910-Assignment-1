@@ -15,162 +15,159 @@
             #{msgs.windowTitle}
          </ui:define>
 		<ui:define name="heading">
-			<ui:include src="/sections/userHeader.xhtml" />
+			<ui:include src="/sections/adminHeader.xhtml" />
 		</ui:define>
 
 		<ui:define name="content">
-			<h:form id="form">
-				<p:growl id="msgs" showDetail="true" />
+			<div class="s12 pageHeading">
+				<h3 class="pageHeading">#{msgs.timesheet}</h3>
+			</div>
+			<div class="row s12">
+				<h:form id="form">
+					<p:growl id="msgs" showDetail="true" />
 
-				<p:dataTable id="timesheet" widgetVar="timesheet" var="row"
-					value="#{timesheet.details}" editable="true"
-					style="margin-bottom:20px; padding-top:20px">
-					<f:facet name="header">
+					<p:dataTable id="timesheet" widgetVar="timesheet" var="row"
+						value="#{timesheet.details}" editable="true"
+						style="margin-bottom:20px; padding-top:20px">
+						<f:facet name="header">
            				#{msgs.name}
        				</f:facet>
 
-					<p:ajax event="rowEdit" listener="#{row.onRowEdit}"
-						update=":form:msgs" />
-					<p:ajax event="rowEditCancel" listener="#{row.onRowCancel}"
-						update=":form:msgs" />
+						<p:ajax event="rowEdit" listener="#{row.onRowEdit}"
+							update=":form:msgs" />
+						<p:ajax event="rowEditCancel" listener="#{row.onRowCancel}"
+							update=":form:msgs" />
 
-					<p:column headerText="#{msgs.project}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{row.projectID}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="projectInput" value="#{row.projectID}"
-									style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.wp}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{row.workPackage}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="workPackageInput" value="#{row.workPackage}"
-									style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.total}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="totalInput"  
-									style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.sat}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{row.getHour(0)}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="satInput"  
-									style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.sun}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{row.getHour(1)}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="sunInput"  
-									style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.mon}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{row.getHour(2)}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="monInput"  
-									style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.tue}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{row.getHour(3)}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="tueInput"  
-									style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.wed}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{row.getHour(4)}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="wedInput"  
-									style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.thu}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{row.getHour(5)}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="thuInput"  
-									style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.fri}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{row.getHour(6)}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="friInput"  
-									style="width:100%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
-					<p:column headerText="#{msgs.notes}">
-						<p:cellEditor>
-							<f:facet name="output">
-								<h:outputText value="#{row.notes}" />
-							</f:facet>
-							<f:facet name="input">
-								<p:inputText id="notesInput" value="#{row.notes}"
-									style="width:130%" />
-							</f:facet>
-						</p:cellEditor>
-					</p:column>
+						<p:column headerText="#{msgs.project}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{row.projectID}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="projectInput" value="#{row.projectID}"
+										style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.wp}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{row.workPackage}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="workPackageInput" value="#{row.workPackage}"
+										style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.total}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="totalInput" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.sat}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{row.getHour(0)}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="satInput" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.sun}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{row.getHour(1)}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="sunInput" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.mon}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{row.getHour(2)}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="monInput" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.tue}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{row.getHour(3)}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="tueInput" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.wed}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{row.getHour(4)}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="wedInput" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.thu}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{row.getHour(5)}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="thuInput" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.fri}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{row.getHour(6)}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="friInput" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.notes}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{row.notes}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="notesInput" value="#{row.notes}"
+										style="width:130%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
 
-					<p:column style="width:32px">
-						<p:rowEditor />
-					</p:column>
-				</p:dataTable>
+						<p:column style="width:32px">
+							<p:rowEditor />
+						</p:column>
+					</p:dataTable>
 
-				<div class="ui-g">
-					<div class="ui-g-12">
-						<p:commandButton value="#{msgs.newRow}"
-							styleClass="waves-effect waves-light btn blue-grey darken-4" process="@this"
-							update=":form:msgs" action="#{timesheet.addRow()}"
-							oncomplete="submit()" />
+					<div class="ui-g">
+						<div class="ui-g-12">
+							<p:commandButton value="#{msgs.newRow}"
+								styleClass="waves-effect waves-light btn blue-grey darken-4"
+								process="@this" update=":form:msgs"
+								action="#{timesheet.addRow()}" oncomplete="submit()" />
+						</div>
 					</div>
-				</div>
 
-			</h:form>
+				</h:form>
+			</div>
 		</ui:define>
 	</ui:composition>
 </h:body>

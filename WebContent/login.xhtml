@@ -33,6 +33,10 @@
 												<p:password id="password" required="true" requiredMessage="#{msgs.passReq}" value="#{employeeTable.credential.password}"/>
 												<h:outputLabel for="password" value="#{msgs.enterPassword}" />
 											</div>
+											<div class="col s12 input-field">
+												<h:message for="id" /><br/>
+												<h:message for="password" />
+											</div>
 											<div class="col s12 card-action" id="loginBtn">
 												<h:commandButton value="#{msgs.loginTitle}" id="loginBtn" action="#{employeeTable.login()}"
 													styleClass="btn-large waves-effect waves-light blue-grey darken-2" />

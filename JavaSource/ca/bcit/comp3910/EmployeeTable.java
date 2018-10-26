@@ -34,23 +34,23 @@ public class EmployeeTable implements Serializable {
         setAdmin(employees.get(0)); //Tony is admin cuz he's cool
     }
     
-    List<Employee> getEmployees() {
+    public List<Employee> getEmployees() {
         return employees;
     }
 
-    Employee getEmployee(String name) {
+    public Employee getEmployee(String name) {
         return null;
     }
 
-    Map<String, String> getLoginCombos() {
+    public Map<String, String> getLoginCombos() {
         return null;
     }
 
-    Employee getCurrentEmployee() {
-        return null;
+    public Employee getCurrentEmployee() {
+        return currentUser;
     }
 
-    Employee getAdministrator() {
+    public Employee getAdministrator() {
         return null;
     }
     
@@ -79,17 +79,17 @@ public class EmployeeTable implements Serializable {
         return "";
     }
 
-    String logout(Employee employee) {
+    public String logout(Employee employee) {
         setCurrentUser(null);
         return "login.xhtml";
     }
 
-    void deleteEmployee(Employee userToDelete) {
+    public void deleteEmployee(Employee userToDelete) {
         if(employees.contains(userToDelete))
             employees.remove(userToDelete);
     }
 
-    void addEmployee(Employee newEmployee) {
+    public void addEmployee(Employee newEmployee) {
         if(!employees.contains(newEmployee)) {
             employees.add(newEmployee);
         }

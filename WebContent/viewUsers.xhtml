@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>IGNORED</title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="windowTitle">
+            #{msgs.windowTitle}
+         </ui:define>
+		<ui:define name="heading">
+			<ui:include src="/sections/adminHeader.xhtml" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div class="s12">
+				<h3 class="pageHeading">#{msgs.users}</h3>
+			</div>
+			<div class="row s12">
+				<h:form id="form">
+					<p:growl id="msgs" showDetail="true" />
+
+					<p:dataTable id="employees" widgetVar="employees" var="employee"
+						value="#{employeeTable.employees}" editable="false"
+						style="margin-bottom:20px; padding-top:20px">
+						<f:facet name="header">
+           				#{msgs.name}
+       				</f:facet>
+
+						<p:column headerText="#{msgs.empNum}">
+							<h:outputText value="#{employee.empNumber}" />
+						</p:column>
+						<p:column headerText="#{msgs.name}">
+							<h:outputText value="#{employee.name}" />
+						</p:column>
+						<p:column headerText="#{msgs.username}">
+							<h:outputText value="#{employee.userName}" />
+						</p:column>
+					</p:dataTable>
+
+					<div class="ui-g">
+						<div class="ui-g-12">
+							<p:commandButton value="#{msgs.newUser}" action="editUser"
+								styleClass="waves-effect waves-light btn blue-grey darken-4" />
+						</div>
+					</div>
+
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

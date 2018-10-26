@@ -19,6 +19,10 @@ body {
 	margin-right: auto;
 }
 
+.pageHeading {
+	margin-bottom: 0 !important;
+}
+
 .dropdown-content {
 	top: 64px !important;
 	width: fit-content !important;

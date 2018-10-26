@@ -17,7 +17,8 @@
 				<li><p:commandLink ajax="false">#{msgs.changePass}
 					<p:confirm header="#{msgs.changePass}" />
 					</p:commandLink></li>
-				<li><a href="/assignment1">Logout</a></li>
+				<li><p:commandLink ajax="false">
+					#{msgs.logout}</p:commandLink></li>
 			</ul>
 
 			<nav>
@@ -44,7 +45,7 @@
 				</f:facet>
 				<p:commandLink type="button" ajax="false" styleClass="waves-effect waves-light btn-small blue-grey darken-2">
 					<i class="material-icons left">clear</i>#{msgs.cancel}</p:commandLink>
-				<p:commandLink type="button" ajax="false"
+				<p:commandLink type="button" ajax="false" actionListener="#{growlView.changePassSuccess}"
 					styleClass="waves-effect waves-light btn-small blue-grey darken-2" >
 					<i class="material-icons left">check</i>#{msgs.save}</p:commandLink>
 			</p:confirmDialog>
