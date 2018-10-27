@@ -28,10 +28,10 @@
 
 					<p:dataTable id="timesheet" var="sheet"
 						value="#{timesheettable.getTimesheets(employeetable.currentUser)}" editable="true" style="margin-bottom:20px;" >
-						<p:column>
+						<p:column headerText="#{msgs.sheetForWeek}">
 							<p:commandLink value="#{sheet.endWeek}" action="#{timesheettable.viewTimesheet(sheet)}"/>
 						</p:column>
-						<p:column>
+						<p:column headerText="#{msgs.timesheetOwner}">
 							<h:outputText value="#{sheet.employee.name}"/>
 						</p:column>
 					</p:dataTable>
