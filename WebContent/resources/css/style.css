@@ -39,6 +39,7 @@ footer {
 	margin-right: auto;
 	text-align: center;
 	color: white;
+	padding-top: 15px;
 }
 
 .loginForm {
@@ -58,6 +59,8 @@ footer {
 .btn-small, btn, btn-large {
 	color: white !important;
     margin-right: 10px !important;
+    border: none !important;
+    border-radius: 2px !important;
 }
 
 .centerTableColumn {
@@ -71,4 +74,16 @@ footer {
 .modal {
 	width: 35% !important;
 	padding: 10px !important;
+}
+
+.ui-button-text.ui-c {
+	font-weight: normal !important;
+	padding: 0 !important;
+	text-shadow: none !important;
+	color: white !important;
+}
+
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+	background-image: none !important;
+	background-color: ##26a69a;
 }
