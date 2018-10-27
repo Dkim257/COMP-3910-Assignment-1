@@ -139,14 +139,13 @@
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
-						<p:column headerText="#{msgs.notes}">
+						<p:column headerText="#{msgs.notes}" style="width:18%">
 							<p:cellEditor>
 								<f:facet name="output">
 									<h:outputText value="#{timesheetrow.notes}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="notesInput" value="#{timesheetrow.notes}"
-										style="width:130%" />
+									<p:inputText id="notesInput" value="#{timesheetrow.notes}" />
 								</f:facet>
 							</p:cellEditor>
 						</p:column>
@@ -158,16 +157,17 @@
 
 					<div class="ui-g">
 						<div class="ui-g-12">
-							<p:commandButton value="#{msgs.newRow}"
-								styleClass="waves-effect waves-light btn blue-grey darken-4"
+							<p:commandLink value="#{msgs.newRow}" ajax="false"
+								styleClass="waves-effect waves-light btn blue-grey darken-2"
 								process="@this" update=":form:msgs"
-								action="#{timesheet.addRow()}" oncomplete="submit()" />
+								action="#{timesheettable.getViewedTimesheet(employeetable.currentUser).addRow()}" oncomplete="submit()" />
 						</div>
 						<div class="ui-g-12">
-							<p:commandButton value="Save Timesheet"
-								styleClass="waves-effect waves-light btn blue-grey darken-4"
+							<p:commandLink value="#{msgs.saveTime}" ajax="false"
+								styleClass="waves-effect waves-light btn blue-grey darken-2"
 								process="@this" update=":form:msgs"
-								action="#{timesheettable.saveChanges()}" oncomplete="submit()" />
+								action="#{timesheettable.saveChanges()}" oncomplete="submit()"
+								onclick="M.toast({html: 'New row added', classes: 'rounded'});" />
 						</div>
 					</div>
 

@@ -52,7 +52,7 @@
 								<div class="col s12" >
 									<p:commandLink value="#{msgs.resetPass}" id="resetPassBtn" 
 										action="#{employeeTable.resetPassword(employeeTable.currentEditUser)}"
-										styleClass="btn waves-effect waves-light blue-grey darken-2"
+										styleClass="btn waves-effect waves-light"
 										onclick="M.toast({html: 'Password reset successful', classes: 'rounded'});" />
 								</div>
 							</div>
@@ -60,7 +60,7 @@
 					</div>
 				</div>
 				<div class="col s12" id="saveBtn">
-					<p:commandButton value="#{msgs.save}" id="saveBtn"
+					<p:commandLink value="#{msgs.save}" id="saveBtn"
 						action="#{employeeTable.addEmployee()}"
 						styleClass="btn-large waves-effect waves-light blue-grey darken-2" />
 				</div>
