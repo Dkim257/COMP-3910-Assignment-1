@@ -23,6 +23,7 @@
 				<h3>#{msgs.newEditUser}</h3>
 			</div>
 			<h:form id="user-form">
+				<p:growl id="msgs" life="2000" showDetail="true" />
 				<div class="card">
 					<div class="card-content">
 						<div class="left-align">
@@ -52,8 +53,8 @@
 								<div class="col s12" >
 									<p:commandLink value="#{msgs.resetPass}" id="resetPassBtn" 
 										action="#{employeeTable.resetPassword(employeeTable.currentEditUser)}"
-										styleClass="btn waves-effect waves-light"
-										onclick="M.toast({html: 'Password reset successful', classes: 'rounded'});" />
+										actionListener="#{growlView.passwordReset()}"
+										styleClass="btn waves-effect waves-light" update=":user-form:msgs" />
 								</div>
 							</div>
 						</div>
