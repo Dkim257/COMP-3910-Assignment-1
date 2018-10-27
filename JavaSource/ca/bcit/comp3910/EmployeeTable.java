@@ -43,7 +43,7 @@ public class EmployeeTable implements Serializable {
      * The default password to set for accounts when the admin 
      * user resets their password.
      */
-    private static String defaultPassword = "1234";
+    private static final String DEFAULT_PASSWORD = "1234";
     
     static {
         employees = new ArrayList<Employee>();
@@ -73,6 +73,11 @@ public class EmployeeTable implements Serializable {
      * A user account being edited by the admin.
      */
     private Employee currentEditUser;
+    
+    /**
+     * New password to be given to an edited user.
+     */
+    private String newPassword;
     
     /**
      * employees getter.
@@ -118,7 +123,7 @@ public class EmployeeTable implements Serializable {
      * @param e the employee
      */
     public void resetPassword(Employee e) {
-        changePassword(e, defaultPassword);
+        changePassword(e, DEFAULT_PASSWORD);
     }
 
     /**
@@ -213,7 +218,24 @@ public class EmployeeTable implements Serializable {
     public String addEmployee() {
         if (!employees.contains(currentEditUser)) {
             employees.add(currentEditUser);
+            credsMap.put(currentEditUser.getUserName(), DEFAULT_PASSWORD);
         }
+        currentEditUser = null;
+        return "viewUsers";
+    }
+    
+    /**
+     * If the currentEditUsers password was changed, applies the
+     * change in the credsMap, then sets navigation string back
+     * to the viewUsers page.
+     * @return "viewUsers" the view users page
+     */
+    public String saveChanges() {
+        if (!newPassword.isEmpty()) {
+           credsMap.put(currentEditUser.getUserName(), newPassword);
+        }
+        newPassword = null;
+        currentEditUser = null;
         return "viewUsers";
     }
     
@@ -293,7 +315,23 @@ public class EmployeeTable implements Serializable {
      */
     public String add() {
         currentEditUser = new Employee();
-        return "editUser";
+        return "newUser";
+    }
+
+    /**
+     * Getter for newPassword.
+     * @return the newPassword
+     */
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    /**
+     * Setter for newPassword.
+     * @param newPassword the newPassword to set
+     */
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
     
 }
