@@ -28,9 +28,6 @@
 
 					<p:dataTable id="timesheet" widgetVar="timesheet" var="timesheetrow"
 						value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).details}" editable="true" style="margin-bottom:20px;" >
-						<f:facet name="header">
-           				#{msgs.name}
-       				</f:facet>
 
 						<p:ajax event="rowEdit" listener="#{timesheetrow.onRowEdit}"
 							update=":form:msgs" />
@@ -58,6 +55,9 @@
 										style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{msgs.total}" />
+							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.total}">
 							<p:cellEditor>
@@ -68,6 +68,9 @@
 									<p:inputText id="totalInput" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).totalHours}" />
+							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.sat}">
 							<p:cellEditor>
@@ -78,6 +81,9 @@
 									<p:inputText id="satInput" value="#{timesheetrow.satHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(0)}" />
+							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.sun}">
 							<p:cellEditor>
@@ -88,6 +94,9 @@
 									<p:inputText id="sunInput" value="#{timesheetrow.sunHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(1)}" />
+							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.mon}">
 							<p:cellEditor>
@@ -98,6 +107,9 @@
 									<p:inputText id="monInput"  value="#{timesheetrow.monHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(2)}" />
+							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.tue}">
 							<p:cellEditor>
@@ -108,6 +120,9 @@
 									<p:inputText id="tueInput"  value="#{timesheetrow.tueHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(3)}" />
+							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.wed}">
 							<p:cellEditor>
@@ -118,6 +133,9 @@
 									<p:inputText id="wedInput"  value="#{timesheetrow.wedHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(4)}" />
+							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.thu}">
 							<p:cellEditor>
@@ -128,6 +146,9 @@
 									<p:inputText id="thuInput"  value="#{timesheetrow.thuHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(5)}" />
+							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.fri}">
 							<p:cellEditor>
@@ -138,6 +159,9 @@
 									<p:inputText id="friInput"  value="#{timesheetrow.friHrs}" style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(6)}" />
+							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.notes}">
 							<p:cellEditor>

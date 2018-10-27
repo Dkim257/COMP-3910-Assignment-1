@@ -26,10 +26,13 @@
 				<h:form id="form">
 					<p:growl id="msgs" showDetail="true" />
 
-					<p:dataTable id="timesheet" widgetVar="timesheet" var="ts"
+					<p:dataTable id="timesheet" var="sheet"
 						value="#{timesheettable.getTimesheets(employeetable.currentUser)}" editable="true" style="margin-bottom:20px;" >
-						<p:column headerText="Timesheets For : #{employeetable.currentUser.name}">
-							<p:commandLink value="#{ts.endWeek}" action="#{timesheettable.viewTimesheet(ts)}"/>
+						<p:column>
+							<p:commandLink value="#{sheet.endWeek}" action="#{timesheettable.viewTimesheet(sheet)}"/>
+						</p:column>
+						<p:column>
+							<h:outputText value="#{sheet.employee.name}"/>
 						</p:column>
 					</p:dataTable>
 				</h:form>
