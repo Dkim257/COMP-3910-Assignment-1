@@ -78,7 +78,9 @@
 									<h:outputText value="#{timesheetrow.getHour(0)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="satInput" value="#{timesheetrow.satHrs}" style="width:100%" />
+									<p:inputText id="satInput" value="#{timesheetrow.satHrs}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">
@@ -91,7 +93,9 @@
 									<h:outputText value="#{timesheetrow.getHour(1)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="sunInput" value="#{timesheetrow.sunHrs}" style="width:100%" />
+									<p:inputText id="sunInput" value="#{timesheetrow.sunHrs}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">
@@ -104,7 +108,9 @@
 									<h:outputText value="#{timesheetrow.getHour(2)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="monInput"  value="#{timesheetrow.monHrs}" style="width:100%" />
+									<p:inputText id="monInput"  value="#{timesheetrow.monHrs}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">
@@ -117,7 +123,9 @@
 									<h:outputText value="#{timesheetrow.getHour(3)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="tueInput"  value="#{timesheetrow.tueHrs}" style="width:100%" />
+									<p:inputText id="tueInput"  value="#{timesheetrow.tueHrs}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">
@@ -130,7 +138,9 @@
 									<h:outputText value="#{timesheetrow.getHour(4)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="wedInput"  value="#{timesheetrow.wedHrs}" style="width:100%" />
+									<p:inputText id="wedInput"  value="#{timesheetrow.wedHrs}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">
@@ -143,7 +153,9 @@
 									<h:outputText value="#{timesheetrow.getHour(5)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="thuInput"  value="#{timesheetrow.thuHrs}" style="width:100%" />
+									<p:inputText id="thuInput"  value="#{timesheetrow.thuHrs}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">
@@ -156,7 +168,9 @@
 									<h:outputText value="#{timesheetrow.getHour(6)}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="friInput"  value="#{timesheetrow.friHrs}" style="width:100%" />
+									<p:inputText id="friInput"  value="#{timesheetrow.friHrs}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">

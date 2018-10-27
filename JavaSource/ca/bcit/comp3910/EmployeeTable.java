@@ -26,9 +26,8 @@ public class EmployeeTable implements Serializable {
         employees = new ArrayList<Employee>();
         employees.add(new Employee("Tony Pacheco", 1, "tp1"));
         employees.add(new Employee("Danny DiOreo", 2, "dd2"));
-        employees.add(new Employee("Bruce Link", 3, "bl3"));
         
-        admin = employees.get(0); //Tony gets to be Admin cuz he's coolio
+        admin = employees.get(0);
         
         credsMap = new HashMap<>();
         credsMap.put("tp1", "pass");
@@ -89,7 +88,7 @@ public class EmployeeTable implements Serializable {
             }
             return "timesheetSelect.xhtml";
         }
-        return "";
+        return null;
     }
 
     public String logout(Employee employee) {
