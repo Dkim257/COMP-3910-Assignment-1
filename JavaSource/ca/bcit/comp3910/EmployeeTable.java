@@ -172,7 +172,8 @@ public class EmployeeTable implements Serializable {
             }
             return "timesheetSelect.xhtml";
         }
-        FacesMessage msg = new FacesMessage("Warning", "Username and password do not match");
+        FacesMessage msg = new FacesMessage(
+                "Warning", "Username and password do not match");
         msg.setSeverity(FacesMessage.SEVERITY_WARN);
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, msg);
