@@ -2,6 +2,7 @@ package ca.bcit.comp3910;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -104,6 +105,10 @@ public class Timesheet implements Serializable {
      */
     public Date getEndWeek() {
         return endWeek;
+    }
+    
+    public String getDateInCustomizedFormat() {
+        return new SimpleDateFormat("yyyy-MM-dd").format(getEndWeek());
     }
 
     /**

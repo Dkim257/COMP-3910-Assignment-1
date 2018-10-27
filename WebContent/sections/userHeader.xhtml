@@ -22,7 +22,7 @@
 			<nav>
 			<div class="nav-wrapper blue-grey darken-2">
 				<div class="header">
-					<a href="#!" class="brand-logo">Logo</a>
+					<p:graphicImage name="/images/login_img.png" width="40px" class="brand-logo"/>
 					<ul class="right hide-on-med-and-down">
 						<li><p:commandLink action="viewUsers" ajax="false"
 							rendered="#{employeeTable.admin}" >#{msgs.users}</p:commandLink></li>
@@ -48,7 +48,7 @@
 				<div class="modal-footer">
 					<a href="#!" class="modal-close waves-effect waves-light btn-small blue-grey darken-2">
 						<i class="material-icons left">clear</i>#{msgs.cancel}</a>
-					<p:commandLink type="button" ajax="false" process="@form"
+					<p:commandLink type="button" ajax="false" process="@form" id="passwordSave"
 						action="#{employeeTable.changePassword(employeeTable.currentUser, newPassword.value)}"
 						styleClass="modal-close waves-effect waves-light btn-small blue-grey darken-2">
 						<i class="material-icons left">check</i>#{msgs.save}</p:commandLink>
