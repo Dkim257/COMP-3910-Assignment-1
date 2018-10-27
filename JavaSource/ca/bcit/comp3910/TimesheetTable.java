@@ -92,7 +92,7 @@ public class TimesheetTable implements Serializable {
     }
     
     /**
-     * Creates a Timesheet object and adds it to the collection.
+     * Creates a Timesheet object and sets it to viewedTimesheet.
      * @param e the currently logged in user, needed to assign the timesheet
      * @return a String representing navigation to the newTimesheet page.
      */
