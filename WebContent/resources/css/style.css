@@ -63,17 +63,17 @@ footer {
     border-radius: 2px !important;
 }
 
-.centerTableColumn {
-	align: center;
+
+div[id="history-form:timesheetHistory"] thead {
+    display: none;
 }
 
 .dropdown-trigger {
 	font-size: 1.1rem;
 }
 
-.errorMsg {
-	color: red;
-	
+.brand-logo {
+	padding-top: 5px !important;
 }
 
 .modal {
@@ -86,6 +86,14 @@ footer {
 	padding: 0 !important;
 	text-shadow: none !important;
 	color: white !important;
+}
+
+#passwordSave.ui-commandlink.ui-widget {
+	font-weight: normal !important;
+	text-shadow: none !important;
+	color: white !important;
+	background-image: none !important;
+	background-color: ##26a69a;
 }
 
 .ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {

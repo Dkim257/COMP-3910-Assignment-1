@@ -33,7 +33,7 @@
 					            #{msgs.wkNum} : 
 					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).weekNumber}" />
 					            #{msgs.wkEnd} :
-					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).endWeek}" >
+					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).dateInCustomizedFormat}" >
 					            	<f:convertDateTime pattern="dd/mm/yyyy"/>
 					            </h:outputText>
 					            #{msgs.name} :
@@ -43,7 +43,7 @@
 
 					<p:dataTable id="timesheet" widgetVar="timesheet" var="timesheetrow"
 						value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).details}" editable="true" style="margin-bottom:20px;" >
-
+       					
 						<p:ajax event="rowEdit" listener="#{timesheetrow.onRowEdit}"
 							update=":form:msgs" />
 						<p:ajax event="rowEditCancel" listener="#{timesheetrow.onRowCancel}"

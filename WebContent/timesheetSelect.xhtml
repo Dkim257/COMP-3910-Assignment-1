@@ -23,13 +23,16 @@
 				<h3>#{msgs.timesheet}</h3>
 			</div>
 			<div class="row s12">
-				<h:form id="form">
+				<h:form id="history-form">
 					<p:growl id="msgs" showDetail="true" />
 
-					<p:dataTable id="timesheet" var="sheet"
-						value="#{timesheettable.getTimesheets(employeetable.currentUser)}" editable="true" style="margin-bottom:20px;" >
+					<p:dataTable id="timesheetHistory" var="sheet"
+						value="#{timesheettable.getTimesheets(employeetable.currentUser)}" editable="false" style="margin-bottom:20px;" >
+						<f:facet name="header">
+           					#{msgs.tsHistory}
+       					</f:facet>
 						<p:column>
-							<p:commandLink value="#{sheet.endWeek}" action="#{timesheettable.viewTimesheet(sheet)}"/>
+							<p:commandLink value="#{sheet.dateInCustomizedFormat}" action="#{timesheettable.viewTimesheet(sheet)}" />
 						</p:column>
 						<p:column>
 							<h:outputText value="#{sheet.employee.name}"/>
