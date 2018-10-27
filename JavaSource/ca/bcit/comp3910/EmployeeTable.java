@@ -97,14 +97,16 @@ public class EmployeeTable implements Serializable {
         return "login.xhtml";
     }
 
-    public void deleteEmployee(Employee userToDelete) {
-        if(employees.contains(userToDelete))
+    public String deleteEmployee(Employee userToDelete) {
+        if(employees.contains(userToDelete)) {
             employees.remove(userToDelete);
+        }
+        return "viewUsers";
     }
 
     public String addEmployee() {
-        if(!employees.contains(currentUser)) {
-            employees.add(currentUser);
+        if(!employees.contains(currentEditUser)) {
+            employees.add(currentEditUser);
         }
         setCurrentUser(admin);
         return "viewUsers";
@@ -112,7 +114,7 @@ public class EmployeeTable implements Serializable {
     
     public String editEmployee(Employee userToEdit) {
         setCurrentEditUser(userToEdit);
-        
+        setCurrentUser(admin);
         return "editUser";
     }
 
@@ -145,7 +147,7 @@ public class EmployeeTable implements Serializable {
     }
     
     public String add() {
-        currentUser = new Employee();
+        currentEditUser = new Employee();
         return "editUser";
     }
     

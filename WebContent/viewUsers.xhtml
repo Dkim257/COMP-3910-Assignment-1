@@ -49,9 +49,10 @@
 							<h:outputText value="#{user.userName}" />
 						</p:column>
 						<p:column headerText="#{msgs.removeUser}">
-							<p:commandLink value="#{msgs.remove}" onclick="submit()"
-								styleClass="waves-effect waves-light btn-small"
-								action="#{employeeTable.deleteEmployee(user)}" />
+							<p:commandButton value="#{msgs.remove}"
+								styleClass="waves-effect waves-light btn-small teal lighten-1"
+								action="#{employeeTable.deleteEmployee(user)}" 
+								onclick="submit()"/>
 						</p:column>
 					</p:dataTable>
 
