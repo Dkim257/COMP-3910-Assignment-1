@@ -6,7 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.print.attribute.standard.Severity;
 
 @Named("timesheettable")
 @SessionScoped
@@ -62,6 +65,21 @@ public class TimesheetTable implements Serializable {
     }
     
     public String saveChanges() {
+//        if(!viewedTimesheet.isValid()) {
+//            FacesMessage msg = new FacesMessage("Invalid timesheet hours: Maximum 40 per week, overtime must be added in Overtime column.");
+//            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+//            FacesContext.getCurrentInstance().addMessage("", msg);
+//            return "";
+//        }
+        if(!viewedTimesheet.hasAllUniqueIds()) {
+            for(TimesheetRow row : viewedTimesheet.getDetails()){
+                row.setWorkPackage(null);
+            }
+            FacesMessage msg = new FacesMessage("Poject ID and WP combination for each row must be unique.");
+            msg.setSeverity(FacesMessage.SEVERITY_WARN);
+            FacesContext.getCurrentInstance().addMessage("", msg);
+            return "";
+        }
         if(!timesheets.contains(viewedTimesheet)) 
             timesheets.add(viewedTimesheet);
         return "timesheet.xhtml";

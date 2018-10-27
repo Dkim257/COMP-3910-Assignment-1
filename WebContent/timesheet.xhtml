@@ -60,14 +60,7 @@
 							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.total}">
-							<p:cellEditor>
-								<f:facet name="output">
-									<h:outputText value="#{timesheetrow.sum}" />
-								</f:facet>
-								<f:facet name="input">
-									<p:inputText id="totalInput" style="width:100%" />
-								</f:facet>
-							</p:cellEditor>
+							<h:outputText value="#{timesheetrow.sum}" />
 							<f:facet name="footer">
 								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).totalHours}" />
 							</f:facet>
@@ -190,8 +183,7 @@
 							<p:commandLink value="#{msgs.saveTime}" ajax="false"
 								styleClass="waves-effect waves-light btn blue-grey darken-2"
 								process="@form" update=":form:msgs"
-								action="#{timesheettable.saveChanges()}" oncomplete="submit()"
-								onclick="M.toast({html: 'New row added', classes: 'rounded'});" />
+								action="#{timesheettable.saveChanges()}" oncomplete="submit()" />
 						</div>
 					</div>
 
