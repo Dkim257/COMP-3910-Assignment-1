@@ -6,7 +6,9 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
@@ -170,6 +172,20 @@ public class Timesheet implements Serializable {
             net = net.subtract(flextime);
         }
         return net.equals(FULL_WORK_WEEK);
+    }
+    
+    public boolean hasAllUniqueIds() {
+        List<String> ids = new ArrayList<>();
+        for(TimesheetRow row : details) {
+            if(row.getWorkPackage() == null)
+                continue;
+            String id = row.getWorkPackage() + row.getProjectID();
+            if(ids.contains(id))
+                return false;
+            else 
+                ids.add(id);
+        }
+        return true;
     }
 
     public void deleteRow(final TimesheetRow rowToRemove) {

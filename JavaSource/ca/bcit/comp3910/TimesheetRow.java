@@ -221,6 +221,7 @@ public class TimesheetRow implements Serializable {
     }
 
     public void onRowEdit(RowEditEvent event) {
+        
         FacesMessage msg = new FacesMessage("Row Edited");
         FacesContext.getCurrentInstance().addMessage(null, msg);
         setHour(0, satHrs);
