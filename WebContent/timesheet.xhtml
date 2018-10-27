@@ -32,12 +32,12 @@
 					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).employee.empNumber}" />
 					            #{msgs.wkNum} : 
 					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).weekNumber}" />
+					            #{msgs.name} :
+					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).employee.name}" />
 					            #{msgs.wkEnd} :
 					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).endWeek}" >
 					            	<f:convertDateTime pattern="dd/mm/yyyy"/>
 					            </h:outputText>
-					            #{msgs.name} :
-					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).employee.name}" />
 					        </h:panelGrid>
 					    </p:panel>
 
