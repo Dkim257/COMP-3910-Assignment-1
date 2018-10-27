@@ -27,19 +27,19 @@ public class EmployeeTable implements Serializable {
     private static List<Employee> employees;
     
     /**
-     * The application administrator
+     * The application administrator.
      */
     private static Employee admin;
     
     /**
      * A map contatining the usernames and passwords of users
-     * to be checked against when users attempt to login
+     * to be checked against when users attempt to login.
      */
     private static Map<String, String> credsMap;
     
     /**
      * The default password to set for accounts when the admin 
-     * user resets their password
+     * user resets their password.
      */
     private static String defaultPassword = "1234";
     
@@ -63,12 +63,12 @@ public class EmployeeTable implements Serializable {
     @Inject private Credentials credential;
     
     /**
-     * The currently logged in user
+     * The currently logged in user.
      */
     private Employee currentUser;
     
     /**
-     * A user account being edited by the admin
+     * A user account being edited by the admin.
      */
     private Employee currentEditUser;
     
@@ -86,9 +86,11 @@ public class EmployeeTable implements Serializable {
      * @return the employees.
      */
     public Employee getEmployee(String name) {
-        for(Employee emp : employees)
-            if(emp.getName().equals(name))
+        for (Employee emp : employees) {
+            if (emp.getName().equals(name)) {
                 return emp;
+            }
+        }
         return null;
     }
 
@@ -100,11 +102,19 @@ public class EmployeeTable implements Serializable {
         return credsMap;
     }
     
-
+    /**
+     * Changes an employees password.
+     * @param e the employee
+     * @param password the new password
+     */
     public void changePassword(Employee e, String password) {
         credsMap.put(e.getUserName(), password);
     }
     
+    /**
+     * Resetes an employees password the the deault password.
+     * @param e the employee
+     */
     public void resetPassword(Employee e) {
         changePassword(e, defaultPassword);
     }
@@ -118,10 +128,18 @@ public class EmployeeTable implements Serializable {
         return admin;
     }
     
+    /**
+     * Getter for credential.
+     * @return credential
+     */
     public Credentials getCredential() {
         return credential;
     }
 
+    /**
+     * Setter for credential.
+     * @param credential credential
+     */
     public void setCredential(Credentials credential) {
         this.credential = credential;
     }
@@ -129,22 +147,24 @@ public class EmployeeTable implements Serializable {
     /**
      * Verifies that the loginID and password is a valid combination.
      *
-     * @param credential (userName, Password) pair
      * @return true if it is, false if it is not.
      */
     boolean verifyUser() {
         return credsMap.containsKey(credential.getUserName())
-            && credsMap.get(credential.getUserName()).equals(credential.getPassword());
+            && credsMap.get(credential.getUserName())
+            .equals(credential.getPassword());
     }
     
     /**
-     * Verifies login credentials, and on success logs user into the system
-     * @return string the page to navigate to after success or fail on login attempt
+     * Verifies login credentials, and on success logs user into the system.
+     * @return string the page to navigate to after
+     * success or fail on login attempt
      */
     public String login() {
-        if(verifyUser()) {
-            for(int i = 0; i < employees.size(); ++i) {
-                if(employees.get(i).getUserName().equals(credential.getUserName())) {
+        if (verifyUser()) {
+            for (int i = 0; i < employees.size(); ++i) {
+                if (employees.get(i).getUserName()
+                        .equals(credential.getUserName())) {
                     setCurrentUser(employees.get(i));
                 }
             }
@@ -168,9 +188,11 @@ public class EmployeeTable implements Serializable {
      * Deletes the specified user from the collection of Users.
      *
      * @param userToDelete the user to delete.
+     * @return "viewUsers" the page to navigate to after deleting
+     * an employee
      */
     public String deleteEmployee(Employee userToDelete) {
-        if(employees.contains(userToDelete)) {
+        if (employees.contains(userToDelete)) {
             employees.remove(userToDelete);
         }
         return "viewUsers";
@@ -178,19 +200,25 @@ public class EmployeeTable implements Serializable {
 
     /**
      * Adds a new Employee to the collection of Employees.
-     * @param newEmployee the employee to add to the collection
+     * @return "viewUsers" the page to navigate to after 
+     * adding a new employee
      */
     public String addEmployee() {
-        if(!employees.contains(currentEditUser)) {
+        if (!employees.contains(currentEditUser)) {
             employees.add(currentEditUser);
         }
-        setCurrentUser(admin);
         return "viewUsers";
     }
     
+    /**
+     * Sets currentEditUser to the user which the admin
+     * wants to edit, and sets naviagtion string to the 
+     * editUser page.
+     * @param userToEdit the user which the admin wants to edit
+     * @return "editUser" the edit user page
+     */
     public String editEmployee(Employee userToEdit) {
         setCurrentEditUser(userToEdit);
-        setCurrentUser(admin);
         return "editUser";
     }
 
@@ -204,30 +232,30 @@ public class EmployeeTable implements Serializable {
 
     /**
      * setter for currentUser property.  
-     * @param the current user.
+     * @param currentUser the current user.
      */
     public void setCurrentUser(Employee currentUser) {
         this.currentUser = currentUser;
     }
     
     /**
-     * getter for currentEditUser
+     * getter for currentEditUser.
      * @return currentEditUser
      */
     public Employee getCurrentEditUser() {
         return currentEditUser;
     }
-    
+        
     /**
-     * setter for currentEditUser
-     * @param currentEditUser
+     * Setter for currentEditUser.
+     * @param currentEditUser the user to edit
      */
     public void setCurrentEditUser(Employee currentEditUser) {
         this.currentEditUser = currentEditUser;
     }
 
     /**
-     * getter for admin
+     * getter for admin.
      * @return admin
      */
     public static Employee getAdmin() {
@@ -235,7 +263,7 @@ public class EmployeeTable implements Serializable {
     }
 
     /**
-     * setter for admin 
+     * setter for admin.
      * @param a admin
      */
     public static void setAdmin(Employee a) {
@@ -243,7 +271,7 @@ public class EmployeeTable implements Serializable {
     }
     
     /**
-     * Checks if the current logged in user is the admin
+     * Checks if the current logged in user is the admin.
      * @return true if the current logged in user is the admin
      */
     public boolean isAdmin() {
@@ -253,7 +281,7 @@ public class EmployeeTable implements Serializable {
     /**
      * Creates a new empty Employee object and returns the navigation
      * string to navigate to the user edit page so that the page can
-     * display a newly created user account
+     * display a newly created user account.
      * @return "editUser" the page to navigate to in order to edit users 
      */
     public String add() {

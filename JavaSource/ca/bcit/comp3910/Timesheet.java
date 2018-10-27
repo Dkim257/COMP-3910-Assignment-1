@@ -107,6 +107,10 @@ public class Timesheet implements Serializable {
         return endWeek;
     }
     
+    /**
+     * Formats getEndWeek to the pattern yyy-mm-dd.
+     * @return formatted getEndWeek
+     */
     public String getDateInCustomizedFormat() {
         return new SimpleDateFormat("yyyy-MM-dd").format(getEndWeek());
     }
@@ -298,36 +302,39 @@ public class Timesheet implements Serializable {
 
     /**
      * Checks if all rows in the timesheet have a unique combination
-     * of ProjectID and WorkPackage
+     * of ProjectID and WorkPackage.
      * @return true if all combinations are unique
      */
     public boolean hasAllUniqueIds() {
         List<String> ids = new ArrayList<>();
-        for(TimesheetRow row : details) {
-            if(row.getWorkPackage() == null)
+        for (TimesheetRow row : details) {
+            if (row.getWorkPackage() == null) {
                 continue;
+            }
             String id = row.getWorkPackage() + row.getProjectID();
-            if(ids.contains(id))
+            if (ids.contains(id)) {
                 return false;
-            else 
+            } else {
                 ids.add(id);
+            }
         }
         return true;
     }
     
     /**
      * Calculates the total hours worked for any day of the week across all 
-     * work packages 
+     * work packages .
      * @param day the day to calculate the total hours for
      * @return the total hours worked for the given day of the week
      */
     public BigDecimal getTotalDaysHours(int day) {
         BigDecimal sum = BigDecimal.ZERO;
         for (TimesheetRow row : details) {
-            if(row.getHour(day) == null)
+            if (row.getHour(day) == null) {
                 sum = sum.add(BigDecimal.ZERO);
-            else
+            } else {
                 sum = sum.add(row.getHour(day));
+            }
         }
         return sum;
     }

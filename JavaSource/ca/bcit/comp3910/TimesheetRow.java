@@ -12,6 +12,12 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+/**
+ * Class representing a single row of information 
+ * in a timesheet.
+ * @author Tony Pacheco + Danny DiIorio
+ * @version 1.0
+ */
 @Named("row")
 @ApplicationScoped
 public class TimesheetRow implements Serializable {
@@ -46,11 +52,42 @@ public class TimesheetRow implements Serializable {
     private BigDecimal[] hoursForWeek = new BigDecimal[Timesheet.DAYS_IN_WEEK];
     /** Any notes added to the end of a row. */
     private String notes;
+    
     /**
-     * Variables for holding the TimesheetRow form input before transferring 
-     * the hours into the hoursForWeek array.
+     * Holds the TimesheetRow form input for sunday hours
+     * before moving the hours into the hoursForWeek array.
      */
-    private BigDecimal sunHrs, monHrs, tueHrs, wedHrs, thuHrs, friHrs, satHrs;
+    private BigDecimal sunHrs;
+    /**
+     * Holds the TimesheetRow form input for monday hours
+     * before moving the hours into the hoursForWeek array.
+     */
+    private BigDecimal monHrs;
+    /**
+     * Holds the TimesheetRow form input for tuesday hours
+     * before moving the hours into the hoursForWeek array.
+     */
+    private BigDecimal tueHrs;
+    /**
+     * Holds the TimesheetRow form input for wednesday hours
+     * before moving the hours into the hoursForWeek array.
+     */
+    private BigDecimal wedHrs;
+    /**
+     * Holds the TimesheetRow form input for thursday hours
+     * before moving the hours into the hoursForWeek array.
+     */
+    private BigDecimal thuHrs;
+    /**
+     * Holds the TimesheetRow form input for friday hours
+     * before moving the hours into the hoursForWeek array.
+     */
+    private BigDecimal friHrs;
+    /**
+     * Holds the TimesheetRow form input for saturday hours
+     * before moving the hours into the hoursForWeek array.
+     */
+    private BigDecimal satHrs;
     
 
     /**
@@ -225,23 +262,23 @@ public class TimesheetRow implements Serializable {
 
     /**
      * sets the hours for each day in the week when the row edit event occurs
-     * also displays a row edited message to the user
+     * also displays a row edited message to the user.
      * @param event the row edit event 
      */
     public void onRowEdit(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Row Edited");
         FacesContext.getCurrentInstance().addMessage(null, msg);
-        setHour(0, satHrs);
-        setHour(1, sunHrs);
-        setHour(2, monHrs);
-        setHour(3, tueHrs);
-        setHour(4, wedHrs);
-        setHour(5, thuHrs);
-        setHour(6, friHrs);
+        setHour(SAT, satHrs);
+        setHour(SUN, sunHrs);
+        setHour(MON, monHrs);
+        setHour(TUE, tueHrs);
+        setHour(WED, wedHrs);
+        setHour(THU, thuHrs);
+        setHour(FRI, friHrs);
     }
     
     /**
-     * displays a row edit cancelled message to the user
+     * displays a row edit cancelled message to the user.
      * @param event the row cancelled event
      */
     public void onRowCancel(RowEditEvent event) {
@@ -250,7 +287,7 @@ public class TimesheetRow implements Serializable {
     }
 
     /**
-     * sunHrs getter
+     * sunHrs getter.
      * @return sunHrs
      */
     public BigDecimal getSunHrs() {
@@ -258,7 +295,7 @@ public class TimesheetRow implements Serializable {
     }
 
     /**
-     * sunHrs setter
+     * sunHrs setter.
      * @param sunHrs number of hours worked Sunday
      */
     public void setSunHrs(BigDecimal sunHrs) {
@@ -266,7 +303,7 @@ public class TimesheetRow implements Serializable {
     }
     
     /**
-     * monHrs getter
+     * monHrs getter.
      * @return monHrs
      */
     public BigDecimal getMonHrs() {
@@ -274,7 +311,7 @@ public class TimesheetRow implements Serializable {
     }
 
     /**
-     * monHrs setter
+     * monHrs setter.
      * @param monHrs number of hours worked Monday
      */
     public void setMonHrs(BigDecimal monHrs) {
@@ -282,7 +319,7 @@ public class TimesheetRow implements Serializable {
     }
     
     /**
-     * tueHrs getter
+     * tueHrs getter.
      * @return tueHrs
      */
     public BigDecimal getTueHrs() {
@@ -290,7 +327,7 @@ public class TimesheetRow implements Serializable {
     }
 
     /**
-     * tueHrs setter
+     * tueHrs setter.
      * @param tueHrs number of hours worked Tuesday
      */
     public void setTueHrs(BigDecimal tueHrs) {
@@ -298,7 +335,7 @@ public class TimesheetRow implements Serializable {
     }
     
     /**
-     * wedHrs getter
+     * wedHrs getter.
      * @return wedHrs
      */
     public BigDecimal getWedHrs() {
@@ -306,7 +343,7 @@ public class TimesheetRow implements Serializable {
     }
 
     /**
-     * wedHrs setter
+     * wedHrs setter.
      * @param wedHrs number of hours worked Wednesday
      */
     public void setWedHrs(BigDecimal wedHrs) {
@@ -314,7 +351,7 @@ public class TimesheetRow implements Serializable {
     }
     
     /**
-     * thuHrs getter
+     * thuHrs getter.
      * @return thuHrs
      */
     public BigDecimal getThuHrs() {
@@ -322,7 +359,7 @@ public class TimesheetRow implements Serializable {
     }
 
     /**
-     * thuHrs setter
+     * thuHrs setter.
      * @param thuHrs number of hours worked Thursday
      */
     public void setThuHrs(BigDecimal thuHrs) {
@@ -330,7 +367,7 @@ public class TimesheetRow implements Serializable {
     }
     
     /**
-     *friHrs getter
+     *friHrs getter.
      * @return friHrs
      */
     public BigDecimal getFriHrs() {
@@ -338,7 +375,7 @@ public class TimesheetRow implements Serializable {
     }
 
     /**
-     * friHrs setter
+     * friHrs setter.
      * @param friHrs number of hours worked Friday
      */
     public void setFriHrs(BigDecimal friHrs) {
@@ -346,7 +383,7 @@ public class TimesheetRow implements Serializable {
     }
     
     /**
-     * satHrs getter
+     * satHrs getter.
      * @return satHrs
      */
     public BigDecimal getSatHrs() {
@@ -354,7 +391,7 @@ public class TimesheetRow implements Serializable {
     }
 
     /**
-     * satHrs setter
+     * satHrs setter.
      * @param satHrs number of hours worked Saturday
      */
     public void setSatHrs(BigDecimal satHrs) {

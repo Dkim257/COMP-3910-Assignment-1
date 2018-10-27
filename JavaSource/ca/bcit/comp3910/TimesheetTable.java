@@ -42,17 +42,20 @@ public class TimesheetTable implements Serializable {
 
     /**
      * get all timesheets for an employee, or all timesheets 
-     * if user is the administrator
+     * if user is the administrator.
      * @param e the employee whose timesheets are returned
      * @return all of the timesheets for an employee.
      */
     public List<Timesheet> getTimesheets(Employee e) {
-        if(e == EmployeeTable.getAdmin())
+        if (e == EmployeeTable.getAdmin()) {
             return getTimesheets();
+        }
         List<Timesheet> returnList = new ArrayList<>();
-        for(Timesheet ts : timesheets)
-            if(ts.getEmployee() == e)
+        for (Timesheet ts : timesheets) {
+            if (ts.getEmployee() == e) {
                 returnList.add(ts);
+            }
+        }
         return returnList;
     }
 
@@ -62,24 +65,26 @@ public class TimesheetTable implements Serializable {
      * @return the current timesheet for an employee.
      */
     public Timesheet getCurrentTimesheet(Employee e) {
-        if(getTimesheets(e).isEmpty())
+        if (getTimesheets(e).isEmpty()) {
             return null;
-        return getTimesheets(e).get(getTimesheets(e).size()-1);
+        }
+        return getTimesheets(e).get(getTimesheets(e).size() - 1);
     }
     
     /**
-     * Getter for viewedTimesheet
+     * Getter for viewedTimesheet.
      * @param e the employee currently signed in
      * @return viewedTimesheet
      */
     public Timesheet getViewedTimesheet(Employee e) {
-        if(viewedTimesheet == null)
+        if (viewedTimesheet == null) {
             viewedTimesheet = getCurrentTimesheet(e);
+        }
         return viewedTimesheet;
     }
     
     /**
-     * Setter for viewedTimesheet
+     * Setter for viewedTimesheet.
      * @param ts viewedTimesheet
      */
     public void setViewedTimesheet(Timesheet ts) {
@@ -88,7 +93,7 @@ public class TimesheetTable implements Serializable {
     
     /**
      * Creates a Timesheet object and adds it to the collection.
-     *
+     * @param e the currently logged in user, needed to assign the timesheet
      * @return a String representing navigation to the newTimesheet page.
      */
     public String addTimesheet(Employee e) {
@@ -106,33 +111,38 @@ public class TimesheetTable implements Serializable {
     /**
      * Validates a timesheet being editing, and if validation passes
      * adds the timesheet to the list of timesheets (represents writing
-     * it to a database)
+     * it to a database).
      * @return the page to navigate to after validation
      */
     public String saveChanges() {
 //        if(!viewedTimesheet.isValid()) {
-//            FacesMessage msg = new FacesMessage("Invalid timesheet hours: Maximum 40 per week, overtime must be added in Overtime column.");
+//            FacesMessage msg = 
+//                  new FacesMessage("Invalid timesheet hours: "
+//                          + "Maximum 40 per week, "
+//                          + "overtime must be added in Overtime column.");
 //            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
 //            FacesContext.getCurrentInstance().addMessage("", msg);
 //            return "";
 //        }
-        if(!viewedTimesheet.hasAllUniqueIds()) {
-            for(TimesheetRow row : viewedTimesheet.getDetails()){
+        if (!viewedTimesheet.hasAllUniqueIds()) {
+            for (TimesheetRow row : viewedTimesheet.getDetails()) {
                 row.setWorkPackage(null);
             }
-            FacesMessage msg = new FacesMessage("Project ID and WP combination for each row must be unique.");
+            FacesMessage msg = new FacesMessage(
+                    "Project and WP combination for each row must be unique.");
             msg.setSeverity(FacesMessage.SEVERITY_WARN);
             FacesContext.getCurrentInstance().addMessage("", msg);
             return "";
         }
-        if(!timesheets.contains(viewedTimesheet)) 
+        if (!timesheets.contains(viewedTimesheet)) {
             timesheets.add(viewedTimesheet);
+        }
         return "timesheet.xhtml";
     }
     
     /**
      * Sets the timesheet to view and then returns a string to navigate to 
-     * the timesheet viewing page in order to display the timehseet to the user
+     * the timesheet viewing page in order to display the timehseet to the user.
      * @param ts the timesheet to display
      * @return "timesheet.xhtml" the timesheet viewing page
      */
