@@ -132,6 +132,17 @@ public class Timesheet implements Serializable {
         }
         return sum;
     }
+    
+    public BigDecimal getTotalDaysHours(int day) {
+        BigDecimal sum = BigDecimal.ZERO;
+        for (TimesheetRow row : details) {
+            if(row.getHour(day) == null)
+                sum = sum.add(BigDecimal.ZERO);
+            else
+                sum = sum.add(row.getHour(day));
+        }
+        return sum;
+    }
 
     public BigDecimal[] getDailyHours() {
         BigDecimal[] sums = new BigDecimal[DAYS_IN_WEEK];

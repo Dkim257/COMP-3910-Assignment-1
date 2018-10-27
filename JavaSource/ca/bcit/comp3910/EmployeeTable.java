@@ -87,7 +87,7 @@ public class EmployeeTable implements Serializable {
                     setCurrentUser(employees.get(i));
                 }
             }
-            return "timesheet.xhtml";
+            return "timesheetSelect.xhtml";
         }
         return "";
     }
