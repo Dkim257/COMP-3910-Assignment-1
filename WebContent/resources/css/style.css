@@ -63,10 +63,7 @@ footer {
     border-radius: 2px !important;
 }
 
-
-div[id="history-form:timesheetHistory"] thead {
-    display: none;
-}
+/* div[id="history-form:timesheetHistory"] thead {display: none;} */
 
 .dropdown-trigger {
 	font-size: 1.1rem;
