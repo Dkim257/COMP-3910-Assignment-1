@@ -29,13 +29,13 @@
 					    <p:panel id="toggleable" header="Timesheet Details" toggleable="true" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
 					         <h:panelGrid columns="4">
 					         	#{msgs.empNumber} :
-					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).employee.empNumber}" />
+					            <h:outputText value="#{timesheetTable.getViewedTimesheet(employeeTable.currentUser).employee.empNumber}" />
 					            #{msgs.wkNum} : 
-					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).weekNumber}" />
+					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).weekNumber}" />
 					            #{msgs.name} :
-					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).employee.name}" />
+					            <h:outputText value="#{timesheetTable.getViewedTimesheet(employeeTable.currentUser).employee.name}" />
 					            #{msgs.wkEnd} :
-					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).dateInCustomizedFormat}" >
+					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).dateInCustomizedFormat}" >
 					            	<f:convertDateTime pattern="dd/mm/yyyy"/>
 					            </h:outputText>
 					        </h:panelGrid>

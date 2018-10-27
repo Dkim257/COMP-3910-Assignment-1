@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -170,7 +172,11 @@ public class EmployeeTable implements Serializable {
             }
             return "timesheetSelect.xhtml";
         }
-        return null;
+        FacesMessage msg = new FacesMessage("Warning", "Username and password do not match");
+        msg.setSeverity(FacesMessage.SEVERITY_WARN);
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, msg);
+        return "";
     }
 
     /**
