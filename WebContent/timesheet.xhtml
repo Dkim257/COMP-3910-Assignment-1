@@ -26,6 +26,21 @@
 				<h:form id="form">
 					<p:growl id="msgs" showDetail="true" />
 
+					    <p:panel id="toggleable" header="Timesheet Details" toggleable="true" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
+					         <h:panelGrid columns="4">
+					         	#{msgs.empNumber} :
+					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).employee.empNumber}" />
+					            #{msgs.wkNum} : 
+					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).weekNumber}" />
+					            #{msgs.wkEnd} :
+					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).endWeek}" >
+					            	<f:convertDateTime pattern="dd/mm/yyyy"/>
+					            </h:outputText>
+					            #{msgs.name} :
+					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).employee.name}" />
+					        </h:panelGrid>
+					    </p:panel>
+
 					<p:dataTable id="timesheet" widgetVar="timesheet" var="timesheetrow"
 						value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).details}" editable="true" style="margin-bottom:20px;" >
 

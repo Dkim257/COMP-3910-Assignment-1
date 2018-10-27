@@ -75,7 +75,7 @@ public class TimesheetTable implements Serializable {
             for(TimesheetRow row : viewedTimesheet.getDetails()){
                 row.setWorkPackage(null);
             }
-            FacesMessage msg = new FacesMessage("Poject ID and WP combination for each row must be unique.");
+            FacesMessage msg = new FacesMessage("Project ID and WP combination for each row must be unique.");
             msg.setSeverity(FacesMessage.SEVERITY_WARN);
             FacesContext.getCurrentInstance().addMessage("", msg);
             return "";
