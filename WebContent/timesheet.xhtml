@@ -24,7 +24,7 @@
 			</div>
 			<div class="row s12">
 				<h:form id="form">
-					<p:growl id="msgs" showDetail="true" />
+					<p:growl id="msgs" life="2000" showDetail="true" />
 
 					    <p:panel id="toggleable" header="Timesheet Details" toggleable="true" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
 					         <h:panelGrid columns="4">
@@ -205,12 +205,14 @@
 						<div class="ui-g-12">
 							<p:commandLink value="#{msgs.newRow}" ajax="false"
 								styleClass="waves-effect waves-light btn blue-grey darken-2"
-								process="@this" update=":form:msgs"
+								actionListener="#{growlView.newRow()}"
+								process="@form" update=":form:msgs"
 								action="#{timesheettable.getViewedTimesheet(employeetable.currentUser).addRow()}" oncomplete="submit()" />
 						</div>
 						<div class="ui-g-12">
 							<p:commandLink value="#{msgs.saveTime}" ajax="false"
 								styleClass="waves-effect waves-light btn blue-grey darken-2"
+								actionListener="#{growlView.saveTimesheet()}"
 								process="@form" update=":form:msgs"
 								action="#{timesheettable.saveChanges()}" oncomplete="submit()" />
 						</div>
