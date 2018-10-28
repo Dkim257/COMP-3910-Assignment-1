@@ -30,7 +30,7 @@
 						<li><p:commandLink action="#{timesheettable.addTimesheet(employeeTable.currentUser)}" ajax="false">
 							#{msgs.newTimesheet}</p:commandLink></li>
 						<li><a class="dropdown-trigger" href="#!"
-							data-target="dropdown1">#{msgs.user}<i
+							data-target="dropdown1">#{employeeTable.currentUser.name}<i
 								class="material-icons right">arrow_drop_down</i></a></li>
 					</ul>
 				</div>

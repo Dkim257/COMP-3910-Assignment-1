@@ -34,7 +34,7 @@ public class EmployeeTable implements Serializable {
     private static Employee admin;
     
     /**
-     * A map contatining the usernames and passwords of users
+     * A map containing the usernames and passwords of users
      * to be checked against when users attempt to login.
      */
     private static Map<String, String> credsMap;
@@ -48,7 +48,7 @@ public class EmployeeTable implements Serializable {
     static {
         employees = new ArrayList<Employee>();
         employees.add(new Employee("Tony Pacheco", 1, "tp1"));
-        employees.add(new Employee("Danny DiOreo", 2, "dd2"));
+        employees.add(new Employee("Danny Di Iorio", 2, "dd2"));
         
         admin = employees.get(0);
         
@@ -119,7 +119,7 @@ public class EmployeeTable implements Serializable {
     }
     
     /**
-     * Resetes an employees password the the deault password.
+     * Resets an employees password the the default password.
      * @param e the employee
      */
     public void resetPassword(Employee e) {
@@ -241,7 +241,7 @@ public class EmployeeTable implements Serializable {
     
     /**
      * Sets currentEditUser to the user which the admin
-     * wants to edit, and sets naviagtion string to the 
+     * wants to edit, and sets navigation string to the 
      * editUser page.
      * @param userToEdit the user which the admin wants to edit
      * @return "editUser" the edit user page

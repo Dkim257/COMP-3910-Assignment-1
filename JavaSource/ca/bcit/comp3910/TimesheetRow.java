@@ -54,37 +54,37 @@ public class TimesheetRow implements Serializable {
     private String notes;
     
     /**
-     * Holds the TimesheetRow form input for sunday hours
+     * Holds the TimesheetRow form input for Sunday hours
      * before moving the hours into the hoursForWeek array.
      */
     private BigDecimal sunHrs;
     /**
-     * Holds the TimesheetRow form input for monday hours
+     * Holds the TimesheetRow form input for Monday hours
      * before moving the hours into the hoursForWeek array.
      */
     private BigDecimal monHrs;
     /**
-     * Holds the TimesheetRow form input for tuesday hours
+     * Holds the TimesheetRow form input for Tuesday hours
      * before moving the hours into the hoursForWeek array.
      */
     private BigDecimal tueHrs;
     /**
-     * Holds the TimesheetRow form input for wednesday hours
+     * Holds the TimesheetRow form input for Wednesday hours
      * before moving the hours into the hoursForWeek array.
      */
     private BigDecimal wedHrs;
     /**
-     * Holds the TimesheetRow form input for thursday hours
+     * Holds the TimesheetRow form input for Thursday hours
      * before moving the hours into the hoursForWeek array.
      */
     private BigDecimal thuHrs;
     /**
-     * Holds the TimesheetRow form input for friday hours
+     * Holds the TimesheetRow form input for Friday hours
      * before moving the hours into the hoursForWeek array.
      */
     private BigDecimal friHrs;
     /**
-     * Holds the TimesheetRow form input for saturday hours
+     * Holds the TimesheetRow form input for Saturday hours
      * before moving the hours into the hoursForWeek array.
      */
     private BigDecimal satHrs;
