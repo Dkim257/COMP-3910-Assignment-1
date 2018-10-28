@@ -171,11 +171,11 @@ public class EmployeeTable implements Serializable {
         if (verifyUser()) {
             for (int i = 0; i < employees.size(); ++i) {
                 if (employees.get(i).getUserName()
-                        .equals(credential.getUserName())) {
-                    setCurrentUser(employees.get(i));
+                        .equalsIgnoreCase(credential.getUserName())) {
+                    currentUser = employees.get(i);
+                    return "timesheetSelect.xhtml";
                 }
             }
-            return "timesheetSelect.xhtml";
         }
         FacesMessage msg = new FacesMessage(
                 "Warning", "Username and password do not match");
@@ -192,7 +192,7 @@ public class EmployeeTable implements Serializable {
      * @return a String representing the login page.
      */
     public String logout(Employee employee) {
-        setCurrentUser(null);
+        currentUser = null;
         return "login.xhtml";
     }
 

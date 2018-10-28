@@ -27,7 +27,7 @@
 						<li><p:commandLink action="viewUsers" ajax="false"
 							rendered="#{employeeTable.admin}" >#{msgs.users}</p:commandLink></li>
 						<li><p:commandLink action="timesheetSelect" ajax="false">#{msgs.viewTimesheet}</p:commandLink></li>
-						<li><p:commandLink action="#{timesheettable.addTimesheet(employeetable.currentUser)}" ajax="false">
+						<li><p:commandLink action="#{timesheettable.addTimesheet(employeeTable.currentUser)}" ajax="false">
 							#{msgs.newTimesheet}</p:commandLink></li>
 						<li><a class="dropdown-trigger" href="#!"
 							data-target="dropdown1">#{msgs.user}<i

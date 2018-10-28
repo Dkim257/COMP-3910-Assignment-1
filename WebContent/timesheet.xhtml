@@ -42,7 +42,7 @@
 					    </p:panel>
 
 					<p:dataTable id="timesheet" widgetVar="timesheet" var="timesheetrow"
-						value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).details}" editable="true" style="margin-bottom:20px;" >
+						value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).details}" editable="true" style="margin-bottom:20px;" >
        					
 						<p:ajax event="rowEdit" listener="#{timesheetrow.onRowEdit}"
 							update=":form:msgs" />
@@ -77,7 +77,7 @@
 						<p:column headerText="#{msgs.total}">
 							<h:outputText value="#{timesheetrow.sum}" />
 							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).totalHours}" />
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).totalHours}" />
 							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.sat}">
@@ -92,7 +92,7 @@
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(0)}" />
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(0)}" />
 							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.sun}">
@@ -107,7 +107,7 @@
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(1)}" />
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(1)}" />
 							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.mon}">
@@ -122,7 +122,7 @@
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(2)}" />
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(2)}" />
 							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.tue}">
@@ -137,7 +137,7 @@
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(3)}" />
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(3)}" />
 							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.wed}">
@@ -152,7 +152,7 @@
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(4)}" />
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(4)}" />
 							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.thu}">
@@ -167,7 +167,7 @@
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(5)}" />
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(5)}" />
 							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.fri}">
@@ -182,7 +182,7 @@
 								</f:facet>
 							</p:cellEditor>
 							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.getViewedTimesheet(employeetable.currentUser).getTotalDaysHours(6)}" />
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(6)}" />
 							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.notes}" style="width:18%">
@@ -207,7 +207,7 @@
 								styleClass="waves-effect waves-light btn blue-grey darken-2"
 								actionListener="#{growlView.newRow()}"
 								process="@form" update=":form:msgs"
-								action="#{timesheettable.getViewedTimesheet(employeetable.currentUser).addRow()}" oncomplete="submit()" />
+								action="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).addRow()}" oncomplete="submit()" />
 						</div>
 						<div class="ui-g-12">
 							<p:commandLink value="#{msgs.saveTime}" ajax="false"
@@ -217,7 +217,6 @@
 								action="#{timesheettable.saveChanges()}" oncomplete="submit()" />
 						</div>
 					</div>
-
 				</h:form>
 			</div>
 		</ui:define>
