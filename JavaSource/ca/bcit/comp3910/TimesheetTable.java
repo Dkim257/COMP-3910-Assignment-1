@@ -47,7 +47,7 @@ public class TimesheetTable implements Serializable {
      * @return all of the timesheets for an employee.
      */
     public List<Timesheet> getTimesheets(Employee e) {
-        if(EmployeeTable.getAdmin() == e) {
+        if (EmployeeTable.getAdmin() == e) {
             return timesheets;
         }
         List<Timesheet> returnList = new ArrayList<>();
