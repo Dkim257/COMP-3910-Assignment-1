@@ -23,25 +23,27 @@
 				<h3>#{msgs.editUser}</h3>
 			</div>
 			<h:form id="user-form">
-				<p:growl id="msgs" life="2000" showDetail="true" />
+				<p:growl id="msgs" life="4000" showDetail="true" />
 				<div class="card">
 					<div class="card-content">
 						<div class="left-align">
-							<p:growl />
 							<div class="row ">
 								<div class="col s5 input-field">
 									<i class="material-icons prefix">account_circle</i>
-									<p:inputText value="#{employeeTable.currentEditUser.empNumber}" id="employeeNum" required="true" />
+									<p:inputText value="#{employeeTable.currentEditUser.empNumber}" id="employeeNum" required="true"
+										requiredMessage="#{msgs.eNumReq}" />
 									<h:outputLabel for="employeeNum" value="#{msgs.empNum}" />
 								</div><br/><br/><br/><br/>
 								<div class="col s5 input-field">
 									<i class="material-icons prefix">account_circle</i>
-									<p:inputText value="#{employeeTable.currentEditUser.name}" id="name" required="true" />
+									<p:inputText value="#{employeeTable.currentEditUser.name}" id="name" required="true"
+										requiredMessage="#{msgs.nameReq}" />
 									<h:outputLabel for="name" value="#{msgs.name}" />
 								</div><br/><br/><br/><br/>
 								<div class="col s5 input-field">
 									<i class="material-icons prefix">cloud_circle</i>
-									<p:inputText value="#{employeeTable.currentEditUser.userName}" id="username" required="true" />
+									<p:inputText value="#{employeeTable.currentEditUser.userName}" id="username" required="true"
+										requiredMessage="#{msgs.idReq}" />
 									<h:outputLabel for="username" value="#{msgs.username}" />
 								</div><br/><br/><br/><br/>
 								<div class="col s5 input-field">
@@ -62,7 +64,7 @@
 				</div>
 				<div class="col s12" id="saveBtn">
 					<p:commandLink value="#{msgs.save}" id="saveBtn"
-						action="#{employeeTable.saveChanges()}"
+						action="#{employeeTable.saveChanges()}" update=":user-form:msgs"
 						styleClass="btn-large waves-effect waves-light blue-grey darken-2" />
 				</div>
 			</h:form>
