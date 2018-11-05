@@ -12,6 +12,12 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+/**
+ * Class representing a single row of information 
+ * in a timesheet.
+ * @author Tony Pacheco + Danny DiIorio
+ * @version 1.0
+ */
 @Named("row")
 @ApplicationScoped
 public class TimesheetRow implements Serializable {
@@ -46,6 +52,43 @@ public class TimesheetRow implements Serializable {
     private BigDecimal[] hoursForWeek = new BigDecimal[Timesheet.DAYS_IN_WEEK];
     /** Any notes added to the end of a row. */
     private String notes;
+    
+    /**
+     * Holds the TimesheetRow form input for sunday hours
+     * before moving the hours into the hoursForWeek array.
+     */
+    private BigDecimal sunHrs;
+    /**
+     * Holds the TimesheetRow form input for monday hours
+     * before moving the hours into the hoursForWeek array.
+     */
+    private BigDecimal monHrs;
+    /**
+     * Holds the TimesheetRow form input for tuesday hours
+     * before moving the hours into the hoursForWeek array.
+     */
+    private BigDecimal tueHrs;
+    /**
+     * Holds the TimesheetRow form input for wednesday hours
+     * before moving the hours into the hoursForWeek array.
+     */
+    private BigDecimal wedHrs;
+    /**
+     * Holds the TimesheetRow form input for thursday hours
+     * before moving the hours into the hoursForWeek array.
+     */
+    private BigDecimal thuHrs;
+    /**
+     * Holds the TimesheetRow form input for friday hours
+     * before moving the hours into the hoursForWeek array.
+     */
+    private BigDecimal friHrs;
+    /**
+     * Holds the TimesheetRow form input for saturday hours
+     * before moving the hours into the hoursForWeek array.
+     */
+    private BigDecimal satHrs;
+    
 
     /**
      * Creates a TimesheetDetails object and sets the editable state to true.
@@ -217,14 +260,144 @@ public class TimesheetRow implements Serializable {
         return sum;
     }
 
+    /**
+     * sets the hours for each day in the week when the row edit event occurs
+     * also displays a row edited message to the user.
+     * @param event the row edit event 
+     */
     public void onRowEdit(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Row Edited");
         FacesContext.getCurrentInstance().addMessage(null, msg);
+        setHour(SAT, satHrs);
+        setHour(SUN, sunHrs);
+        setHour(MON, monHrs);
+        setHour(TUE, tueHrs);
+        setHour(WED, wedHrs);
+        setHour(THU, thuHrs);
+        setHour(FRI, friHrs);
     }
     
+    /**
+     * displays a row edit cancelled message to the user.
+     * @param event the row cancelled event
+     */
     public void onRowCancel(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Edit Cancelled");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
+
+    /**
+     * sunHrs getter.
+     * @return sunHrs
+     */
+    public BigDecimal getSunHrs() {
+        return sunHrs;
+    }
+
+    /**
+     * sunHrs setter.
+     * @param sunHrs number of hours worked Sunday
+     */
+    public void setSunHrs(BigDecimal sunHrs) {
+        this.sunHrs = sunHrs;
+    }
+    
+    /**
+     * monHrs getter.
+     * @return monHrs
+     */
+    public BigDecimal getMonHrs() {
+        return monHrs;
+    }
+
+    /**
+     * monHrs setter.
+     * @param monHrs number of hours worked Monday
+     */
+    public void setMonHrs(BigDecimal monHrs) {
+        this.monHrs = monHrs;
+    }
+    
+    /**
+     * tueHrs getter.
+     * @return tueHrs
+     */
+    public BigDecimal getTueHrs() {
+        return tueHrs;
+    }
+
+    /**
+     * tueHrs setter.
+     * @param tueHrs number of hours worked Tuesday
+     */
+    public void setTueHrs(BigDecimal tueHrs) {
+        this.tueHrs = tueHrs;
+    }
+    
+    /**
+     * wedHrs getter.
+     * @return wedHrs
+     */
+    public BigDecimal getWedHrs() {
+        return wedHrs;
+    }
+
+    /**
+     * wedHrs setter.
+     * @param wedHrs number of hours worked Wednesday
+     */
+    public void setWedHrs(BigDecimal wedHrs) {
+        this.wedHrs = wedHrs;
+    }
+    
+    /**
+     * thuHrs getter.
+     * @return thuHrs
+     */
+    public BigDecimal getThuHrs() {
+        return thuHrs;
+    }
+
+    /**
+     * thuHrs setter.
+     * @param thuHrs number of hours worked Thursday
+     */
+    public void setThuHrs(BigDecimal thuHrs) {
+        this.thuHrs = thuHrs;
+    }
+    
+    /**
+     *friHrs getter.
+     * @return friHrs
+     */
+    public BigDecimal getFriHrs() {
+        return friHrs;
+    }
+
+    /**
+     * friHrs setter.
+     * @param friHrs number of hours worked Friday
+     */
+    public void setFriHrs(BigDecimal friHrs) {
+        this.friHrs = friHrs;
+    }
+    
+    /**
+     * satHrs getter.
+     * @return satHrs
+     */
+    public BigDecimal getSatHrs() {
+        return satHrs;
+    }
+
+    /**
+     * satHrs setter.
+     * @param satHrs number of hours worked Saturday
+     */
+    public void setSatHrs(BigDecimal satHrs) {
+        this.satHrs = satHrs;
+    }
+    
+    
     
 }

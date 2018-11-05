@@ -10,7 +10,7 @@
 	<title>#{msgs.loginTitle}</title>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js" />
-    <h:outputStylesheet library="css" name="style.css"/>
+    <h:outputStylesheet library="css" name="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </h:head>
 <h:body styleClass="grey lighten-3">
@@ -18,15 +18,16 @@
 		<div class="container">
 			<div class="center-align">
 				<div class="row">
-					<div class="col s6 offset-s3">
+					<div class="col s8 offset-s2">
 						<div class="card">
-							<div class="card-content">
-								<p:graphicImage name="/images/login_img.png" width="80px" class="responsive-img"/>
+							<div class="card-content loginForm">
+								<p:graphicImage name="/images/login_img.png" width="90px" class="responsive-img"/>
 								<div class="left-align">
-									<h:form id="login-form">
+									<h:form id="login">
+									<p:growl id="msgs" life="3000" showDetail="true" />
 										<div class="row ">
 											<div class="col s12 input-field">
-												<p:inputText id="id" required="true" requiredMessage="#{msgs.idReq}" value="#{employeeTable.credential.username}"/>
+												<p:inputText id="id" required="true" requiredMessage="#{msgs.idReq}" value="#{employeeTable.credential.userName}"/>
 												<h:outputLabel for="id" value="#{msgs.enterId}" />
 											</div>
 											<div class="col s12 input-field">
@@ -34,8 +35,9 @@
 												<h:outputLabel for="password" value="#{msgs.enterPassword}" />
 											</div>
 											<div class="col s12 card-action" id="loginBtn">
-												<h:commandButton value="#{msgs.loginTitle}" id="loginBtn" action="#{employeeTable.login()}"
-													styleClass="btn-large waves-effect waves-light blue-grey darken-2" />
+												<p:commandButton value="#{msgs.loginTitle}" id="loginBtn" action="#{employeeTable.login()}"
+													styleClass="btn-large waves-effect waves-light blue-grey darken-2" 
+													update=":login:msgs" />
 											</div>
 										</div>
 									</h:form>

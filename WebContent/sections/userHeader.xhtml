@@ -14,19 +14,21 @@
 		<h:form>
 			<!-- Dropdown Structure -->
 			<ul id="dropdown1" class="dropdown-content">
-				<li><p:commandLink>#{msgs.changePass}
-					<p:confirm header="#{msgs.changePass}" />
-					</p:commandLink></li>
-				<li><a href="/assignment1">Logout</a></li>
+				<li><a href="#modal1" class="modal-trigger">#{msgs.changePass}</a></li>
+				<li><p:commandLink action="#{employeeTable.logout(employee)}"
+					 ajax="false">#{msgs.logout}</p:commandLink></li>
 			</ul>
 
 			<nav>
 			<div class="nav-wrapper blue-grey darken-2">
 				<div class="header">
-					<a href="#!" class="brand-logo">Logo</a>
+					<p:graphicImage name="/images/login_img.png" width="40px" class="brand-logo"/>
 					<ul class="right hide-on-med-and-down">
-						<li><a href="#!">#{msgs.viewTimesheet}</a></li>
-						<li><a href="#!">#{msgs.newTimesheet}</a></li>
+						<li><p:commandLink action="viewUsers" ajax="false"
+							rendered="#{employeeTable.admin}" >#{msgs.users}</p:commandLink></li>
+						<li><p:commandLink action="timesheetSelect" ajax="false">#{msgs.viewTimesheet}</p:commandLink></li>
+						<li><p:commandLink action="#{timesheettable.addTimesheet(employeeTable.currentUser)}" ajax="false">
+							#{msgs.newTimesheet}</p:commandLink></li>
 						<li><a class="dropdown-trigger" href="#!"
 							data-target="dropdown1">#{msgs.user}<i
 								class="material-icons right">arrow_drop_down</i></a></li>
@@ -35,24 +37,39 @@
 			</div>
 			</nav>
 
-			<!-- Dialog for change password input form -->
-			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
-				<f:facet name="message">
-					<!-- add value so new password is saved -->
-					<p:password id="newPassword" feedback="true" inline="true" />
+			<!-- Modal Structure -->
+			<div id="modal1" class="modal">
+				<div class="modal-content">
+					<h4>#{msgs.changePass}</h4>
 					<h:outputLabel for="newPassword" value="#{msgs.newPass}" />
-				</f:facet>
-				<p:commandLink type="button" ajax="false" styleClass="waves-effect waves-light btn-small blue-grey darken-2">
-					<i class="material-icons left">clear</i>#{msgs.cancel}</p:commandLink>
-				<p:commandLink type="button" actionListener="#{growlView.changePassSuccess}" ajax="false"
-					styleClass="waves-effect waves-light btn-small blue-grey darken-2" update="growl">
-					<i class="material-icons left">check</i>#{msgs.save}</p:commandLink>
-			</p:confirmDialog>
+					<p:password id="newPassword" binding="#{newPassword}"
+						feedback="true" inline="true" />
+				</div>
+				<div class="modal-footer">
+					<a href="#!" class="modal-close waves-effect waves-light btn-small blue-grey darken-2">
+						<i class="material-icons left">clear</i>#{msgs.cancel}</a>
+					<p:commandLink type="button" ajax="false" process="@form" id="passwordSave"
+						action="#{employeeTable.changePassword(employeeTable.currentUser, newPassword.value)}"
+						styleClass="modal-close waves-effect waves-light btn-small blue-grey darken-2">
+						<i class="material-icons left">check</i>#{msgs.save}</p:commandLink>
+				</div>
+			</div>
+
+
 		</h:form>
 		<script type="text/javascript">
 				jQuery(document).ready(function() {
 					$(".dropdown-trigger").dropdown();
 				});
+		</script>
+		<script type="text/javascript">
+		(function ($) {
+		    $(function () {
+		        //initialize all modals           
+		        $('.modal').modal();
+		        $('.trigger-modal').modal();
+		    });
+		})(jQuery);
 		</script>
 	</ui:composition>
 </body>

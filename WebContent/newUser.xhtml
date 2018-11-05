@@ -20,7 +20,7 @@
 
 		<ui:define name="content">
 			<div class="s12">
-				<h3>#{msgs.editUser}</h3>
+				<h3>#{msgs.newUser}</h3>
 			</div>
 			<h:form id="user-form">
 				<p:growl id="msgs" life="4000" showDetail="true" />
@@ -42,29 +42,17 @@
 								</div><br/><br/><br/><br/>
 								<div class="col s5 input-field">
 									<i class="material-icons prefix">cloud_circle</i>
-									<p:inputText value="#{employeeTable.currentEditUser.userName}" id="username" required="true"
+									<p:inputText value="#{employeeTable.currentEditUser.userName}" id="username" required="true" 
 										requiredMessage="#{msgs.idReq}" />
 									<h:outputLabel for="username" value="#{msgs.username}" />
 								</div><br/><br/><br/><br/>
-								<div class="col s5 input-field">
-									<i class="material-icons prefix">lock</i>
-									<p:password id="password" value="#{employeeTable.newPassword}"/>
-									<h:outputLabel for="password" value="#{msgs.password}" />
-								</div>
-								
-								<div class="col s12" >
-									<p:commandLink value="#{msgs.resetPass}" id="resetPassBtn" 
-										action="#{employeeTable.resetPassword(employeeTable.currentEditUser)}"
-										actionListener="#{growlView.passwordReset()}"
-										styleClass="btn waves-effect waves-light" update=":user-form:msgs" />
-								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 				<div class="col s12" id="saveBtn">
 					<p:commandLink value="#{msgs.save}" id="saveBtn"
-						action="#{employeeTable.saveChanges()}" update=":user-form:msgs"
+						action="#{employeeTable.addEmployee()}" update=":user-form:msgs"
 						styleClass="btn-large waves-effect waves-light blue-grey darken-2" />
 				</div>
 			</h:form>

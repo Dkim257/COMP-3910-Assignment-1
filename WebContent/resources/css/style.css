@@ -39,6 +39,12 @@ footer {
 	margin-right: auto;
 	text-align: center;
 	color: white;
+	padding-top: 15px;
+}
+
+.loginForm {
+	padding-left: 45px !important;
+	padding-right: 45px !important;
 }
 
 #login-page {
@@ -50,7 +56,44 @@ footer {
 	padding-bottom: 0;
 }
 
-.btn-small {
+.btn-small, btn, btn-large {
 	color: white !important;
-    margin-right: 10px;
+    margin-right: 10px !important;
+    border: none !important;
+    border-radius: 2px !important;
+}
+
+/* div[id="history-form:timesheetHistory"] thead {display: none;} */
+
+.dropdown-trigger {
+	font-size: 1.1rem;
+}
+
+.brand-logo {
+	padding-top: 5px !important;
+}
+
+.modal {
+	width: 35% !important;
+	padding: 10px !important;
+}
+
+.ui-button-text.ui-c {
+	font-weight: normal !important;
+	padding: 0 !important;
+	text-shadow: none !important;
+	color: white !important;
+}
+
+#passwordSave.ui-commandlink.ui-widget {
+	font-weight: normal !important;
+	text-shadow: none !important;
+	color: white !important;
+	background-image: none !important;
+	background-color: ##26a69a;
+}
+
+.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
+	background-image: none !important;
+	background-color: ##26a69a;
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>IGNORED</title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="windowTitle">
+            #{msgs.windowTitle}
+         </ui:define>
+		<ui:define name="heading">
+			<ui:include src="/sections/userHeader.xhtml" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div class="s12">
+				<h3>#{msgs.users}</h3>
+			</div>
+			<div class="row s12">
+				<h:form id="form">
+					<p:growl id="msgs" showDetail="true" />
+
+					<p:dataTable id="employees" var="user"
+						value="#{employeeTable.employees}" style="margin-bottom:20px;" >
+						<f:facet name="header">
+           					#{msgs.userList}
+       					</f:facet>
+
+						<p:column headerText="#{msgs.editUser}">
+							<p:commandLink value="#{msgs.edit}" styleClass="waves-effect waves-light btn-small"
+								action="#{employeeTable.editEmployee(user)}" />
+						</p:column>
+						<p:column>
+							<f:facet name="header" >
+								<h:outputText value="#{msgs.empNum}" />
+							</f:facet>
+							<h:outputText value="#{user.empNumber}" />
+						</p:column>
+						<p:column headerText="#{msgs.name}">
+							<h:outputText value="#{user.name}" />
+						</p:column>
+						<p:column headerText="#{msgs.username}">
+							<h:outputText value="#{user.userName}" />
+						</p:column>
+						<p:column headerText="#{msgs.removeUser}">
+							<p:commandButton value="#{msgs.remove}"
+								styleClass="waves-effect waves-light btn-small teal lighten-1"
+								action="#{employeeTable.deleteEmployee(user)}" 
+								onclick="submit()"/>
+						</p:column>
+					</p:dataTable>
+
+					<div class="ui-g">
+						<div class="ui-g-12">
+							<p:commandLink value="#{msgs.newUser}" action="#{employeeTable.add}"
+								styleClass="btn-large waves-effect waves-light blue-grey darken-2" />
+						</div>
+					</div>
+
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
