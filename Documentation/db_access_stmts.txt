@@ -1,0 +1,21 @@
+/* select all timesheet_rows for a timesheet */
+SELECT sun_hours, mon_hours, tue_hours, wed_hours, thu_hours, fri_hours, sat_hours
+	  ,project_id, work_package
+FROM timesheet_row
+NATURAL JOIN timesheet 
+NATURAL JOIN employees 
+WHERE timesheet_id = '1';
+
+/* get all user names */
+SELECT userName FROM employees; 
+
+/* get all non-row info for a timesheet */
+SELECT * FROM timesheet WHERE timesheet_id = '1';
+
+/* get EVERYTHING for a timesheet */
+SELECT sun_hours, mon_hours, tue_hours, wed_hours, thu_hours, fri_hours, sat_hours
+	  ,project_id, work_package, end_week, overtime, flextime, emp_number, name, username
+FROM timesheet_row
+NATURAL JOIN timesheet 
+NATURAL JOIN employees 
+WHERE timesheet_id = '1';
