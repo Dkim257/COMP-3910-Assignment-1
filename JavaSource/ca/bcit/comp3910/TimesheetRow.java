@@ -3,8 +3,6 @@ import javax.inject.Named;
 
 import org.primefaces.event.RowEditEvent;
 
-import ca.bcit.infosys.timesheet.Timesheet;
-
 import java.io.Serializable;
 import java.math.BigDecimal;
 
