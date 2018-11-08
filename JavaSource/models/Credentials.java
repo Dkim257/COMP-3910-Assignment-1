@@ -4,12 +4,14 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name="credentials")
 public class Credentials implements Serializable {
     
-    @Column(name="userName")
+    @Id
+    @Column(name="user_name")
     private String userName;
     
     @Column(name="password")
