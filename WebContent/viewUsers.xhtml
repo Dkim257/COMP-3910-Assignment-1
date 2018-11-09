@@ -27,7 +27,7 @@
 					<p:growl id="msgs" showDetail="true" />
 
 					<p:dataTable id="employees" var="user"
-						value="#{employeeTable.employees}" style="margin-bottom:20px;" >
+						value="#{users.list}" style="margin-bottom:20px;" >
 						<f:facet name="header">
            					#{msgs.userList}
        					</f:facet>
@@ -40,7 +40,7 @@
 							<f:facet name="header" >
 								<h:outputText value="#{msgs.empNum}" />
 							</f:facet>
-							<h:outputText value="#{user.empNumber}" />
+							<h:outputText value="#{user.emp_number}" />
 						</p:column>
 						<p:column headerText="#{msgs.name}">
 							<h:outputText value="#{user.name}" />
