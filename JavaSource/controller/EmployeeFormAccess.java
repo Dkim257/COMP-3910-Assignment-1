@@ -14,6 +14,7 @@ import models.Employees;
 @SessionScoped
 public class EmployeeFormAccess implements Serializable {
 
+    private static final long serialVersionUID = 11L;
     @Inject
     private EmployeeManager mgr;
     private List<Employees> list;

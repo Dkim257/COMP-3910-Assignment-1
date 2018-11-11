@@ -26,12 +26,16 @@
 				<h:form id="form">
 					<p:growl id="msgs" life="2000" showDetail="true" />
 
-					<p:dataTable id="timesheet" widgetVar="timesheet" var="ts"
+					<p:dataTable id="timesheetHistory" widgetVar="sheet" var="ts"
 						value="#{timesheets.list}" style="margin-bottom:20px;" >
-       					<p:column headerText="id">
-       						<h:outputText value = "#{ts.timesheet_id}"/>
+       					<p:column headerText="#{msgs.weekEnd}">
+       						<h:outputText value = "#{ts.end_week}"/>
+       					</p:column>
+       					<p:column headerText="#{msgs.timesheetOwner}">
+       						<h:outputText value = "#{timesheets.empMgr.find(ts.emp_number).name}"/>
        					</p:column>
 					</p:dataTable>
+					
 				</h:form>
 			</div>
 		</ui:define>

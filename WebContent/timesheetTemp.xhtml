@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>IGNORED</title>
+</h:head>
+<h:body>
+	<ui:composition template="/templates/masterLayout.xhtml">
+		<ui:define name="windowTitle">
+            #{msgs.windowTitle}
+         </ui:define>
+		<ui:define name="heading">
+			<ui:include src="/sections/userHeader.xhtml" />
+		</ui:define>
+
+		<ui:define name="content">
+			<div class="s12">
+				<h3>#{msgs.timesheet}</h3>
+			</div>
+			<div class="row s12">
+				<h:form id="form">
+					<p:growl id="msgs" life="2000" showDetail="true" />
+
+					<p:dataTable id="timesheet" widgetVar="timesheet" var="timesheetrow"
+						value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).details}" editable="true" style="margin-bottom:20px;" >
+       					
+						<p:ajax event="rowEdit" listener="#{timesheetrow.onRowEdit}"
+							update=":form:msgs" />
+						<p:ajax event="rowEditCancel" listener="#{timesheetrow.onRowCancel}"
+							update=":form:msgs" />
+
+						<p:column headerText="#{msgs.project}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{timesheetrow.project_id}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="projectInput" value="#{timesheetrow.project_id}"
+										style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						<p:column headerText="#{msgs.wp}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{timesheetrow.work_package}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="workPackageInput" value="#{timesheetrow.work_package}"
+										style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{msgs.total}" />
+							</f:facet>
+						</p:column>
+						<p:column headerText="#{msgs.total}">
+							<h:outputText value="#{timesheetrow.sum}" />
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).totalHours}" />
+							</f:facet>
+						</p:column>
+						<p:column headerText="#{msgs.sat}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{timesheetrow.sat_hours}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="satInput" value="#{timesheetrow.sat_hours}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
+								</f:facet>
+							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(0)}" />
+							</f:facet>
+						</p:column>
+						<p:column headerText="#{msgs.sun}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{timesheetrow.sun_hours}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="sunInput" value="#{timesheetrow.sun_hours}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
+								</f:facet>
+							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(1)}" />
+							</f:facet>
+						</p:column>
+						<p:column headerText="#{msgs.mon}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{timesheetrow.mon_hours}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="monInput"  value="#{timesheetrow.mon_hours}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
+								</f:facet>
+							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(2)}" />
+							</f:facet>
+						</p:column>
+						<p:column headerText="#{msgs.tue}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{timesheetrow.tue_hours}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="tueInput"  value="#{timesheetrow.tue_hours}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
+								</f:facet>
+							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(3)}" />
+							</f:facet>
+						</p:column>
+						<p:column headerText="#{msgs.wed}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{timesheetrow.wed_hours}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="wedInput"  value="#{timesheetrow.wed_hours}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
+								</f:facet>
+							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(4)}" />
+							</f:facet>
+						</p:column>
+						<p:column headerText="#{msgs.thu}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{timesheetrow.thu_hours}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="thuInput"  value="#{timesheetrow.thu_hours}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
+								</f:facet>
+							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(5)}" />
+							</f:facet>
+						</p:column>
+						<p:column headerText="#{msgs.fri}">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{timesheetrow.fri_hours}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="friInput"  value="#{timesheetrow.fri_hours}" style="width:100%" >
+										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
+									</p:inputText>
+								</f:facet>
+							</p:cellEditor>
+							<f:facet name="footer">
+								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).getTotalDaysHours(6)}" />
+							</f:facet>
+						</p:column>
+						<p:column headerText="#{msgs.notes}" style="width:18%">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{timesheetrow.notes}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText id="notesInput" value="#{timesheetrow.notes}" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column style="width:32px">
+							<p:rowEditor />
+						</p:column>
+					</p:dataTable>
+
+					<div class="ui-g">
+						<div class="ui-g-12">
+							<p:commandLink value="#{msgs.newRow}" ajax="false"
+								styleClass="waves-effect waves-light btn blue-grey darken-2"
+								actionListener="#{growlView.newRow()}"
+								process="@form" update=":form:msgs"
+								action="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).addRow()}" oncomplete="submit()" />
+						</div>
+						<div class="ui-g-12">
+							<p:commandLink value="#{msgs.saveTime}" ajax="false"
+								styleClass="waves-effect waves-light btn blue-grey darken-2"
+								actionListener="#{growlView.saveTimesheet()}"
+								process="@form" update=":form:msgs"
+								action="#{timesheettable.saveChanges()}" oncomplete="submit()" />
+						</div>
+					</div>
+				</h:form>
+			</div>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
