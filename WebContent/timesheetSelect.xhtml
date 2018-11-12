@@ -27,15 +27,15 @@
 					<p:growl id="msgs" showDetail="true" />
 
 					<p:dataTable id="timesheetHistory" var="sheet"
-						value="#{timesheettable.getTimesheets(employeeTable.currentUser)}" editable="false" style="margin-bottom:20px;" >
+						value="#{timesheettable.timesheets}" editable="false" style="margin-bottom:20px;" >
 						<f:facet name="header">
            					#{msgs.tsHistory}
        					</f:facet>
 						<p:column headerText="#{msgs.weekEnd}">
-							<p:commandLink value="#{sheet.dateInCustomizedFormat}" action="#{timesheettable.viewTimesheet(sheet)}" />
+							<p:commandLink value="DATE GO HERE and removed action for viewTimesheet(sheet)"  />
 						</p:column>
 						<p:column headerText="#{msgs.timesheetOwner}">
-							<h:outputText value="#{sheet.employee.name}"/>
+							<h:outputText value="NAME GO HERE"/>
 						</p:column>
 					</p:dataTable>
 				</h:form>

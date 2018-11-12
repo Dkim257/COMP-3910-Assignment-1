@@ -6,7 +6,6 @@
 		<class>model.TimesheetRow</class>
 		<class>model.Employees</class>
 		<class>model.Admin</class>
-		<class>model.Credentials</class>
       <properties>
          <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
          <property name="hibernate.hbm2ddl.auto" value="validate"/>

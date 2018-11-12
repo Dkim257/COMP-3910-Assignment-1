@@ -18,7 +18,6 @@ import javax.inject.Named;
  * @author Tony Pacheco + Danny DiIorio
  * @version 1.0
  */
-@Named("employeeTable")
 @SessionScoped
 public class EmployeeTable implements Serializable {
     

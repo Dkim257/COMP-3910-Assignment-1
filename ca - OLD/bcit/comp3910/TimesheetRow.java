@@ -16,7 +16,6 @@ import javax.faces.context.FacesContext;
  * @author Tony Pacheco + Danny DiIorio
  * @version 1.0
  */
-@Named("row")
 @ApplicationScoped
 public class TimesheetRow implements Serializable {
 

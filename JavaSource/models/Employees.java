@@ -20,6 +20,9 @@ public class Employees implements Serializable {
     @Id
     @Column(name="emp_number")
     private int emp_number;
+    
+    @Column(name="password")
+    private String password;
 
     public String getName() {
         return name;
@@ -43,6 +46,14 @@ public class Employees implements Serializable {
 
     public void setEmp_number(int emp_number) {
         this.emp_number = emp_number;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
     
     
