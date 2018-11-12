@@ -25,13 +25,13 @@ public class Employees implements Serializable {
     private String password;
     
     @Column(name="isAdmin")
-    private int isAdmin;
+    private boolean isAdmin;
 
-    public int getIsAdmin() {
+    public boolean getIsAdmin() {
         return isAdmin;
     }
 
-    public void setIsAdmin(int isAdmin) {
+    public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
 
