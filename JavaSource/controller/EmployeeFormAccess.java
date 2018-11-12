@@ -9,7 +9,6 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import access.AdminManager;
 import access.EmployeeManager;
 import models.Employees;
 
@@ -20,8 +19,6 @@ public class EmployeeFormAccess implements Serializable {
     private static final long serialVersionUID = 11L;
     @Inject
     private EmployeeManager mgr;
-    @Inject
-    private AdminManager adminMgr;
     
     /**
      * The Employee data list containing all of the Employees
@@ -244,7 +241,7 @@ public class EmployeeFormAccess implements Serializable {
      * @return true if the current logged in user is the admin
      */
     public boolean isAdmin() {
-        return false;
+        return currentUser.getIsAdmin() == 1;
     }
     
     /**

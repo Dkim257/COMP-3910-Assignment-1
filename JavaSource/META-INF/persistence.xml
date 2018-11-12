@@ -5,7 +5,6 @@
 		<class>model.Timesheet</class>
 		<class>model.TimesheetRow</class>
 		<class>model.Employees</class>
-		<class>model.Admin</class>
       <properties>
          <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLInnoDBDialect"/>
          <property name="hibernate.hbm2ddl.auto" value="validate"/>

@@ -23,6 +23,17 @@ public class Employees implements Serializable {
     
     @Column(name="password")
     private String password;
+    
+    @Column(name="isAdmin")
+    private int isAdmin;
+
+    public int getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(int isAdmin) {
+        this.isAdmin = isAdmin;
+    }
 
     public String getName() {
         return name;
