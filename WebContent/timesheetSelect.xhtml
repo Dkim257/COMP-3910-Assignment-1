@@ -32,10 +32,10 @@
            					#{msgs.tsHistory}
        					</f:facet>
 						<p:column headerText="#{msgs.weekEnd}">
-							<p:commandLink value="DATE GO HERE and removed action for viewTimesheet(sheet)"  />
+							<p:commandLink value="#{sheet.end_week}"  />
 						</p:column>
 						<p:column headerText="#{msgs.timesheetOwner}">
-							<h:outputText value="NAME GO HERE"/>
+							<h:outputText value="#{timesheettable.empMgr.find(sheet.emp_number).name}"/>
 						</p:column>
 					</p:dataTable>
 				</h:form>

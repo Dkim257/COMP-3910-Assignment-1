@@ -24,6 +24,14 @@ public class TimesheetFormAccess implements Serializable {
     @Inject private TimesheetRowManager tsRowMgr;
     private List<Timesheet> timesheets;
     
+    public EmployeeManager getEmpMgr() {
+        return empMgr;
+    }
+
+    public TimesheetRowManager getTsRowMgr() {
+        return tsRowMgr;
+    }
+
     /**
      * The timesheet which is to be displayed to the user.
      */
