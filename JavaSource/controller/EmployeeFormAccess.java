@@ -186,6 +186,11 @@ public class EmployeeFormAccess implements Serializable {
         if (employees.contains(userToDelete)) {
             mgr.remove(userToDelete);
             employees.remove(userToDelete);
+            FacesMessage msg = new FacesMessage(
+                    "Info", "User deleted");
+            msg.setSeverity(FacesMessage.SEVERITY_INFO);
+            FacesContext context = FacesContext.getCurrentInstance();
+            context.addMessage(null, msg);
         }
         return "viewUsers";
     }
@@ -200,8 +205,6 @@ public class EmployeeFormAccess implements Serializable {
             employees.add(currentEditUser);
             currentEditUser.setPassword(DEFAULT_PASSWORD);
             mgr.merge(currentEditUser);
-            //credsMap.put(currentEditUser.getUserName(), DEFAULT_PASSWORD);
-            //Use mgr
         }
         currentEditUser = null;
         return "viewUsers";
@@ -255,6 +258,7 @@ public class EmployeeFormAccess implements Serializable {
      */
     public String add() {
         currentEditUser = new Employees();
+        //currentEditUser.setEmp_number(0);
         return "newUser";
     }
 }
