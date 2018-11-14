@@ -115,7 +115,7 @@ public class EmployeeFormAccess implements Serializable {
      * @param password the new password
      */
     public void changePassword(Employees e, String password) {
-        
+        e.setPassword(password);
     }
     
     /**
@@ -176,7 +176,6 @@ public class EmployeeFormAccess implements Serializable {
     }
     
     /**
-     * TODO: use mgr 
      * Deletes the specified user from the collection of Users.
      *
      * @param userToDelete the user to delete.
@@ -185,13 +184,13 @@ public class EmployeeFormAccess implements Serializable {
      */
     public String deleteEmployee(Employees userToDelete) {
         if (employees.contains(userToDelete)) {
+            mgr.remove(userToDelete);
             employees.remove(userToDelete);
         }
         return "viewUsers";
     }
 
     /**
-     * TODO: use mgr
      * Adds a new Employee to the collection of Employees.
      * @return "viewUsers" the page to navigate to after 
      * adding a new employee
@@ -199,6 +198,8 @@ public class EmployeeFormAccess implements Serializable {
     public String addEmployee() {
         if (!employees.contains(currentEditUser)) {
             employees.add(currentEditUser);
+            currentEditUser.setPassword(DEFAULT_PASSWORD);
+            mgr.merge(currentEditUser);
             //credsMap.put(currentEditUser.getUserName(), DEFAULT_PASSWORD);
             //Use mgr
         }
