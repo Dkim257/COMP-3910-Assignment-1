@@ -1,6 +1,7 @@
 package controller;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import access.TimesheetManager;
 import access.TimesheetRowManager;
 import models.Employees;
 import models.Timesheet;
+import models.TimesheetRow;
 
 @Named("timesheettable")
 @SessionScoped
@@ -163,6 +165,39 @@ public class TimesheetFormAccess implements Serializable {
     
     private void refreshList() {
         timesheets = mgr.getAll();
+    }
+    
+    //TODO: This properly
+    public int getTimesheetEmpNumber() {
+        return viewedTimesheet.getEmp_number();
+    }
+    
+    public Date getTimesheetWeekNumber() {
+        return viewedTimesheet.getEnd_week();
+    }
+    
+    public String getTimesheetEmployeeName() {
+        int empNum = viewedTimesheet.getEmp_number();
+        List<Employees> emps = empMgr.getAll();
+        for(Employees e : emps) {
+            if(e.getEmp_number() == empNum) {
+                return e.getName();
+            }
+        }
+        return null;
+    }
+    
+    //TODO: This properly
+    public Date getTimesheetDateInCustomizedFormat() {
+        return getTimesheetWeekNumber();
+    }
+    
+    public int getTimesheetID() {
+        return viewedTimesheet.getTimesheet_id();
+    }
+    
+    public List<TimesheetRow> getViewedSheetRows(){
+        return tsRowMgr.getAllForTimesheet(viewedTimesheet.getTimesheet_id());
     }
     
 }

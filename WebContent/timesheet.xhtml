@@ -29,20 +29,20 @@
 					    <p:panel id="toggleable" header="Timesheet Details" toggleable="true" closable="false" toggleSpeed="500" closeSpeed="500" widgetVar="panel" style="margin-bottom:20px">
 					         <h:panelGrid columns="4">
 					         	#{msgs.empNumber} :
-					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).employee.empNumber}" />
+					            <h:outputText value="#{timesheettable.timesheetEmpNumber}" />
 					            #{msgs.wkNum} : 
-					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).weekNumber}" />
+					            <h:outputText value="#{timesheettable.timesheetWeekNumber}" />
 					            #{msgs.name} :
-					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).employee.name}" />
+					            <h:outputText value="#{timesheettable.timesheetEmployeeName}" />
 					            #{msgs.wkEnd} :
-					            <h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).dateInCustomizedFormat}" >
+					            <h:outputText value="#{timesheettable.timesheetDateInCustomizedFormat}" >
 					            	<f:convertDateTime pattern="dd/mm/yyyy"/>
 					            </h:outputText>
 					        </h:panelGrid>
 					    </p:panel>
 
 					<p:dataTable id="timesheet" widgetVar="timesheet" var="timesheetrow"
-						value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).details}" editable="true" style="margin-bottom:20px;" >
+						value="#{timesheettable.viewedSheetRows}" editable="true" style="margin-bottom:20px;" >
        					
 						<p:ajax event="rowEdit" listener="#{timesheetrow.onRowEdit}"
 							update=":form:msgs" />
@@ -52,10 +52,10 @@
 						<p:column headerText="#{msgs.project}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{timesheetrow.projectID}" />
+									<h:outputText value="#{timesheetrow.project_id}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="projectInput" value="#{timesheetrow.projectID}"
+									<p:inputText id="projectInput" value="#{timesheetrow.project_id}"
 										style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
@@ -63,10 +63,10 @@
 						<p:column headerText="#{msgs.wp}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{timesheetrow.workPackage}" />
+									<h:outputText value="#{timesheetrow.work_package}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="workPackageInput" value="#{timesheetrow.workPackage}"
+									<p:inputText id="workPackageInput" value="#{timesheetrow.work_package}"
 										style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
@@ -75,9 +75,9 @@
 							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.total}">
-							<h:outputText value="#{timesheetrow.sum}" />
+							<h:outputText value="#{row.sum}" />
 							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.getViewedTimesheet(employeeTable.currentUser).totalHours}" />
+								<h:outputText value="#{row.getTotalHours(timesheetrow)}" />
 							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.sat}">
