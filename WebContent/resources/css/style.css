@@ -63,8 +63,6 @@ footer {
     border-radius: 2px !important;
 }
 
-/* div[id="history-form:timesheetHistory"] thead {display: none;} */
-
 .dropdown-trigger {
 	font-size: 1.1rem;
 }
@@ -96,4 +94,14 @@ footer {
 .ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only {
 	background-image: none !important;
 	background-color: ##26a69a;
+}
+
+.passwordMessage {
+	font-style: italic;
+	padding-left: 14px;
+}
+
+.passMsgIcon {
+	font-size: 29px !important;
+	vertical-align: middle;
 }

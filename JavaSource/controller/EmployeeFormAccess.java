@@ -8,6 +8,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.swing.plaf.basic.BasicBorders.MarginBorder;
 
 import access.EmployeeManager;
 import models.Employees;
@@ -147,6 +148,7 @@ public class EmployeeFormAccess implements Serializable {
      */
     public void changePassword(Employees e, String password) {
         e.setPassword(password);
+        mgr.merge(e);
     }
     
     /**
@@ -155,6 +157,7 @@ public class EmployeeFormAccess implements Serializable {
      */
     public void resetPassword(Employees e) {
         changePassword(e, DEFAULT_PASSWORD);
+        mgr.merge(e);
     } 
     
     /**
@@ -253,7 +256,8 @@ public class EmployeeFormAccess implements Serializable {
      * to the viewUsers page.
      * @return "viewUsers" the view users page
      */
-    public String saveChanges() {
+    public String saveChanges(Employees e) {
+        mgr.merge(e);
         newPassword = null;
         currentEditUser = null;
         return "viewUsers";
