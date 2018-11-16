@@ -1,12 +1,8 @@
 package controller;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -242,26 +238,22 @@ public class EmployeeFormAccess implements Serializable {
      */
     public String addEmployee() {
         if (!employees.contains(currentEditUser)) {
-            employees.add(currentEditUser);
             currentEditUser.setPassword(DEFAULT_PASSWORD);
+            employees.add(currentEditUser);
             mgr.merge(currentEditUser);
+            refreshList();
         }
         currentEditUser = null;
         return "viewUsers";
     }
     
     /**
-     * TODO: use mgr
      * If the currentEditUsers password was changed, applies the
      * change in the credsMap, then sets navigation string back
      * to the viewUsers page.
      * @return "viewUsers" the view users page
      */
     public String saveChanges() {
-        if (!newPassword.isEmpty()) {
-           //credsMap.put(currentEditUser.getUserName(), newPassword);
-            //use mgr
-        }
         newPassword = null;
         currentEditUser = null;
         return "viewUsers";
@@ -288,7 +280,6 @@ public class EmployeeFormAccess implements Serializable {
     }
     
     /**
-     * TODO: use mgr
      * Creates a new empty Employee object and returns the navigation
      * string to navigate to the user edit page so that the page can
      * display a newly created user account.
@@ -296,7 +287,6 @@ public class EmployeeFormAccess implements Serializable {
      */
     public String add() {
         currentEditUser = new Employees();
-        //currentEditUser.setEmp_number(0);
         return "newUser";
     }
 }
