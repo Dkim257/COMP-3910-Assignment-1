@@ -1,7 +1,11 @@
 package controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -40,6 +44,10 @@ public class EmployeeFormAccess implements Serializable {
      * A user account being edited by the admin.
      */
     private Employees currentEditUser;
+    
+    private String loginName;
+    
+    private String loginPass;
     
     public Employees getCurrentEditUser() {
         return currentEditUser;
@@ -90,9 +98,36 @@ public class EmployeeFormAccess implements Serializable {
         return null;
     }
     
-    //TODO:make this get the user names and passes from mgr
-    public void getLoginCombos() {
-        
+    /**
+     * @return the loginName
+     */
+    public String getLoginName() {
+        return loginName;
+    }
+
+    /**
+     * @return the loginPass
+     */
+    public String getLoginPass() {
+        return loginPass;
+    }
+
+    /**
+     * @param loginPass the loginPass to set
+     */
+    public void setLoginPass(String loginPass) {
+        this.loginPass = loginPass;
+    }
+
+    /**
+     * @param loginName the loginName to set
+     */
+    public void setLoginName(String loginName) {
+        this.loginName = loginName;
+    }
+
+    public Map<String, String> getLoginCombos() {
+        return mgr.getLoginCombos();
     }
     
     /**
@@ -124,36 +159,41 @@ public class EmployeeFormAccess implements Serializable {
      */
     public void resetPassword(Employees e) {
         changePassword(e, DEFAULT_PASSWORD);
-    }
-    
-    //TODO: Make this work with adminMgr
-    public Employees getAdministrator() {
-        return new Employees();
-    }   
+    } 
     
     /**
      * Verifies that the loginID and password is a valid combination.
-     *
      * @return true if it is, false if it is not.
      */
     boolean verifyUser() {
+        Map<String, String> combos = getLoginCombos();
+        if(combos.containsKey(loginName)) {
+            if(combos.get(loginName).equals(loginPass)) {
+                return true;
+            }
+        }
         return false;
     }
     
     /**
-     * TODO: FIX THIS
      * Verifies login credentials, and on success logs user into the system.
      * @return string the page to navigate to after
      * success or fail on login attempt
      */
     public String login() {
+        if(employees == null) {
+            refreshList();
+        }
         if (verifyUser()) {
             for (int i = 0; i < employees.size(); ++i) {
-//                if (employees.get(i).getUserName()
-//                        .equalsIgnoreCase(credential.getUserName())) {
-//                    currentUser = employees.get(i);
-//                    return "timesheetSelect.xhtml";
-//                }
+                if (employees.get(i).getUserName()
+                        .equalsIgnoreCase(loginName)) {
+                    currentUser = employees.get(i);
+                    //null these so the login credentials aren't just floating around
+                    loginName = null;
+                    loginPass = null;
+                    return "timesheetSelect.xhtml";
+                }
             }
         }
         FacesMessage msg = new FacesMessage(

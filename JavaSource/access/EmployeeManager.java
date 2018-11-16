@@ -1,7 +1,9 @@
 package access;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
@@ -56,8 +58,18 @@ public class EmployeeManager implements Serializable {
      * @return List of all records in Employeess table
      */
     public List<Employees> getAll() {
-        return em.createQuery("select t from Employees t", Employees.class)
+        return em.createQuery("select e from Employees e", Employees.class)
                 .getResultList();
+    }
+    
+    public Map<String, String> getLoginCombos() {
+        List<Object[]> results = em.createQuery("select e.userName, e.password from Employees as e", Object[].class)
+                .getResultList();
+        Map<String, String> combos = new HashMap<>();
+        for (Object[] combo : results) {
+            combos.put((String)combo[0], (String)combo[1]);
+        }
+        return combos;
     }
     
 }
