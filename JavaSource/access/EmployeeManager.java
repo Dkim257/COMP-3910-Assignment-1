@@ -54,14 +54,18 @@ public class EmployeeManager implements Serializable {
     }
 
     /**
-     * Return Employeess table as List of Employees.
-     * @return List of all records in Employeess table
+     * Return Employees table as List of Employees.
+     * @return List of all records in Employees table
      */
     public List<Employees> getAll() {
         return em.createQuery("select e from Employees e", Employees.class)
                 .getResultList();
     }
     
+    /**
+     * Return all usernames and the matching passwords from Employees table.
+     * @return Map of username, password
+     */
     public Map<String, String> getLoginCombos() {
         List<Object[]> results = em.createQuery("select e.userName, e.password from Employees as e", Object[].class)
                 .getResultList();

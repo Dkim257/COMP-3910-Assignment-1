@@ -280,13 +280,11 @@ public class EmployeeFormAccess implements Serializable {
     }
     
     /**
-     * TODO: this
      * Checks if the current logged in user is the admin.
      * @return true if the current logged in user is the admin
      */
     public boolean isAdmin() {
-        return true;
-        //return currentUser.getIsAdmin();
+        return currentUser.getIsAdmin();
     }
     
     /**
