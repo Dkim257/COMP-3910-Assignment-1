@@ -1,5 +1,6 @@
 package models;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 import javax.persistence.Column;
@@ -18,11 +19,11 @@ public class Timesheet {
     private Date end_week;
     
     @Column(name="overtime")
-    private int overtime;
+    private BigDecimal overtime;
     
     @Column(name="flextime")
-    private int flextime;
-    
+    private BigDecimal flextime;
+
     @Id
     @Column(name="timesheet_id")
     private int timesheet_id;
@@ -43,19 +44,19 @@ public class Timesheet {
         this.end_week = end_week;
     }
 
-    public int getOvertime() {
+    public BigDecimal getOvertime() {
         return overtime;
     }
 
-    public void setOvertime(int overtime) {
+    public void setOvertime(BigDecimal overtime) {
         this.overtime = overtime;
     }
 
-    public int getFlextime() {
+    public BigDecimal getFlextime() {
         return flextime;
     }
 
-    public void setFlextime(int flextime) {
+    public void setFlextime(BigDecimal flextime) {
         this.flextime = flextime;
     }
 

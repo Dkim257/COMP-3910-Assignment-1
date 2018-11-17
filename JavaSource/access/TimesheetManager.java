@@ -60,4 +60,8 @@ public class TimesheetManager implements Serializable {
                 .getResultList();
     }
     
+    public long getCount() {
+        return (long) em.createQuery("select count (t) FROM Timesheet t").getSingleResult();
+    }
+    
 }
