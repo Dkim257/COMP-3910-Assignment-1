@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import models.Timesheet;
 
@@ -58,6 +59,18 @@ public class TimesheetManager implements Serializable {
     public List<Timesheet> getAll() {
         return em.createQuery("select t from Timesheet t", Timesheet.class)
                 .getResultList();
+    }
+    
+    /**
+     * Return Timesheets table as List of Timesheets for a specific user.
+     * @return List of all records in Timesheets table
+     */
+    public List<Timesheet> getAll(int emp_id) {
+        TypedQuery<Timesheet> query 
+            = em.createQuery("select t from Timesheet t where t.emp_number = :emp_id",
+            Timesheet.class);
+        query.setParameter("emp_id", emp_id);
+        return query.getResultList();
     }
     
     public long getCount() {

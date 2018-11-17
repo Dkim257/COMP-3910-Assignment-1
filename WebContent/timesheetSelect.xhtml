@@ -27,7 +27,7 @@
 					<p:growl id="msgs" showDetail="true" />
 
 					<p:dataTable id="timesheetHistory" var="sheet"
-						value="#{timesheettable.timesheets}" editable="false" style="margin-bottom:20px;" >
+						value="#{timesheettable.getTimesheets(employeeTable.currentUser)}" editable="false" style="margin-bottom:20px;" >
 						<f:facet name="header">
            					#{msgs.tsHistory}
        					</f:facet>

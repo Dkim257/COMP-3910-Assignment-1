@@ -57,23 +57,16 @@ public class TimesheetFormAccess implements Serializable {
     }
     
     /**
-     * TODO: make this work with our db and mgrs
-     * get all timesheets for an employee, or all timesheets 
+     * Get all timesheets for an employee, or all timesheets 
      * if user is the administrator.
      * @param e the employee whose timesheets are returned
      * @return all of the timesheets for an employee.
      */
     public List<Timesheet> getTimesheets(Employees e) {
         if (e.getIsAdmin()) {
-            return timesheets;
+            return getTimesheets();
         }
-        List<Timesheet> returnList = new ArrayList<>();
-        for (Timesheet ts : timesheets) {
-            if (ts.getEmp_number() == e.getEmp_number()) {
-                returnList.add(ts);
-            }
-        }
-        return returnList;
+        return mgr.getAll(e.getEmp_number());
     }
     
     /**
