@@ -17,7 +17,7 @@ public class EditableRow implements Serializable {
     
     private boolean editable;
     
-    /** Holds supplier to be displayed, edited or deleted.*/
+    /** Holds timesheet row to be displayed, edited or deleted.*/
     private TimesheetRow row;
     
     public EditableRow (TimesheetRow model){

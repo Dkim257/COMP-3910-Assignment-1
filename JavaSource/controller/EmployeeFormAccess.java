@@ -142,7 +142,7 @@ public class EmployeeFormAccess implements Serializable {
     }
 
     /**
-     * TODO: Changes an employees password.
+     * Changes an employees password.
      * @param e the employee
      * @param password the new password
      */

@@ -247,7 +247,8 @@ public class TimesheetFormAccess implements Serializable {
     public BigDecimal getTimesheetTotalHours() {
         BigDecimal total = BigDecimal.ZERO;
         for(EditableRow row : currentEditables) {
-            total = total.add(row.getSum());
+            if (row.getSum() != null)
+                total = total.add(row.getSum());
         }
         return total;
     }
