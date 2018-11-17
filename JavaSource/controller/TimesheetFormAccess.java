@@ -118,6 +118,25 @@ public class TimesheetFormAccess implements Serializable {
         return viewTimesheet(sheet);
     }
     
+    public String deleteCurrentTimesheet() {
+        for (EditableRow row : currentEditables) {
+            tsRowMgr.remove(row.getRow());
+        }
+        mgr.remove(viewedTimesheet);
+        currentEditables = null;
+        viewedTimesheet = null;
+        return "timesheetSelect.xhtml";
+    }
+    
+    public String deleteTimesheet(Timesheet sheet) {
+        List<TimesheetRow> rowsToDelete = tsRowMgr.getAllForTimesheet(sheet.getTimesheet_id());
+        for (TimesheetRow row : rowsToDelete) {
+            tsRowMgr.remove(row);
+        }
+        mgr.remove(sheet);
+        return "timesheetSelect.xhtml";
+    }
+    
     /**
      * TODO: ya know
      * Validates a timesheet being editing, and if validation passes
@@ -159,8 +178,7 @@ public class TimesheetFormAccess implements Serializable {
     public boolean timesheetHasAllUniqueIds() {
         HashSet<String> ids = new HashSet<>();
         for (EditableRow row : currentEditables) {
-            if (row.getRow().getWork_package() == null || 
-                row.getRow().getWork_package().equals("")) {
+            if (row.getRow().getWork_package().isEmpty()) {
                 continue;
             }
             String id = row.getRow().getWork_package() + row.getRow().getProject_id();
