@@ -32,7 +32,9 @@
            					#{msgs.tsHistory}
        					</f:facet>
 						<p:column headerText="#{msgs.weekEnd}">
-							<p:commandLink value="#{sheet.end_week}" action="#{timesheettable.viewTimesheet(sheet)}"/>
+							<i class="material-icons prefix tsSelectIcon">open_in_browser</i>  
+							<p:commandLink value="#{sheet.end_week}" styleClass="tsSelectText" 
+								 action="#{timesheettable.viewTimesheet(sheet)}" />
 						</p:column>
 						<p:column headerText="#{msgs.timesheetOwner}">
 							<h:outputText value="#{timesheettable.empMgr.find(sheet.emp_number).name}" />
