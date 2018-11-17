@@ -3,11 +3,14 @@ package controller;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Date;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Locale;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -29,6 +32,8 @@ public class TimesheetFormAccess implements Serializable {
     private static final int ROWS_TO_START_SHEET_WITH = 5;
     
     private static final long serialVersionUID = 11L;
+    LocalDate today = LocalDate.now();
+    
     @Inject private TimesheetManager mgr;
     @Inject private EmployeeManager empMgr;
     @Inject private TimesheetRowManager tsRowMgr;
@@ -111,12 +116,18 @@ public class TimesheetFormAccess implements Serializable {
         Timesheet sheet = new Timesheet();
         sheet.setTimesheet_id((int) mgr.getCount()+1);
         sheet.setEmp_number(e.getEmp_number());
-        sheet.setEnd_week(new Date(System.currentTimeMillis()));
+        LocalDate sunday = today;
+        while (sunday.getDayOfWeek() != DayOfWeek.SUNDAY) {
+          sunday = sunday.plusDays(1);
+        }
+        sheet.setEnd_week(java.sql.Date.valueOf(sunday));
         sheet.setFlextime(BigDecimal.ZERO);
         sheet.setOvertime(BigDecimal.ZERO);
         mgr.persist(sheet);
         timesheets.add(sheet);
         return viewTimesheet(sheet);
+        
+        
     }
     
     /**
