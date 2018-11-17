@@ -1,6 +1,7 @@
 package models;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,25 +23,25 @@ public class TimesheetRow implements Serializable {
     private String notes;
     
     @Column(name="sun_hours")
-    private int sun_hours;
+    private BigDecimal sun_hours;
     
     @Column(name="mon_hours")
-    private int mon_hours;
+    private BigDecimal mon_hours;
     
     @Column(name="tue_hours")
-    private int tue_hours;    
+    private BigDecimal tue_hours;    
     
     @Column(name="wed_hours")
-    private int wed_hours;    
+    private BigDecimal wed_hours;    
     
     @Column(name="thu_hours")
-    private int thu_hours;    
+    private BigDecimal thu_hours;    
     
     @Column(name="fri_hours")
-    private int fri_hours;    
+    private BigDecimal fri_hours;    
     
     @Column(name="sat_hours")
-    private int sat_hours;   
+    private BigDecimal sat_hours;   
     
     @Column(name="timesheet_id")
     private int timesheet_id;
@@ -73,59 +74,59 @@ public class TimesheetRow implements Serializable {
         this.notes = notes;
     }
 
-    public int getSun_hours() {
+    public BigDecimal getSun_hours() {
         return sun_hours;
     }
 
-    public void setSun_hours(int sun_hours) {
+    public void setSun_hours(BigDecimal sun_hours) {
         this.sun_hours = sun_hours;
     }
 
-    public int getMon_hours() {
+    public BigDecimal getMon_hours() {
         return mon_hours;
     }
 
-    public void setMon_hours(int mon_hours) {
+    public void setMon_hours(BigDecimal mon_hours) {
         this.mon_hours = mon_hours;
     }
 
-    public int getTue_hours() {
+    public BigDecimal getTue_hours() {
         return tue_hours;
     }
 
-    public void setTue_hours(int tue_hours) {
+    public void setTue_hours(BigDecimal tue_hours) {
         this.tue_hours = tue_hours;
     }
 
-    public int getWed_hours() {
+    public BigDecimal getWed_hours() {
         return wed_hours;
     }
 
-    public void setWed_hours(int wed_hours) {
+    public void setWed_hours(BigDecimal wed_hours) {
         this.wed_hours = wed_hours;
     }
 
-    public int getThu_hours() {
+    public BigDecimal getThu_hours() {
         return thu_hours;
     }
 
-    public void setThu_hours(int thu_hours) {
+    public void setThu_hours(BigDecimal thu_hours) {
         this.thu_hours = thu_hours;
     }
 
-    public int getFri_hours() {
+    public BigDecimal getFri_hours() {
         return fri_hours;
     }
 
-    public void setFri_hours(int fri_hours) {
+    public void setFri_hours(BigDecimal fri_hours) {
         this.fri_hours = fri_hours;
     }
 
-    public int getSat_hours() {
+    public BigDecimal getSat_hours() {
         return sat_hours;
     }
 
-    public void setSat_hours(int sat_hours) {
+    public void setSat_hours(BigDecimal sat_hours) {
         this.sat_hours = sat_hours;
     }
 

@@ -59,5 +59,11 @@ public class TimesheetRowManager implements Serializable {
         return em.createQuery("select t from TimesheetRow t", TimesheetRow.class)
                 .getResultList();
     }
+    
+    public List<TimesheetRow> getAllForTimesheet(int timesheetId) {
+        return em.createQuery("select t from TimesheetRow t where t.timesheet_id = :id", TimesheetRow.class)
+                .setParameter("id", timesheetId)
+                .getResultList();
+    }
 
 }
