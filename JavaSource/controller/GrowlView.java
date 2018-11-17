@@ -18,29 +18,23 @@ import javax.inject.Named;
 public class GrowlView implements Serializable {
 
     /**
-     * Growl message shows when timesheet is saved.
+     * Growl message shows when administrator resets a user's password.
      */
-    public void saveTimesheet() {
+    public void growlMessageSuccess(String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage("Successful",
-                "Timesheet saved"));
+                msg));
     }
-
-    /**
-     * Growl message shows when user adds new row to a timesheet.
-     */
-    public void newRow() {
-        FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Successful",
-                "New row added"));
-    }
-
+    
     /**
      * Growl message shows when administrator resets a user's password.
      */
-    public void passwordReset() {
+    public void growlMessageWarning(String msg) {
+        FacesMessage message = new FacesMessage(
+                "Warning", msg);
+        message.setSeverity(FacesMessage.SEVERITY_WARN);
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Successful",
-                "User password reset to default"));
+        context.addMessage(null, message);
     }
+    
 }
