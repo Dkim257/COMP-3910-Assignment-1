@@ -108,14 +108,13 @@ public class TimesheetFormAccess implements Serializable {
      * @return a String representing navigation to the newTimesheet page.
      */
     public String addTimesheet(Employees e) {
-        Timesheet sheet = new Timesheet();
-        sheet.setTimesheet_id((int) mgr.getCount()+1);
-        sheet.setEmp_number(e.getEmp_number());
-        sheet.setEnd_week(new Date(System.currentTimeMillis()));
-        sheet.setFlextime(BigDecimal.ZERO);
-        sheet.setOvertime(BigDecimal.ZERO);
+        int id = (int) mgr.getCount()+1;
+        Timesheet sheet = new Timesheet(id, e.getEmp_number(), new Date(System.currentTimeMillis()));
         mgr.persist(sheet);
         timesheets.add(sheet);
+        for(int i = 0; i < ROWS_TO_START_SHEET_WITH; ++i) {
+            addRowToSheet(id);
+        }
         return viewTimesheet(sheet);
     }
     
@@ -160,7 +159,8 @@ public class TimesheetFormAccess implements Serializable {
     public boolean timesheetHasAllUniqueIds() {
         HashSet<String> ids = new HashSet<>();
         for (EditableRow row : currentEditables) {
-            if (row.getRow().getWork_package() == null) {
+            if (row.getRow().getWork_package() == null || 
+                row.getRow().getWork_package().equals("")) {
                 continue;
             }
             String id = row.getRow().getWork_package() + row.getRow().getProject_id();
@@ -202,7 +202,6 @@ public class TimesheetFormAccess implements Serializable {
         timesheets = mgr.getAll();
     }
     
-    //TODO: This properly
     public int getTimesheetEmpNumber() {
         return viewedTimesheet.getEmp_number();
     }
@@ -247,10 +246,14 @@ public class TimesheetFormAccess implements Serializable {
     }
     
     public void addRowToCurrentSheet() {
-        TimesheetRow newRow = new TimesheetRow();
-        newRow.setTimesheet_id(viewedTimesheet.getTimesheet_id());
+        TimesheetRow newRow = new TimesheetRow(viewedTimesheet.getTimesheet_id());
         tsRowMgr.persist(newRow);
         currentEditables.add(new EditableRow(newRow));
+    }
+    
+    public void addRowToSheet(int timesheetid) {
+        TimesheetRow newRow = new TimesheetRow(timesheetid);
+        tsRowMgr.persist(newRow);
     }
     
     public BigDecimal getTimesheetTotalSatHours() {

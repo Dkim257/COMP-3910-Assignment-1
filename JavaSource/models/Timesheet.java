@@ -28,6 +28,18 @@ public class Timesheet {
     @Column(name="timesheet_id")
     private int timesheet_id;
 
+    public Timesheet() {
+        //Defualt Constructor for JPA
+    }
+    
+    public Timesheet(int id, int empNum, Date endWeek) {
+        timesheet_id = id;
+        emp_number = empNum;
+        end_week = endWeek;
+        flextime = new BigDecimal(0);
+        overtime = new BigDecimal(0);
+    }
+    
     public int getEmp_number() {
         return emp_number;
     }

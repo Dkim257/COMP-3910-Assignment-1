@@ -50,6 +50,22 @@ public class TimesheetRow implements Serializable {
     @Column(name="timesheet_row_id")
     private int timesheet_row_id;
 
+    public TimesheetRow() {
+        // Default for JPA
+    }
+    
+    public TimesheetRow(int sheetid) {
+        timesheet_id = sheetid;
+        work_package = "";
+        sun_hours = new BigDecimal(0);
+        mon_hours = new BigDecimal(0);
+        tue_hours = new BigDecimal(0);
+        wed_hours = new BigDecimal(0);
+        thu_hours = new BigDecimal(0);
+        fri_hours = new BigDecimal(0);
+        sat_hours = new BigDecimal(0);
+    }
+    
     public int getProject_id() {
         return project_id;
     }
@@ -75,7 +91,7 @@ public class TimesheetRow implements Serializable {
     }
 
     public BigDecimal getSun_hours() {
-        return sun_hours != null ? sun_hours : new BigDecimal(0);
+        return sun_hours;
     }
 
     public void setSun_hours(BigDecimal sun_hours) {
@@ -83,7 +99,7 @@ public class TimesheetRow implements Serializable {
     }
 
     public BigDecimal getMon_hours() {
-        return mon_hours != null ? mon_hours : new BigDecimal(0);
+        return mon_hours;
     }
 
     public void setMon_hours(BigDecimal mon_hours) {
@@ -91,7 +107,7 @@ public class TimesheetRow implements Serializable {
     }
 
     public BigDecimal getTue_hours() {
-        return tue_hours != null ? tue_hours : new BigDecimal(0);
+        return tue_hours;
     }
 
     public void setTue_hours(BigDecimal tue_hours) {
@@ -99,7 +115,7 @@ public class TimesheetRow implements Serializable {
     }
 
     public BigDecimal getWed_hours() {
-        return wed_hours != null ? wed_hours : new BigDecimal(0);
+        return wed_hours;
     }
 
     public void setWed_hours(BigDecimal wed_hours) {
@@ -107,7 +123,7 @@ public class TimesheetRow implements Serializable {
     }
 
     public BigDecimal getThu_hours() {
-        return thu_hours != null ? thu_hours : new BigDecimal(0);
+        return thu_hours;
     }
 
     public void setThu_hours(BigDecimal thu_hours) {
@@ -115,7 +131,7 @@ public class TimesheetRow implements Serializable {
     }
 
     public BigDecimal getFri_hours() {
-        return fri_hours != null ? fri_hours : new BigDecimal(0);
+        return fri_hours;
     }
 
     public void setFri_hours(BigDecimal fri_hours) {
@@ -123,7 +139,7 @@ public class TimesheetRow implements Serializable {
     }
 
     public BigDecimal getSat_hours() {
-        return sat_hours != null ? sat_hours : new BigDecimal(0);
+        return sat_hours;
     }
 
     public void setSat_hours(BigDecimal sat_hours) {
