@@ -14,28 +14,12 @@ public class EditableRow implements Serializable {
 
     public static final BigDecimal HOURS_IN_DAY = new BigDecimal(24);
     public static final int DAYS_IN_WEEK = 7;
-    
-    private boolean editable;
-    
+
     /** Holds timesheet row to be displayed, edited or deleted.*/
     private TimesheetRow row;
     
     public EditableRow (TimesheetRow model){
         this.setRow(model);
-    }
-
-    /**
-     * @return the editable
-     */
-    public boolean isEditable() {
-        return editable;
-    }
-
-    /**
-     * @param editable the editable to set
-     */
-    public void setEditable(boolean editable) {
-        this.editable = editable;
     }
 
     /**
@@ -50,12 +34,6 @@ public class EditableRow implements Serializable {
      */
     public void setRow(TimesheetRow row) {
         this.row = row;
-    }
-    
-    
-    public String toggleEditable() {
-        editable = !editable;
-        return null;
     }
     
     /**
@@ -75,22 +53,6 @@ public class EditableRow implements Serializable {
                 throw new IllegalArgumentException(
                         "too many decimal digits: should be at most 1");
             }
-        }
-    }
-    
-    /**
-     * Checks if any hour value in any day of the week is out of the valid
-     * bounds of 0.0 to 24.0, or has more than one decimal digit.
-     *
-     * @param hours array of hours charged for each day in a week
-     */
-    private void checkHoursForWeek(final BigDecimal[] hours) {
-        if (hours.length != DAYS_IN_WEEK) {
-            throw new IllegalArgumentException(
-                    "wrong week length: should be 7");
-        }
-        for (BigDecimal next : hours) {
-            checkHour(next);
         }
     }
     
@@ -116,16 +78,6 @@ public class EditableRow implements Serializable {
     public void onRowEdit(RowEditEvent event) {
         FacesMessage msg = new FacesMessage("Row Edited");
         FacesContext.getCurrentInstance().addMessage(null, msg);
-             
-        /*
-        setHour(SAT, satHrs);
-        setHour(SUN, sunHrs);
-        setHour(MON, monHrs);
-        setHour(TUE, tueHrs);
-        setHour(WED, wedHrs);
-        setHour(THU, thuHrs);
-        setHour(FRI, friHrs);
-        */
     }
     
     /**
