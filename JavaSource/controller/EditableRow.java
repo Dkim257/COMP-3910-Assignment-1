@@ -68,7 +68,7 @@ public class EditableRow implements Serializable {
      * @param event the row edit event 
      */
     public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Row Edited");
+        FacesMessage msg = new FacesMessage("Success", "Row Edited");
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
     
@@ -78,8 +78,7 @@ public class EditableRow implements Serializable {
      */
     
     public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Edit Cancelled");
+        FacesMessage msg = new FacesMessage("Cancel", "Edit Cancelled");
         FacesContext.getCurrentInstance().addMessage(null, msg);
-    }
-    
+    }   
 }
