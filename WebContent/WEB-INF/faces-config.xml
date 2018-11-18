@@ -9,5 +9,6 @@
 			<base-name>messages</base-name>
 			<var>msgs</var>
 		</resource-bundle>
+		<message-bundle>pfMessages</message-bundle>
 	</application>
 </faces-config>
