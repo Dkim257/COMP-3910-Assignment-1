@@ -56,8 +56,7 @@ public class TimesheetFormAccess implements Serializable {
     private Timesheet viewedTimesheet;
 
     public List<Timesheet> getTimesheets() {
-        if(timesheets == null)
-            refreshList();
+        refreshList();
         return timesheets;
     }
     
@@ -208,16 +207,15 @@ public class TimesheetFormAccess implements Serializable {
      */
     public String viewTimesheet(Timesheet ts) {
         viewedTimesheet = ts;
-        getViewedSheetRows();
+        List<TimesheetRow> rows = tsRowMgr.getAllForTimesheet(ts.getTimesheet_id());
+        currentEditables = new ArrayList<>();
+        for(TimesheetRow row : rows) {
+            currentEditables.add(new EditableRow(row));
+        }
         return "timesheet.xhtml";
     }
     
     public List<EditableRow> getViewedSheetRows(){
-        currentEditables = new ArrayList<>();
-        List<TimesheetRow> rows = tsRowMgr.getAllForTimesheet(viewedTimesheet.getTimesheet_id());
-        for(TimesheetRow row : rows) {
-            currentEditables.add(new EditableRow(row));
-        }
         return currentEditables;
     }
     
