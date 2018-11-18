@@ -71,7 +71,7 @@ public class TimesheetFormAccess implements Serializable {
         if (e.getIsAdmin()) {
             return getTimesheets();
         }
-        return (timesheets = mgr.getAll(e.getEmp_number()));
+        return mgr.getAll(e.getEmp_number());
     }
     
     /**
@@ -132,7 +132,8 @@ public class TimesheetFormAccess implements Serializable {
             tsRowMgr.remove(row.getRow());
         }
         mgr.remove(viewedTimesheet);
-        timesheets.remove(viewedTimesheet);
+        if (timesheets.contains(viewedTimesheet))
+            timesheets.remove(viewedTimesheet);
         currentEditables = null;
         viewedTimesheet = null;
         return "timesheetSelect.xhtml";
@@ -144,7 +145,8 @@ public class TimesheetFormAccess implements Serializable {
             tsRowMgr.remove(row);
         }
         mgr.remove(sheet);
-        timesheets.remove(sheet);
+        if (timesheets.contains(sheet))
+            timesheets.remove(sheet);
         getTimesheets(e);
         return "timesheetSelect.xhtml";
     }
