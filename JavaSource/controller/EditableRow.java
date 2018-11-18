@@ -10,19 +10,34 @@ import org.primefaces.event.RowEditEvent;
 
 import models.TimesheetRow;
 
+/**
+ * TimesheetRow which has fields indicating whether is is
+ * editable or not.
+ * @author Tony
+ * @version 1
+ *
+ */
 public class EditableRow implements Serializable {
 
+    /** Maximum number accepted for hours in a day. */
     public static final BigDecimal HOURS_IN_DAY = new BigDecimal(24);
+    
+    /** Number of days in a week, used for validation.*/
     public static final int DAYS_IN_WEEK = 7;
 
     /** Holds timesheet row to be displayed, edited or deleted.*/
     private TimesheetRow row;
     
-    public EditableRow (TimesheetRow model){
+    /**
+     * Constructor setting Timesheet row variable.
+     * @param model row parameter
+     */
+    public EditableRow(TimesheetRow model) {
         this.setRow(model);
     }
 
     /**
+     * Returns member row.
      * @return the row
      */
     public TimesheetRow getRow() {
@@ -30,6 +45,7 @@ public class EditableRow implements Serializable {
     }
 
     /**
+     * Sets member row to input row.
      * @param row the row to set
      */
     public void setRow(TimesheetRow row) {
@@ -42,6 +58,7 @@ public class EditableRow implements Serializable {
      *
      *@param hour the value to check
      */
+    @SuppressWarnings("unused")
     private void checkHour(final BigDecimal hour) {
         if (hour != null) {
             if (hour.compareTo(HOURS_IN_DAY) > 0.0
@@ -57,7 +74,7 @@ public class EditableRow implements Serializable {
     }
     
     /**
-     * adds total hours for this timesheet row.
+     * Adds total hours for this timesheet row.
      * @return the weekly hours
      */
     public BigDecimal getSum() {
@@ -71,8 +88,7 @@ public class EditableRow implements Serializable {
     }
     
     /**
-     * sets the hours for each day in the week when the row edit event occurs
-     * also displays a row edited message to the user.
+     * Displays a row edited message to the user.
      * @param event the row edit event 
      */
     public void onRowEdit(RowEditEvent event) {
@@ -81,7 +97,7 @@ public class EditableRow implements Serializable {
     }
     
     /**
-     * displays a row edit cancelled message to the user.
+     * Displays a row edit cancelled message to the user.
      * @param event the row cancelled event
      */
     

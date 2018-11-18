@@ -46,17 +46,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="controller.TimesheetRowFormAccess" project="COMP-3910-Assignment-2" 
-    file="/COMP-3910-Assignment-2/JavaSource/controller/TimesheetRowFormAccess.java" binary="false" 
-    corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="155" y="506"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="models.Timesheet" project="COMP-3910-Assignment-2" 
+  <class id="6" language="java" name="models.Timesheet" project="COMP-3910-Assignment-2" 
     file="/COMP-3910-Assignment-2/JavaSource/models/Timesheet.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="445" y="1003"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -65,7 +55,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="controller.TimesheetFormAccess" project="COMP-3910-Assignment-2" 
+  <class id="7" language="java" name="controller.TimesheetFormAccess" project="COMP-3910-Assignment-2" 
     file="/COMP-3910-Assignment-2/JavaSource/controller/TimesheetFormAccess.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="471" y="516"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -74,7 +64,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="models.TimesheetRow" project="COMP-3910-Assignment-2" 
+  <class id="8" language="java" name="models.TimesheetRow" project="COMP-3910-Assignment-2" 
     file="/COMP-3910-Assignment-2/JavaSource/models/TimesheetRow.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="154" y="1331"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -83,7 +73,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="controller.EmployeeFormAccess" project="COMP-3910-Assignment-2" 
+  <class id="9" language="java" name="controller.EmployeeFormAccess" project="COMP-3910-Assignment-2" 
     file="/COMP-3910-Assignment-2/JavaSource/controller/EmployeeFormAccess.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="812" y="627"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -92,133 +82,127 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <association id="11">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="12" name="empMgr"/>      
-      <multiplicity id="13" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="14">    
+  <association id="10">    
     <bendpoint x="734" y="962"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="15" name="employees">        
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="11" name="employees">        
         <position height="20" width="71" x="912" y="961"/>      
       </attribute>      
-      <multiplicity id="16" minimum="0" maximum="2147483647">        
+      <multiplicity id="12" minimum="0" maximum="2147483647">        
         <position height="18" width="25" x="908" y="986"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="17">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="18" name="mgr"/>      
-      <multiplicity id="19" minimum="0" maximum="1"/>    
+  <association id="13">    
+    <bendpoint x="355" y="747"/>    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="14" name="viewedTimesheet">        
+        <position height="20" width="106" x="455" y="755"/>      
+      </attribute>      
+      <multiplicity id="15" minimum="0" maximum="1">        
+        <position height="18" width="27" x="458" y="779"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="20">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="21" name="currentEditUser">        
+  <association id="16">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="17" name="empMgr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="18" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="2" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="19">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="20" name="currentEditUser">        
         <position height="20" width="98" x="814" y="920"/>      
       </attribute>      
-      <multiplicity id="22" minimum="0" maximum="1">        
+      <multiplicity id="21" minimum="0" maximum="1">        
         <position height="18" width="27" x="819" y="951"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="23">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="24" name="list"/>      
-      <multiplicity id="25" minimum="0" maximum="2147483647"/>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="26">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="27" name="timesheets"/>      
-      <multiplicity id="28" minimum="0" maximum="2147483647">        
-        <position height="18" width="25" x="382" y="773"/>      
+  <association id="22">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="23" name="mgr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="24" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="29">    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="30" name="mgr"/>      
-      <multiplicity id="31" minimum="0" maximum="1"/>    
+  <association id="25">    
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="26" name="mgr">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="27" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="32">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="33" name="mgr"/>      
-      <multiplicity id="34" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="35">    
-    <bendpoint x="355" y="747"/>    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="36" name="viewedTimesheet">        
-        <position height="20" width="106" x="455" y="755"/>      
-      </attribute>      
-      <multiplicity id="37" minimum="0" maximum="1">        
-        <position height="18" width="27" x="458" y="779"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="38">    
+  <association id="28">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="39" name="row"/>      
-      <multiplicity id="40" minimum="0" maximum="1"/>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="41">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="42" name="tsRowMgr">        
-        <position height="20" width="66" x="240" y="240"/>      
+      <attribute id="29" name="row">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="43" minimum="0" maximum="1">        
-        <position height="18" width="27" x="277" y="260"/>      
+      <multiplicity id="30" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="44">    
+  <association id="31">    
     <bendpoint x="924" y="940"/>    
-    <end type="SOURCE" refId="10" navigable="false">      
-      <attribute id="45" name="currentUser">        
+    <end type="SOURCE" refId="9" navigable="false">      
+      <attribute id="32" name="currentUser">        
         <position height="20" width="75" x="653" y="945"/>      
       </attribute>      
-      <multiplicity id="46" minimum="0" maximum="1">        
+      <multiplicity id="33" minimum="0" maximum="1">        
         <position height="18" width="27" x="697" y="966"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="47">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="48" name="tsMgr"/>      
-      <multiplicity id="49" minimum="0" maximum="1"/>    
+  <association id="34">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="35" name="timesheets">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="36" minimum="0" maximum="2147483647">        
+        <position height="18" width="25" x="382" y="773"/>      
+      </multiplicity>    
     </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="37">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="38" name="tsRowMgr">        
+        <position height="20" width="66" x="240" y="240"/>      
+      </attribute>      
+      <multiplicity id="39" minimum="0" maximum="1">        
+        <position height="18" width="27" x="277" y="260"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

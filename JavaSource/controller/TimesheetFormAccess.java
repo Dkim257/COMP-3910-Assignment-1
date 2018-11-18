@@ -27,36 +27,63 @@ import models.Employees;
 import models.Timesheet;
 import models.TimesheetRow;
 
+/**
+ * Timesheet helper class providing functionality between user interface and 
+ * persistence tier.
+ * @author Danny & Tony
+ * @version 2
+ *
+ */
 @Named("timesheettable")
 @SessionScoped
 public class TimesheetFormAccess implements Serializable {
 
+    /** Number of rows a new timesheet is created with. */
     private static final int ROWS_TO_START_SHEET_WITH = 5;
     
     private static final long serialVersionUID = 11L;
-    LocalDate today = LocalDate.now();
     
+    /** Today's date used for calculating new timesheet end week date. */
+    private LocalDate today = LocalDate.now();
+    
+    /** Manager from Timesheet objects. */
     @Inject private TimesheetManager mgr;
+    
+    /** Manager from Employee objects. */
     @Inject private EmployeeManager empMgr;
+    
+    /** Manager from TimesheetRow objects. */
     @Inject private TimesheetRowManager tsRowMgr;
     
+    /** List holding all timesheets. */
     private List<Timesheet> timesheets;
     
-    List<EditableRow> currentEditables;
+    /** List holding current timesheet rows being edited. */
+    private List<EditableRow> currentEditables;
     
+    /** The timesheet which is to be displayed to the user. */
+    private Timesheet viewedTimesheet;
+    
+    /**
+     * Getter for Employee manager.
+     * @return Manager from Employee objects
+     */
     public EmployeeManager getEmpMgr() {
         return empMgr;
     }
 
+    /**
+     * Getter for TimesheetRow manager.
+     * @return Manager from TimesheetRow objects
+     */
     public TimesheetRowManager getTsRowMgr() {
         return tsRowMgr;
     }
-
+    
     /**
-     * The timesheet which is to be displayed to the user.
+     * Fills timesheet list with all timesheets in database.
+     * @return Timesheet list
      */
-    private Timesheet viewedTimesheet;
-
     public List<Timesheet> getTimesheets() {
         refreshList();
         return timesheets;
@@ -72,11 +99,11 @@ public class TimesheetFormAccess implements Serializable {
         if (e.getIsAdmin()) {
             return getTimesheets();
         }
-        return mgr.getAll(e.getEmp_number());
+        return mgr.getAll(e.getEmpNumber());
     }
     
     /**
-     * get current timesheet for an employee.
+     * Get current timesheet for an employee.
      * @param e the employee whose current timesheet is returned
      * @return the current timesheet for an employee.
      */
@@ -108,52 +135,71 @@ public class TimesheetFormAccess implements Serializable {
     }
     
     /**
-     * TODO: work with mgr
      * Creates a Timesheet object and sets it to viewedTimesheet.
      * @param e the currently logged in user, needed to assign the timesheet
      * @return a String representing navigation to the newTimesheet page.
      */
     public String addTimesheet(Employees e) {
-        int id = (int) mgr.getCount()+1;
+        int id = (int) mgr.getCount() + 1;
         LocalDate sunday = today;
         while (sunday.getDayOfWeek() != DayOfWeek.SUNDAY) {
           sunday = sunday.plusDays(1);
         }
-        Timesheet sheet = new Timesheet(id, e.getEmp_number(), java.sql.Date.valueOf(sunday));
+        Timesheet sheet = new Timesheet(id, e.getEmpNumber(),
+                java.sql.Date.valueOf(sunday));
         mgr.persist(sheet);
-        for(int i = 0; i < ROWS_TO_START_SHEET_WITH; ++i) {
+        for (int i = 0; i < ROWS_TO_START_SHEET_WITH; ++i) {
             addRowToSheet(id);
         }
         getTimesheets(e);
         return viewTimesheet(sheet);
     }
     
+    /**
+     * Deletes a timesheet while it is being viewed.
+     * @return Redirects user to timesheet history page
+     */
     public String deleteCurrentTimesheet() {
         for (EditableRow row : currentEditables) {
             tsRowMgr.remove(row.getRow());
         }
         mgr.remove(viewedTimesheet);
-        if (timesheets.contains(viewedTimesheet))
+        if (timesheets.contains(viewedTimesheet)) {
             timesheets.remove(viewedTimesheet);
+        }
         currentEditables = null;
         viewedTimesheet = null;
         return "timesheetSelect.xhtml";
     }
     
-    public void deleteTimesheet(Timesheet sheet, Employees e) throws IOException {
-        List<TimesheetRow> rowsToDelete = tsRowMgr.getAllForTimesheet(sheet.getTimesheet_id());
+    /**
+     * Deletes a timesheet from the history page.
+     * @param sheet Timesheet being deleted
+     * @param e Owner of the timesheet
+     * @throws IOException on reload
+     */
+    public void deleteTimesheet(Timesheet sheet, Employees e)
+            throws IOException {
+        List<TimesheetRow> rowsToDelete = tsRowMgr
+                .getAllForTimesheet(sheet.getTimesheet_id());
         for (TimesheetRow row : rowsToDelete) {
             tsRowMgr.remove(row);
         }
         mgr.remove(sheet);
-        if (timesheets.contains(sheet))
+        if (timesheets.contains(sheet)) {
             timesheets.remove(sheet);
+        }
         getTimesheets(e);
         reload();
     }
     
+    /**
+     * Conducts hard page reload in browser.
+     * @throws IOException on reload
+     */
     public void reload() throws IOException {
-        ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        ExternalContext ec = FacesContext.getCurrentInstance()
+                .getExternalContext();
         ec.redirect(((HttpServletRequest) ec.getRequest()).getRequestURI());
     }
     
@@ -184,7 +230,7 @@ public class TimesheetFormAccess implements Serializable {
             FacesContext.getCurrentInstance().addMessage("", msg);
             return "";
         }
-        for(EditableRow editable : currentEditables) {
+        for (EditableRow editable : currentEditables) {
             tsRowMgr.merge(editable.getRow());
         }
         return "timesheet.xhtml";
@@ -201,7 +247,8 @@ public class TimesheetFormAccess implements Serializable {
             if (row.getRow().getWork_package().isEmpty()) {
                 continue;
             }
-            String id = row.getRow().getWork_package() + row.getRow().getProject_id();
+            String id = row.getRow().getWork_package() + row
+                    .getRow().getProject_id();
             if (ids.contains(id)) {
                 return false;
             } else {
@@ -219,26 +266,42 @@ public class TimesheetFormAccess implements Serializable {
      */
     public String viewTimesheet(Timesheet ts) {
         viewedTimesheet = ts;
-        List<TimesheetRow> rows = tsRowMgr.getAllForTimesheet(ts.getTimesheet_id());
+        List<TimesheetRow> rows = tsRowMgr
+                .getAllForTimesheet(ts.getTimesheet_id());
         currentEditables = new ArrayList<>();
-        for(TimesheetRow row : rows) {
+        for (TimesheetRow row : rows) {
             currentEditables.add(new EditableRow(row));
         }
         return "timesheet.xhtml";
     }
     
-    public List<EditableRow> getViewedSheetRows(){
+    /**
+     * Returns all editable rows in timesheet.
+     * @return list of rows
+     */
+    public List<EditableRow> getViewedSheetRows() {
         return currentEditables;
     }
     
-    public void setList(List<Timesheet> timesheets) {
-        this.timesheets = timesheets;
+    /**
+     * Setter for list of timesheets.
+     * @param ts list of timesheets
+     */
+    public void setList(List<Timesheet> ts) {
+        this.timesheets = ts;
     }
     
+    /**
+     * Fills timesheet list with all timesheets from database.
+     */
     private void refreshList() {
         timesheets = mgr.getAll();
     }
     
+    /**
+     * Returns employee number for the timesheet selected.
+     * @return employee number
+     */
     public int getTimesheetEmpNumber() {
         return viewedTimesheet.getEmp_number();
     }
@@ -254,89 +317,148 @@ public class TimesheetFormAccess implements Serializable {
         return c.get(Calendar.WEEK_OF_YEAR);
     }
 
+    /**
+     * Returns name of employee owning selected timesheet.
+     * @return employee name
+     */
     public String getTimesheetEmployeeName() {
         int empNum = viewedTimesheet.getEmp_number();
         List<Employees> emps = empMgr.getAll();
-        for(Employees e : emps) {
-            if(e.getEmp_number() == empNum) {
+        for (Employees e : emps) {
+            if (e.getEmpNumber() == empNum) {
                 return e.getName();
             }
         }
         return null;
     }
     
+    /**
+     * Returns end week date for a timesheet.
+     * @return date
+     */
     public Date getTimesheetDate() {
         return viewedTimesheet.getEnd_week();
     }
     
+    /**
+     * Returns id for a timesheet.
+     * @return id
+     */
     public int getTimesheetID() {
         return viewedTimesheet.getTimesheet_id();
     }
     
+    /**
+     * Returns total hours in a timesheet row.
+     * @return hours
+     */
     public BigDecimal getTimesheetTotalHours() {
         BigDecimal total = BigDecimal.ZERO;
-        for(EditableRow row : currentEditables) {
-            if (row.getSum() != null)
+        for (EditableRow row : currentEditables) {
+            if (row.getSum() != null) {
                 total = total.add(row.getSum());
+            }
         }
         return total;
     }
     
+    /**
+     * Adds a new row to the bottom of a timesheet being viewed.
+     */
     public void addRowToCurrentSheet() {
-        TimesheetRow newRow = new TimesheetRow(viewedTimesheet.getTimesheet_id());
+        TimesheetRow newRow = new TimesheetRow(viewedTimesheet
+                .getTimesheet_id());
         currentEditables.add(new EditableRow(newRow));
     }
     
+    /**
+     * Adds new row to timesheet in database.
+     * @param timesheetid id
+     */
     public void addRowToSheet(int timesheetid) {
         TimesheetRow newRow = new TimesheetRow(timesheetid);
         tsRowMgr.persist(newRow);
     }
     
+    /**
+     * Sums and returns total hours for Saturday column.
+     * @return sat hours
+     */
     public BigDecimal getTimesheetTotalSatHours() {
         BigDecimal total = BigDecimal.ZERO;
-        for(EditableRow row : currentEditables) {
+        for (EditableRow row : currentEditables) {
             total = total.add(row.getRow().getSat_hours());
         }
         return total;
     }
+    
+    /**
+     * Sums and returns total hours for Saturday column.
+     * @return sun hours
+     */
     public BigDecimal getTimesheetTotalSunHours() {
         BigDecimal total = BigDecimal.ZERO;
-        for(EditableRow row : currentEditables) {
+        for (EditableRow row : currentEditables) {
             total = total.add(row.getRow().getSun_hours());
         }
         return total;
     }
+    
+    /**
+     * Sums and returns total hours for Saturday column.
+     * @return mon hours
+     */
     public BigDecimal getTimesheetTotalMonHours() {
         BigDecimal total = BigDecimal.ZERO;
-        for(EditableRow row : currentEditables) {
+        for (EditableRow row : currentEditables) {
             total = total.add(row.getRow().getMon_hours());
         }
         return total;
     }
+    
+    /**
+     * Sums and returns total hours for Saturday column.
+     * @return tue hours
+     */
     public BigDecimal getTimesheetTotalTueHours() {
         BigDecimal total = BigDecimal.ZERO;
-        for(EditableRow row : currentEditables) {
+        for (EditableRow row : currentEditables) {
             total = total.add(row.getRow().getTue_hours());
         }
         return total;
     }
+    
+    /**
+     * Sums and returns total hours for Saturday column.
+     * @return wed hours
+     */
     public BigDecimal getTimesheetTotalWedHours() {
         BigDecimal total = BigDecimal.ZERO;
-        for(EditableRow row : currentEditables) {
+        for (EditableRow row : currentEditables) {
             total = total.add(row.getRow().getWed_hours());
         }
         return total;
     }
+    
+    /**
+     * Sums and returns total hours for Saturday column.
+     * @return thu hours
+     */
     public BigDecimal getTimesheetTotalThuHours() {
         BigDecimal total = BigDecimal.ZERO;
-        for(EditableRow row : currentEditables) {
+        for (EditableRow row : currentEditables) {
             total = total.add(row.getRow().getThu_hours());
         }
         return total;
     }
+    
+    /**
+     * Sums and returns total hours for Saturday column.
+     * @return fri hours
+     */
     public BigDecimal getTimesheetTotalFriHours() {
         BigDecimal total = BigDecimal.ZERO;
-        for(EditableRow row : currentEditables) {
+        for (EditableRow row : currentEditables) {
             total = total.add(row.getRow().getFri_hours());
         }
         return total;

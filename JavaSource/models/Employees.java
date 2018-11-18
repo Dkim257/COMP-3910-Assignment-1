@@ -9,67 +9,119 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * A class representing a single Employee.
+ *
+ * @author Tony
+ * @version 2
+ */
 @Entity
-@Table(name="employees")
+@Table(name = "employees")
 public class Employees implements Serializable {
 
-    @Column(name="name")
+    /** The employee's name. */
+    @Column(name = "name")
     private String name;
     
-    @Column(name="userName")
+    /** The employee's login ID. */
+    @Column(name = "userName")
     private String userName;
     
+    /** The employee's employee number. */
     @Id
-    @Column(name="emp_number")
+    @Column(name = "emp_number")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int emp_number;
+    private int empNumber;
     
-    @Column(name="password")
+    /** The employee's password. */
+    @Column(name = "password")
     private String password;
     
-    @Column(name="isAdmin")
+    /** The employee's admin status. */
+    @Column(name = "isAdmin")
     private boolean isAdmin;
 
+    /**
+     * Admin getter.
+     * @return true if employee is an admin
+     */
     public boolean getIsAdmin() {
         return isAdmin;
     }
 
+    /**
+     * Admin setter.
+     * @param isAdmin boolean
+     */
     public void setIsAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
 
+    /**
+     * name getter.
+     * 
+     * @return the name
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * name setter.
+     * 
+     * @param name the name to set
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * userName getter.
+     * 
+     * @return the userName
+     */
     public String getUserName() {
         return userName;
     }
 
+    /**
+     * userName setter.
+     * 
+     * @param userName the userName to set
+     */
     public void setUserName(String userName) {
         this.userName = userName;
     }
 
-    public int getEmp_number() {
-        return emp_number;
+    /**
+     * empNumber getter.
+     * @return employee number
+     */
+    public int getEmpNumber() {
+        return empNumber;
     }
 
-    public void setEmp_number(int emp_number) {
-        this.emp_number = emp_number;
+    /**
+     * empNumber setter.
+     * @param empNumber employee number
+     */
+    public void setEmpNumber(int empNumber) {
+        this.empNumber = empNumber;
     }
 
+    /**
+     * password getter.
+     * @return employee's password
+     */
     public String getPassword() {
         return password;
     }
 
+    /**
+     * password setter.
+     * @param password the password to set
+     */
     public void setPassword(String password) {
         this.password = password;
     }
-    
-    
-    
 }

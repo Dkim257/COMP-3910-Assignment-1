@@ -12,11 +12,26 @@ import javax.persistence.PersistenceContext;
 
 import models.Employees;
 
+/**
+ * Handle CRUD actions for Employees class.
+ * @author Tony & Danny
+ * @version 1
+ *
+ */
 @Dependent
 @Stateless
 public class EmployeeManager implements Serializable {
     
-    @PersistenceContext(unitName="db") EntityManager em;
+    /** Peristence manager for class. */
+    private @PersistenceContext(unitName = "db") EntityManager em;
+
+    /**
+     * Getter for persistence manager.
+     * @return em
+     */
+    public EntityManager getEm() {
+        return em;
+    }
 
     /**
      * Find Employees record from database.
@@ -37,7 +52,7 @@ public class EmployeeManager implements Serializable {
     }
     
     /**
-     * merge Employees record fields into existing database record.
+     * Merge Employees record fields into existing database record.
      * @param employee the record to be merged.
      */
     public void merge(Employees employee) {
@@ -49,7 +64,7 @@ public class EmployeeManager implements Serializable {
      * @param employee record to be removed from database
      */
     public void remove(Employees employee) {
-        employee = find(employee.getEmp_number());
+        employee = find(employee.getEmpNumber());
         em.remove(employee);
     }
 
@@ -67,11 +82,12 @@ public class EmployeeManager implements Serializable {
      * @return Map of username, password
      */
     public Map<String, String> getLoginCombos() {
-        List<Object[]> results = em.createQuery("select e.userName, e.password from Employees as e", Object[].class)
+        List<Object[]> results = em.createQuery("select e.userName,"
+                + " e.password from Employees as e", Object[].class)
                 .getResultList();
         Map<String, String> combos = new HashMap<>();
         for (Object[] combo : results) {
-            combos.put((String)combo[0], (String)combo[1]);
+            combos.put((String) combo[0], (String) combo[1]);
         }
         return combos;
     }

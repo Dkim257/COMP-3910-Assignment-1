@@ -8,75 +8,106 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.swing.plaf.basic.BasicBorders.MarginBorder;
 
 import access.EmployeeManager;
 import models.Employees;
 
+/**
+ * Timesheet helper class providing functionality between user interface and 
+ * persistence tier.
+ * @author Danny & Tony
+ * @version 2
+ *
+ */
 @Named("employeeTable")
 @SessionScoped
 public class EmployeeFormAccess implements Serializable {
 
     private static final long serialVersionUID = 11L;
-    @Inject
-    private EmployeeManager mgr;
     
-    /**
-     * The Employee data list containing all of the Employees
-     * in the system.
-     */
-    private List<Employees> employees;
-
-    /**
-     * The currently logged in user.
-     */
-    private Employees currentUser;
     /**
      * The default password to set for accounts when the admin 
      * user resets their password.
      */
     private static final String DEFAULT_PASSWORD = "1234";
     
-    /**
-     * A user account being edited by the admin.
+    /** Manager from Employee objects. */
+    @Inject private EmployeeManager mgr;
+    
+    /** The Employee data list containing all of the Employees
+     * in the system.
      */
+    private List<Employees> employees;
+
+    /** The currently logged in user. */
+    private Employees currentUser;
+    
+    /** A user account being edited by the admin. */
     private Employees currentEditUser;
     
+    /** Holds login name input by user. */
     private String loginName;
     
+    /** Holds login password input by user. */
     private String loginPass;
     
+    /** New password to be given to an edited user. */
+    private String newPassword;
+    
+    /**
+     * Returns user currently being edited by admin.
+     * @return user
+     */
     public Employees getCurrentEditUser() {
         return currentEditUser;
     }
 
+    /**
+     * Sets user being edited to currentEditUser.
+     * @param currentEditUser user selected for edit
+     */
     public void setCurrentEditUser(Employees currentEditUser) {
         this.currentEditUser = currentEditUser;
     }
 
+    /**
+     * Returns new password input by user.
+     * @return new password
+     */
     public String getNewPassword() {
         return newPassword;
     }
 
+    /**
+     * Sets new password for an employee.
+     * @param newPassword password input by user
+     */
     public void setNewPassword(String newPassword) {
         this.newPassword = newPassword;
     }
 
     /**
-     * New password to be given to an edited user.
+     * Returns a list of all employees in database.
+     * @return list of employees
      */
-    private String newPassword;
-    
     public List<Employees> getEmployees() {
-        if (employees == null)
+        if (employees == null) {
             refreshList();
+        }
         return employees;
     }
 
+    /**
+     * Sets employee list.
+     * @param employees employee list
+     */
     public void setEmployees(List<Employees> employees) {
         this.employees = employees;
     }
 
+    /**
+     * Refreshes employee list with all records from database.
+     */
     private void refreshList() {
         employees = mgr.getAll();
     }
@@ -96,6 +127,7 @@ public class EmployeeFormAccess implements Serializable {
     }
     
     /**
+     * Returns login name input.
      * @return the loginName
      */
     public String getLoginName() {
@@ -103,6 +135,7 @@ public class EmployeeFormAccess implements Serializable {
     }
 
     /**
+     * Returns login password input.
      * @return the loginPass
      */
     public String getLoginPass() {
@@ -110,6 +143,7 @@ public class EmployeeFormAccess implements Serializable {
     }
 
     /**
+     * Sets login password.
      * @param loginPass the loginPass to set
      */
     public void setLoginPass(String loginPass) {
@@ -117,17 +151,24 @@ public class EmployeeFormAccess implements Serializable {
     }
 
     /**
+     * Sets login name.
      * @param loginName the loginName to set
      */
     public void setLoginName(String loginName) {
         this.loginName = loginName;
     }
 
+    /**
+     * Returns a Map containing all username and password 
+     * combinations from the database.
+     * @return username/password combos
+     */
     public Map<String, String> getLoginCombos() {
         return mgr.getLoginCombos();
     }
     
     /**
+     * Returns current user logged into application.
      * @return the currentUser
      */
     public Employees getCurrentUser() {
@@ -135,6 +176,7 @@ public class EmployeeFormAccess implements Serializable {
     }
 
     /**
+     * Sets current user that logged into application.
      * @param currentUser the currentUser to set
      */
     public void setCurrentUser(Employees currentUser) {
@@ -166,8 +208,8 @@ public class EmployeeFormAccess implements Serializable {
      */
     boolean verifyUser() {
         Map<String, String> combos = getLoginCombos();
-        if(combos.containsKey(loginName)) {
-            if(combos.get(loginName).equals(loginPass)) {
+        if (combos.containsKey(loginName)) {
+            if (combos.get(loginName).equals(loginPass)) {
                 return true;
             }
         }
@@ -180,7 +222,7 @@ public class EmployeeFormAccess implements Serializable {
      * success or fail on login attempt
      */
     public String login() {
-        if(employees == null) {
+        if (employees == null) {
             refreshList();
         }
         if (verifyUser()) {
@@ -188,7 +230,8 @@ public class EmployeeFormAccess implements Serializable {
                 if (employees.get(i).getUserName()
                         .equalsIgnoreCase(loginName)) {
                     currentUser = employees.get(i);
-                    //null these so the login credentials aren't just floating around
+                    // null these so the login credentials aren't
+                    // just floating around
                     loginName = null;
                     loginPass = null;
                     return "timesheetSelect.xhtml";
@@ -255,6 +298,7 @@ public class EmployeeFormAccess implements Serializable {
      * change in the credsMap, then sets navigation string back
      * to the viewUsers page.
      * @return "viewUsers" the view users page
+     * @param e employee who is being edited
      */
     public String saveChanges(Employees e) {
         mgr.merge(e);

@@ -11,7 +11,7 @@ import javax.inject.Named;
  * Class for creating growl messages when successful events occur.
  * 
  * @author Danny Di Iorio
- * @version 1
+ * @version 2
  */
 @Named
 @SessionScoped
@@ -19,6 +19,7 @@ public class GrowlView implements Serializable {
 
     /**
      * Growl message shows when administrator resets a user's password.
+     * @param msg text added to the message
      */
     public void growlMessageSuccess(String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
@@ -28,6 +29,7 @@ public class GrowlView implements Serializable {
     
     /**
      * Growl message shows when administrator resets a user's password.
+     * @param msg text added to the message
      */
     public void growlMessageWarning(String msg) {
         FacesMessage message = new FacesMessage(

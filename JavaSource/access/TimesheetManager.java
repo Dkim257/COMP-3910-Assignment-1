@@ -11,12 +11,27 @@ import javax.persistence.TypedQuery;
 
 import models.Timesheet;
 
+/**
+ * Handle CRUD actions for Timesheet class.
+ * @author Tony & Danny
+ * @version 1
+ *
+ */
 @Dependent
 @Stateless
 public class TimesheetManager implements Serializable {
     
-    @PersistenceContext(unitName="db") EntityManager em;
+    /** Peristence manager for class. */
+    private @PersistenceContext(unitName = "db") EntityManager em;
     
+    /**
+     * Getter for persistence manager.
+     * @return em
+     */
+    public EntityManager getEm() {
+        return em;
+    }
+
     /**
      * Find Timesheet record from database.
      * 
@@ -36,7 +51,7 @@ public class TimesheetManager implements Serializable {
     }
     
     /**
-     * merge Timesheet record fields into existing database record.
+     * Merge Timesheet record fields into existing database record.
      * @param timesheet the record to be merged.
      */
     public void merge(Timesheet timesheet) {
@@ -64,17 +79,24 @@ public class TimesheetManager implements Serializable {
     /**
      * Return Timesheets table as List of Timesheets for a specific user.
      * @return List of all records in Timesheets table
+     * @param empId employee id
      */
-    public List<Timesheet> getAll(int emp_id) {
+    public List<Timesheet> getAll(int empId) {
         TypedQuery<Timesheet> query 
-            = em.createQuery("select t from Timesheet t where t.emp_number = :emp_id",
+            = em.createQuery("select t from Timesheet t where "
+                    + "t.emp_number = :emp_id",
             Timesheet.class);
-        query.setParameter("emp_id", emp_id);
+        query.setParameter("emp_id", empId);
         return query.getResultList();
     }
     
+    /**
+     * Gets the max timesheet id from database.
+     * @return max id
+     */
     public Integer getCount() {
-        return (Integer)em.createQuery("select max(t.id) from Timesheet t").getSingleResult();
+        return (Integer) em.createQuery("select max(t.id) from Timesheet t")
+                .getSingleResult();
     }
     
 }
