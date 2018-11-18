@@ -71,5 +71,4 @@ public class EditableRow implements Serializable {
     public void onCellEdit(CellEditEvent event) {
 
     }
-    
 }

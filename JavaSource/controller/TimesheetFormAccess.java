@@ -217,26 +217,26 @@ public class TimesheetFormAccess implements Serializable {
             for (EditableRow row : currentEditables) {
                 row.getRow().setWorkPackage(null);
             }
-            FacesMessage msg = new FacesMessage(
+            FacesMessage msg = new FacesMessage("Warning",
                     "Project and WP combination for each row must be unique.");
             msg.setSeverity(FacesMessage.SEVERITY_WARN);
-            FacesContext.getCurrentInstance().addMessage("", msg);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
             return "";
         }
         if (!daysAllUnder24Hours()) {
-            FacesMessage msg = new FacesMessage(
+            FacesMessage msg = new FacesMessage("Warning",
                     "Cannot work more than 24 hours in a day.");
             msg.setSeverity(FacesMessage.SEVERITY_WARN);
-            FacesContext.getCurrentInstance().addMessage("", msg);
+            FacesContext.getCurrentInstance().addMessage(null, msg);
             return "";
         }
         for (EditableRow editable : currentEditables) {
             tsRowMgr.merge(editable.getRow());
         }
-        FacesMessage msg = new FacesMessage(
+        FacesMessage msg = new FacesMessage("Success",
                 "Timesheet Saved");
         msg.setSeverity(FacesMessage.SEVERITY_INFO);
-        FacesContext.getCurrentInstance().addMessage("", msg);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
         return "timesheet.xhtml";
     }
     
