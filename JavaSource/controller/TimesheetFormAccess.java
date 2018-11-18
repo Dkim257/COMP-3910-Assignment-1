@@ -71,7 +71,7 @@ public class TimesheetFormAccess implements Serializable {
         if (e.getIsAdmin()) {
             return getTimesheets();
         }
-        return mgr.getAll(e.getEmp_number());
+        return (timesheets = mgr.getAll(e.getEmp_number()));
     }
     
     /**
@@ -120,10 +120,10 @@ public class TimesheetFormAccess implements Serializable {
         }
         Timesheet sheet = new Timesheet(id, e.getEmp_number(), java.sql.Date.valueOf(sunday));
         mgr.persist(sheet);
-        timesheets.add(sheet);
         for(int i = 0; i < ROWS_TO_START_SHEET_WITH; ++i) {
             addRowToSheet(id);
         }
+        getTimesheets(e);
         return viewTimesheet(sheet);
     }
     
@@ -132,17 +132,20 @@ public class TimesheetFormAccess implements Serializable {
             tsRowMgr.remove(row.getRow());
         }
         mgr.remove(viewedTimesheet);
+        timesheets.remove(viewedTimesheet);
         currentEditables = null;
         viewedTimesheet = null;
         return "timesheetSelect.xhtml";
     }
     
-    public String deleteTimesheet(Timesheet sheet) {
+    public String deleteTimesheet(Timesheet sheet, Employees e) {
         List<TimesheetRow> rowsToDelete = tsRowMgr.getAllForTimesheet(sheet.getTimesheet_id());
         for (TimesheetRow row : rowsToDelete) {
             tsRowMgr.remove(row);
         }
         mgr.remove(sheet);
+        timesheets.remove(sheet);
+        getTimesheets(e);
         return "timesheetSelect.xhtml";
     }
     
