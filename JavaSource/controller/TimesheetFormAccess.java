@@ -38,6 +38,9 @@ import models.TimesheetRow;
 @SessionScoped
 public class TimesheetFormAccess implements Serializable {
 
+    /** Maximum number accepted for hours in a day. */
+    public static final BigDecimal HOURS_IN_DAY = new BigDecimal(24);
+    
     /** Number of rows a new timesheet is created with. */
     private static final int ROWS_TO_START_SHEET_WITH = 5;
     
@@ -220,10 +223,55 @@ public class TimesheetFormAccess implements Serializable {
             FacesContext.getCurrentInstance().addMessage("", msg);
             return "";
         }
+        if (!daysAllUnder24Hours()) {
+            FacesMessage msg = new FacesMessage(
+                    "Cannot work more than 24 hours in a day.");
+            msg.setSeverity(FacesMessage.SEVERITY_WARN);
+            FacesContext.getCurrentInstance().addMessage("", msg);
+            return "";
+        }
         for (EditableRow editable : currentEditables) {
             tsRowMgr.merge(editable.getRow());
         }
+        FacesMessage msg = new FacesMessage(
+                "Timesheet Saved");
+        msg.setSeverity(FacesMessage.SEVERITY_INFO);
+        FacesContext.getCurrentInstance().addMessage("", msg);
         return "timesheet.xhtml";
+    }
+    
+    /**
+     *  Verifies that all days have a valid total number of hours.
+     * @return boolean true if all days have valid total hours
+     */
+    private boolean daysAllUnder24Hours() {
+        return hoursValid(getTimesheetTotalMonHours()) 
+            && hoursValid(getTimesheetTotalTueHours())
+            && hoursValid(getTimesheetTotalWedHours()) 
+            && hoursValid(getTimesheetTotalThuHours())
+            && hoursValid(getTimesheetTotalFriHours())
+            && hoursValid(getTimesheetTotalSatHours())
+            && hoursValid(getTimesheetTotalSunHours()); 
+    }
+    
+    /**
+     * Checks if hour value is out of the valid
+     * bounds of 0.0 to 24.0, or has more than one decimal digit.
+     *
+     *@param hour the value to check
+     *@return boolean true if hours are valid
+     */
+    public boolean hoursValid(final BigDecimal hour) {
+        if (hour != null) {
+            if (hour.compareTo(HOURS_IN_DAY) > 0.0
+                    || hour.compareTo(BigDecimal.ZERO) < 0.0) {
+                return false;
+            }
+            if (hour.scale() > 1) {
+                return false;
+            }
+        }
+        return true;
     }
     
     /**
@@ -237,8 +285,8 @@ public class TimesheetFormAccess implements Serializable {
             if (row.getRow().getWorkPackage().isEmpty()) {
                 continue;
             }
-            String id = row.getRow().getWorkPackage() + row
-                    .getRow().getProjectId();
+            String id = row.getRow().getWorkPackage() 
+                      + row.getRow().getProjectId();
             if (ids.contains(id)) {
                 return false;
             } else {
@@ -383,7 +431,7 @@ public class TimesheetFormAccess implements Serializable {
     }
     
     /**
-     * Sums and returns total hours for Saturday column.
+     * Sums and returns total hours for Sunday column.
      * @return sun hours
      */
     public BigDecimal getTimesheetTotalSunHours() {
@@ -395,7 +443,7 @@ public class TimesheetFormAccess implements Serializable {
     }
     
     /**
-     * Sums and returns total hours for Saturday column.
+     * Sums and returns total hours for Monday column.
      * @return mon hours
      */
     public BigDecimal getTimesheetTotalMonHours() {
@@ -407,7 +455,7 @@ public class TimesheetFormAccess implements Serializable {
     }
     
     /**
-     * Sums and returns total hours for Saturday column.
+     * Sums and returns total hours for Tuesday column.
      * @return tue hours
      */
     public BigDecimal getTimesheetTotalTueHours() {
@@ -419,7 +467,7 @@ public class TimesheetFormAccess implements Serializable {
     }
     
     /**
-     * Sums and returns total hours for Saturday column.
+     * Sums and returns total hours for Wednesday column.
      * @return wed hours
      */
     public BigDecimal getTimesheetTotalWedHours() {
@@ -431,7 +479,7 @@ public class TimesheetFormAccess implements Serializable {
     }
     
     /**
-     * Sums and returns total hours for Saturday column.
+     * Sums and returns total hours for Thursday column.
      * @return thu hours
      */
     public BigDecimal getTimesheetTotalThuHours() {
@@ -443,7 +491,7 @@ public class TimesheetFormAccess implements Serializable {
     }
     
     /**
-     * Sums and returns total hours for Saturday column.
+     * Sums and returns total hours for Friday column.
      * @return fri hours
      */
     public BigDecimal getTimesheetTotalFriHours() {

@@ -215,7 +215,6 @@
 						<div class="ui-g-12">
 							<p:commandLink value="#{msgs.saveTime}" ajax="false" action="#{timesheettable.saveChanges}"
 								styleClass="waves-effect waves-light btn blue-grey darken-2"
-								actionListener="#{growlView.growlMessageSuccess(msgs.tsSaved)}"
 								process="@form" update=":form:msgs"
 								 oncomplete="submit()" />
 						</div>

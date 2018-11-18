@@ -18,9 +18,6 @@ import models.TimesheetRow;
  *
  */
 public class EditableRow implements Serializable {
-
-    /** Maximum number accepted for hours in a day. */
-    public static final BigDecimal HOURS_IN_DAY = new BigDecimal(24);
     
     /** Number of days in a week, used for validation.*/
     public static final int DAYS_IN_WEEK = 7;
@@ -50,27 +47,6 @@ public class EditableRow implements Serializable {
      */
     public void setRow(TimesheetRow row) {
         this.row = row;
-    }
-    
-    /**
-     * Checks if hour value is out of the valid
-     * bounds of 0.0 to 24.0, or has more than one decimal digit.
-     *
-     *@param hour the value to check
-     */
-    @SuppressWarnings("unused")
-    private void checkHour(final BigDecimal hour) {
-        if (hour != null) {
-            if (hour.compareTo(HOURS_IN_DAY) > 0.0
-                    || hour.compareTo(BigDecimal.ZERO) < 0.0) {
-                throw new IllegalArgumentException(
-                       "out of range: should be between 0 and 24");
-            }
-            if (hour.scale() > 1) {
-                throw new IllegalArgumentException(
-                        "too many decimal digits: should be at most 1");
-            }
-        }
     }
     
     /**

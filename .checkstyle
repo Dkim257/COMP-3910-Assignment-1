@@ -4,7 +4,7 @@
   <local-check-config name="1510 Checkstyle" location="D:\Comp1510Checkstyle.xml" type="external" description="Blink and you'll miss it">
     <additional-data name="protect-config-file" value="false"/>
   </local-check-config>
-  <fileset name="all" enabled="true" check-config-name="1510" local="false">
+  <fileset name="all" enabled="true" check-config-name="1510 Checkstyle" local="true">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
 </fileset-config>
