@@ -204,22 +204,12 @@ public class TimesheetFormAccess implements Serializable {
     }
     
     /**
-     * TODO: ya know
      * Validates a timesheet being editing, and if validation passes
      * adds the timesheet to the list of timesheets (represents writing
      * it to a database).
      * @return the page to navigate to after validation
      */
     public String saveChanges() {
-//        if(!viewedTimesheet.isValid()) {
-//            FacesMessage msg = 
-//                  new FacesMessage("Invalid timesheet hours: "
-//                          + "Maximum 40 per week, "
-//                          + "overtime must be added in Overtime column.");
-//            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-//            FacesContext.getCurrentInstance().addMessage("", msg);
-//            return "";
-//        }
         if (!timesheetHasAllUniqueIds()) {
             for (EditableRow row : currentEditables) {
                 row.getRow().setWorkPackage(null);
