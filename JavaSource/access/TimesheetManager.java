@@ -73,8 +73,8 @@ public class TimesheetManager implements Serializable {
         return query.getResultList();
     }
     
-    public long getCount() {
-        return (long) em.createQuery("select count (t) FROM Timesheet t").getSingleResult();
+    public Integer getCount() {
+        return (Integer)em.createQuery("select max(t.id) from Timesheet t").getSingleResult();
     }
     
 }
