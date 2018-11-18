@@ -1,0 +1,130 @@
+-- MySQL dump 10.13  Distrib 8.0.12, for Win64 (x86_64)
+--
+-- Host: localhost    Database: timesheet
+-- ------------------------------------------------------
+-- Server version	8.0.12
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+ SET NAMES utf8 ;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+CREATE DATABASE timesheet;
+CREATE USER 'timesheetuser'@'localhost' IDENTIFIED BY 'password';
+CREATE USER 'timesheetuser'@'%' IDENTIFIED BY 'password';
+GRANT ALL PRIVILEGES ON timesheet.* TO 'stock'@'localhost' WITH GRANT OPTION;
+GRANT ALL PRIVILEGES ON timesheet.* TO 'stock'@'%' WITH GRANT OPTION;
+USE timesheet;
+
+--
+-- Table structure for table `employees`
+--
+
+DROP TABLE IF EXISTS `employees`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `employees` (
+  `emp_number` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `userName` varchar(45) NOT NULL,
+  `password` varchar(45) NOT NULL,
+  `isAdmin` bit(1) NOT NULL DEFAULT b'0',
+  PRIMARY KEY (`emp_number`),
+  UNIQUE KEY `empNumber_UNIQUE` (`emp_number`),
+  UNIQUE KEY `userName_UNIQUE` (`userName`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `employees`
+--
+
+LOCK TABLES `employees` WRITE;
+/*!40000 ALTER TABLE `employees` DISABLE KEYS */;
+INSERT INTO `employees` VALUES (1,'Tony Pacheco','tonyp','pass',_binary ''),(2,'Danny DiIorio','dannyd','password',_binary ''),(3,'Bruce Link','brucel','pass',_binary '\0');
+/*!40000 ALTER TABLE `employees` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `timesheet`
+--
+
+DROP TABLE IF EXISTS `timesheet`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `timesheet` (
+  `emp_number` int(10) unsigned NOT NULL,
+  `end_week` date NOT NULL,
+  `overtime` decimal(10,0) unsigned NOT NULL DEFAULT '0',
+  `flextime` decimal(10,0) unsigned NOT NULL DEFAULT '0',
+  `timesheet_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`timesheet_id`),
+  UNIQUE KEY `timesheet_id_UNIQUE` (`timesheet_id`),
+  KEY `timesheet_empNumber_idx` (`emp_number`),
+  CONSTRAINT `timesheet_empNumber` FOREIGN KEY (`emp_number`) REFERENCES `employees` (`emp_number`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `timesheet`
+--
+
+LOCK TABLES `timesheet` WRITE;
+/*!40000 ALTER TABLE `timesheet` DISABLE KEYS */;
+INSERT INTO `timesheet` VALUES (1,'2018-11-09',0,0,1),(1,'2018-11-18',0,0,2),(2,'2018-11-18',0,0,3),(3,'2018-11-18',0,0,4);
+/*!40000 ALTER TABLE `timesheet` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `timesheet_row`
+--
+
+DROP TABLE IF EXISTS `timesheet_row`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+ SET character_set_client = utf8mb4 ;
+CREATE TABLE `timesheet_row` (
+  `project_id` int(10) unsigned NOT NULL,
+  `work_package` varchar(45) NOT NULL,
+  `notes` varchar(200) DEFAULT NULL,
+  `sun_hours` decimal(10,0) unsigned NOT NULL DEFAULT '0',
+  `mon_hours` decimal(10,0) unsigned NOT NULL DEFAULT '0',
+  `tue_hours` decimal(10,0) unsigned NOT NULL DEFAULT '0',
+  `wed_hours` decimal(10,0) unsigned NOT NULL DEFAULT '0',
+  `thu_hours` decimal(10,0) unsigned NOT NULL DEFAULT '0',
+  `fri_hours` decimal(10,0) unsigned NOT NULL DEFAULT '0',
+  `sat_hours` decimal(10,0) unsigned NOT NULL DEFAULT '0',
+  `timesheet_id` int(10) unsigned NOT NULL,
+  `timesheet_row_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`timesheet_row_id`),
+  UNIQUE KEY `timesheet_row_id_UNIQUE` (`timesheet_row_id`),
+  KEY `timesheet_row_timesheet_id_idx` (`timesheet_id`),
+  CONSTRAINT `timesheet_row_timesheet_id` FOREIGN KEY (`timesheet_id`) REFERENCES `timesheet` (`timesheet_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `timesheet_row`
+--
+
+LOCK TABLES `timesheet_row` WRITE;
+/*!40000 ALTER TABLE `timesheet_row` DISABLE KEYS */;
+INSERT INTO `timesheet_row` VALUES (21,'wp1',NULL,2,8,8,0,9,8,0,1,1),(21,'wp2','',0,0,0,4,0,0,0,1,2),(21,'wp3','',0,0,0,4,0,0,2,1,31),(21,'wp4','',0,0,0,0,0,0,0,1,48),(1,'wp1','',0,0,0,0,0,0,3,1,49),(45,'std','',0,8,8,8,8,8,0,2,56),(0,'','',0,0,0,0,0,0,0,2,57),(0,'','',0,0,0,0,0,0,0,2,58),(0,'','',0,0,0,0,0,0,0,2,59),(0,'','',0,0,0,0,0,0,0,2,60),(0,'',NULL,0,0,0,0,0,0,0,3,61),(0,'',NULL,0,0,0,0,0,0,0,3,62),(0,'',NULL,0,0,0,0,0,0,0,3,64),(0,'',NULL,0,0,0,0,0,0,0,3,65),(14,'wp1','Hard day at work',2,6,8,7,4,9,2,3,66),(0,'',NULL,0,0,0,0,0,0,0,4,86),(0,'',NULL,0,0,0,0,0,0,0,4,87),(0,'',NULL,0,0,0,0,0,0,0,4,88),(0,'',NULL,0,0,0,0,0,0,0,4,89),(45,'','',0,2,8,0,7,9,4,4,90),(34,'pkg1','',0,6,0,6,0,0,0,4,91);
+/*!40000 ALTER TABLE `timesheet_row` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-11-17 19:55:55

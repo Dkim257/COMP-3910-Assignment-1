@@ -277,7 +277,6 @@ public class TimesheetFormAccess implements Serializable {
     
     public void addRowToCurrentSheet() {
         TimesheetRow newRow = new TimesheetRow(viewedTimesheet.getTimesheet_id());
-        tsRowMgr.persist(newRow);
         currentEditables.add(new EditableRow(newRow));
     }
     
