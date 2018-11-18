@@ -40,7 +40,7 @@
 					        </h:panelGrid>
 					    </p:panel>
 
-					<p:dataTable id="timesheet" widgetVar="timesheet" var="editable"
+					<p:dataTable id="timesheet" widgetVar="timesheet" var="editable" sortBy="#{editable.row.timesheet_id}"
 						value="#{timesheettable.viewedSheetRows}" editable="true" style="margin-bottom:20px;" >
        					
 						<p:ajax event="rowEdit" listener="#{editable.onRowEdit}"
@@ -69,15 +69,9 @@
 										style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
-							<f:facet name="footer">
-								<h:outputText value="#{msgs.total}" />
-							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.total}">
 							<h:outputText value="#{editable.sum}" />
-							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.timesheetTotalHours}" />
-							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.sat}">
 							<p:cellEditor>
@@ -90,9 +84,6 @@
 									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
-							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.timesheetTotalSatHours}" />
-							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.sun}">
 							<p:cellEditor>
@@ -105,9 +96,6 @@
 									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
-							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.timesheetTotalSunHours}" />
-							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.mon}">
 							<p:cellEditor>
@@ -120,9 +108,6 @@
 									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
-							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.timesheetTotalMonHours}" />
-							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.tue}">
 							<p:cellEditor>
@@ -135,9 +120,6 @@
 									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
-							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.timesheetTotalTueHours}" />
-							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.wed}">
 							<p:cellEditor>
@@ -150,9 +132,6 @@
 									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
-							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.timesheetTotalWedHours}" />
-							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.thu}">
 							<p:cellEditor>
@@ -165,9 +144,6 @@
 									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
-							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.timesheetTotalThuHours}" />
-							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.fri}">
 							<p:cellEditor>
@@ -180,9 +156,6 @@
 									</p:inputText>
 								</f:facet>
 							</p:cellEditor>
-							<f:facet name="footer">
-								<h:outputText value="#{timesheettable.timesheetTotalFriHours}" />
-							</f:facet>
 						</p:column>
 						<p:column headerText="#{msgs.notes}" style="width:18%">
 							<p:cellEditor>
@@ -200,6 +173,35 @@
 							<p:tooltip id="toolTipFade" for="edit" value="Edit Row" 
 								position="top"/>
 						</p:column>
+						<p:summaryRow>
+							<p:column colspan="2" style="text-align:right">
+								<h:outputText value="Week Totals: "/>
+							</p:column>
+				            <p:column>
+				                <h:outputText value="#{timesheettable.timesheetTotalHours}"/>
+				            </p:column>
+				            <p:column>
+				                <h:outputText value="#{timesheettable.timesheetTotalSatHours}"/>
+				            </p:column>
+				            <p:column>
+				                <h:outputText value="#{timesheettable.timesheetTotalSunHours}"/>
+				            </p:column>
+				            <p:column>
+				                <h:outputText value="#{timesheettable.timesheetTotalMonHours}"/>
+				            </p:column>
+				            <p:column>
+				                <h:outputText value="#{timesheettable.timesheetTotalTueHours}"/>
+				            </p:column>
+        				    <p:column>
+				                <h:outputText value="#{timesheettable.timesheetTotalWedHours}"/>
+				            </p:column>
+   				            <p:column>
+				                <h:outputText value="#{timesheettable.timesheetTotalThuHours}"/>
+				            </p:column>
+				            <p:column>
+				                <h:outputText value="#{timesheettable.timesheetTotalFriHours}"/>
+				            </p:column>
+				        </p:summaryRow>
 					</p:dataTable>
 
 					<div class="ui-g">
