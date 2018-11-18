@@ -41,12 +41,7 @@
 					    </p:panel>
 
 					<p:dataTable id="timesheet" widgetVar="timesheet" var="editable" sortBy="#{editable.row.timesheetId}"
-						value="#{timesheettable.viewedSheetRows}" editable="true" style="margin-bottom:20px;" >
-       					
-						<p:ajax event="rowEdit" listener="#{editable.onRowEdit}"
-							update=":form:msgs" />
-						<p:ajax event="rowEditCancel" listener="#{editable.onRowCancel}"
-							update=":form:msgs" />
+						value="#{timesheettable.viewedSheetRows}" editMode="cell" editable="true" style="margin-bottom:20px;" >
 
 						<p:column headerText="#{msgs.project}">
 							<p:cellEditor>
@@ -168,11 +163,6 @@
 							</p:cellEditor>
 						</p:column>
 
-						<p:column style="width:32px">
-							<p:rowEditor id="edit" />
-							<p:tooltip id="toolTipFade" for="edit" value="Edit Row" 
-								position="top"/>
-						</p:column>
 						<p:summaryRow>
 							<p:column colspan="2" style="text-align:right">
 								<h:outputText value="Week Totals: "/>

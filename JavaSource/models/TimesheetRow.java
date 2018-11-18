@@ -149,7 +149,7 @@ public class TimesheetRow implements Serializable {
      * @param sunHours hours to set
      */
     public void setSunHours(BigDecimal sunHours) {
-        this.sunHours = sunHours;
+        this.sunHours = sunHours != null ? sunHours : BigDecimal.ZERO;
     }
 
     /**
@@ -165,7 +165,7 @@ public class TimesheetRow implements Serializable {
      * @param monHours hours to set
      */
     public void setMonHours(BigDecimal monHours) {
-        this.monHours = monHours;
+        this.monHours = monHours != null ? monHours : BigDecimal.ZERO;
     }
 
     /**
@@ -181,7 +181,7 @@ public class TimesheetRow implements Serializable {
      * @param tueHours hours to set
      */
     public void setTueHours(BigDecimal tueHours) {
-        this.tueHours = tueHours;
+        this.tueHours = tueHours != null ? tueHours : BigDecimal.ZERO;
     }
 
     /**
@@ -197,7 +197,7 @@ public class TimesheetRow implements Serializable {
      * @param wedHours hours to set
      */
     public void setWedHours(BigDecimal wedHours) {
-        this.wedHours = wedHours;
+        this.wedHours = wedHours != null ? wedHours : BigDecimal.ZERO;
     }
 
     /**
@@ -213,7 +213,7 @@ public class TimesheetRow implements Serializable {
      * @param thuHours hours to set
      */
     public void setThuHours(BigDecimal thuHours) {
-        this.thuHours = thuHours;
+        this.thuHours = thuHours != null ? thuHours : BigDecimal.ZERO;
     }
 
     /**
@@ -229,7 +229,7 @@ public class TimesheetRow implements Serializable {
      * @param friHours hours to set
      */
     public void setFriHours(BigDecimal friHours) {
-        this.friHours = friHours;
+        this.friHours = friHours != null ? friHours : BigDecimal.ZERO;
     }
 
     /**
@@ -245,7 +245,7 @@ public class TimesheetRow implements Serializable {
      * @param satHours hours to set
      */
     public void setSatHours(BigDecimal satHours) {
-        this.satHours = satHours;
+        this.satHours = satHours != null ? satHours : BigDecimal.ZERO;
     }
 
     /**
