@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.RowEditEvent;
 
 import models.TimesheetRow;
@@ -64,21 +65,10 @@ public class EditableRow implements Serializable {
     }
     
     /**
-     * Displays a row edited message to the user.
-     * @param event the row edit event 
+     * Event listener for editing a cell.
+     * @param event holding the new and old values of edited cell
      */
-    public void onRowEdit(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Success", "Row Edited");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
+    public void onCellEdit(CellEditEvent event) {
+
     }
-    
-    /**
-     * Displays a row edit cancelled message to the user.
-     * @param event the row cancelled event
-     */
-    
-    public void onRowCancel(RowEditEvent event) {
-        FacesMessage msg = new FacesMessage("Cancel", "Edit Cancelled");
-        FacesContext.getCurrentInstance().addMessage(null, msg);
-    }   
 }
