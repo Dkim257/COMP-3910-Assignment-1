@@ -33,11 +33,11 @@
        					</f:facet>
 						<p:column headerText="#{msgs.weekEnd}">
 							<i class="material-icons prefix tsSelectIcon">open_in_browser</i>  
-							<p:commandLink value="#{sheet.end_week}" styleClass="tsSelectText" 
+							<p:commandLink value="#{sheet.endWeek}" styleClass="tsSelectText" 
 								 action="#{timesheettable.viewTimesheet(sheet)}" />
 						</p:column>
 						<p:column headerText="#{msgs.timesheetOwner}">
-							<h:outputText value="#{timesheettable.empMgr.find(sheet.emp_number).name}" />
+							<h:outputText value="#{timesheettable.empMgr.find(sheet.empNumber).name}" />
 						</p:column>
 						<p:column headerText="#{msgs.removeTimesheet}" style="width:18%">
 							<p:commandButton value="#{msgs.remove}"

@@ -40,7 +40,7 @@
 					        </h:panelGrid>
 					    </p:panel>
 
-					<p:dataTable id="timesheet" widgetVar="timesheet" var="editable" sortBy="#{editable.row.timesheet_id}"
+					<p:dataTable id="timesheet" widgetVar="timesheet" var="editable" sortBy="#{editable.row.timesheetId}"
 						value="#{timesheettable.viewedSheetRows}" editable="true" style="margin-bottom:20px;" >
        					
 						<p:ajax event="rowEdit" listener="#{editable.onRowEdit}"
@@ -51,10 +51,10 @@
 						<p:column headerText="#{msgs.project}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{editable.row.project_id}" />
+									<h:outputText value="#{editable.row.projectId}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="projectInput" value="#{editable.row.project_id}"
+									<p:inputText id="projectInput" value="#{editable.row.projectId}"
 										style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
@@ -62,10 +62,10 @@
 						<p:column headerText="#{msgs.wp}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{editable.row.work_package}" />
+									<h:outputText value="#{editable.row.workPackage}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="workPackageInput" value="#{editable.row.work_package}"
+									<p:inputText id="workPackageInput" value="#{editable.row.workPackage}"
 										style="width:100%" />
 								</f:facet>
 							</p:cellEditor>
@@ -76,10 +76,10 @@
 						<p:column headerText="#{msgs.sat}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{editable.row.sat_hours}" />
+									<h:outputText value="#{editable.row.satHours}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="satInput" value="#{editable.row.sat_hours}" style="width:100%" >
+									<p:inputText id="satInput" value="#{editable.row.satHours}" style="width:100%" >
 										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
 									</p:inputText>
 								</f:facet>
@@ -88,10 +88,10 @@
 						<p:column headerText="#{msgs.sun}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{editable.row.sun_hours}" />
+									<h:outputText value="#{editable.row.sunHours}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="sunInput" value="#{editable.row.sun_hours}" style="width:100%" >
+									<p:inputText id="sunInput" value="#{editable.row.sunHours}" style="width:100%" >
 										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
 									</p:inputText>
 								</f:facet>
@@ -100,10 +100,10 @@
 						<p:column headerText="#{msgs.mon}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{editable.row.mon_hours}" />
+									<h:outputText value="#{editable.row.monHours}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="monInput"  value="#{editable.row.mon_hours}" style="width:100%" >
+									<p:inputText id="monInput"  value="#{editable.row.monHours}" style="width:100%" >
 										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
 									</p:inputText>
 								</f:facet>
@@ -112,10 +112,10 @@
 						<p:column headerText="#{msgs.tue}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{editable.row.tue_hours}" />
+									<h:outputText value="#{editable.row.tueHours}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="tueInput"  value="#{editable.row.tue_hours}" style="width:100%" >
+									<p:inputText id="tueInput"  value="#{editable.row.tueHours}" style="width:100%" >
 										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
 									</p:inputText>
 								</f:facet>
@@ -124,10 +124,10 @@
 						<p:column headerText="#{msgs.wed}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{editable.row.wed_hours}" />
+									<h:outputText value="#{editable.row.wedHours}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="wedInput"  value="#{editable.row.wed_hours}" style="width:100%" >
+									<p:inputText id="wedInput"  value="#{editable.row.wedHours}" style="width:100%" >
 										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
 									</p:inputText>
 								</f:facet>
@@ -136,10 +136,10 @@
 						<p:column headerText="#{msgs.thu}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{editable.row.thu_hours}" />
+									<h:outputText value="#{editable.row.thuHours}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="thuInput"  value="#{editable.row.thu_hours}" style="width:100%" >
+									<p:inputText id="thuInput"  value="#{editable.row.thuHours}" style="width:100%" >
 										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
 									</p:inputText>
 								</f:facet>
@@ -148,10 +148,10 @@
 						<p:column headerText="#{msgs.fri}">
 							<p:cellEditor>
 								<f:facet name="output">
-									<h:outputText value="#{editable.row.fri_hours}" />
+									<h:outputText value="#{editable.row.friHours}" />
 								</f:facet>
 								<f:facet name="input">
-									<p:inputText id="friInput"  value="#{editable.row.fri_hours}" style="width:100%" >
+									<p:inputText id="friInput"  value="#{editable.row.friHours}" style="width:100%" >
 										<f:validateDoubleRange minimum="0.0" maximum="24.0" />
 									</p:inputText>
 								</f:facet>

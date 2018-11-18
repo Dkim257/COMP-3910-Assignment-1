@@ -63,7 +63,7 @@ public class TimesheetManager implements Serializable {
      * @param timesheet record to be removed from database
      */
     public void remove(Timesheet timesheet) {
-        timesheet = find(timesheet.getTimesheet_id());
+        timesheet = find(timesheet.getTimesheetId());
         em.remove(timesheet);
     }
 
@@ -84,7 +84,7 @@ public class TimesheetManager implements Serializable {
     public List<Timesheet> getAll(int empId) {
         TypedQuery<Timesheet> query 
             = em.createQuery("select t from Timesheet t where "
-                    + "t.emp_number = :emp_id",
+                    + "t.empNumber = :emp_id",
             Timesheet.class);
         query.setParameter("emp_id", empId);
         return query.getResultList();

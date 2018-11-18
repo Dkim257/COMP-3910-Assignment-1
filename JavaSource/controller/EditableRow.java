@@ -78,13 +78,13 @@ public class EditableRow implements Serializable {
      * @return the weekly hours
      */
     public BigDecimal getSum() {
-         return row.getMon_hours()
-                 .add(row.getTue_hours())
-                 .add(row.getWed_hours())
-                 .add(row.getThu_hours())
-                 .add(row.getFri_hours())
-                 .add(row.getSat_hours())
-                 .add(row.getSun_hours());
+         return row.getMonHours()
+                 .add(row.getTueHours())
+                 .add(row.getWedHours())
+                 .add(row.getThuHours())
+                 .add(row.getFriHours())
+                 .add(row.getSatHours())
+                 .add(row.getSunHours());
     }
     
     /**

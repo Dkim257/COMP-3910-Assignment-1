@@ -8,76 +8,137 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * A class representing a single Timesheet.
+ *
+ * @author Tony
+ * @version 2
+ */
 @Entity
-@Table(name="timesheet")
+@Table(name = "timesheet")
 public class Timesheet {
     
-    @Column(name="emp_number")
-    private int emp_number;
+    /** ID number for employee who owns timesheet. */
+    @Column(name = "emp_number")
+    private int empNumber;
     
-    @Column(name="end_week")
-    private Date end_week;
+    /** The date of Friday for the week of the timesheet. */
+    @Column(name = "end_week")
+    private Date endWeek;
     
-    @Column(name="overtime")
+    /** The total number of overtime hours on the timesheet. */
+    @Column(name = "overtime")
     private BigDecimal overtime;
     
-    @Column(name="flextime")
+    /** The total number of flextime hours on the timesheet. */
+    @Column(name = "flextime")
     private BigDecimal flextime;
 
+    /** ID number for timesheet. */
     @Id
-    @Column(name="timesheet_id")
-    private int timesheet_id;
+    @Column(name = "timesheet_id")
+    private int timesheetId;
 
+    /**
+     * Default Constructor for JPA.
+     */
     public Timesheet() {
-        //Defualt Constructor for JPA
     }
     
+    /**
+     * Creates a Timesheet object with all fields set. 
+     * 
+     * @param id Timesheet id
+     * @param empNum The owner of the timesheet
+     * @param endWeek The date of the end of the week for the 
+     * timesheet
+     */
     public Timesheet(int id, int empNum, Date endWeek) {
-        timesheet_id = id;
-        emp_number = empNum;
-        end_week = endWeek;
+        timesheetId = id;
+        empNumber = empNum;
+        this.endWeek = endWeek;
         flextime = new BigDecimal(0);
         overtime = new BigDecimal(0);
     }
     
-    public int getEmp_number() {
-        return emp_number;
+    /**
+     * Getter for time sheet owner.
+     * @return the employee id.
+     */
+    public int getEmpNumber() {
+        return empNumber;
     }
 
-    public void setEmp_number(int emp_number) {
-        this.emp_number = emp_number;
+    /**
+     * Setter for time sheet owner.
+     * @param empNumber id of employee
+     */
+    public void setEmpNumber(int empNumber) {
+        this.empNumber = empNumber;
     }
 
-    public Date getEnd_week() {
-        return end_week;
+    /**
+     * Getter for timesheet's end of week date.
+     * @return the endWeek
+     */
+    public Date getEndWeek() {
+        return endWeek;
     }
 
-    public void setEnd_week(Date end_week) {
-        this.end_week = end_week;
+    /**
+     * Setter for endWeek.
+     * @param endWeek date of the end week
+     */
+    public void setEndWeek(Date endWeek) {
+        this.endWeek = endWeek;
     }
 
+    /**
+     * Getter for overtime.
+     * @return OT hours
+     */
     public BigDecimal getOvertime() {
         return overtime;
     }
 
+    /**
+     * Setter for overtime.
+     * @param overtime OT hours
+     */
     public void setOvertime(BigDecimal overtime) {
         this.overtime = overtime;
     }
 
+    /**
+     * Getter for flex hours.
+     * @return flex hours
+     */
     public BigDecimal getFlextime() {
         return flextime;
     }
 
+    /**
+     * Setter for flex hours.
+     * @param flextime hours
+     */
     public void setFlextime(BigDecimal flextime) {
         this.flextime = flextime;
     }
 
-    public int getTimesheet_id() {
-        return timesheet_id;
+    /**
+     * Getter for timesheet's id.
+     * @return id to timesheet
+     */
+    public int getTimesheetId() {
+        return timesheetId;
     }
-
-    public void setTimesheet_id(int timesheet_id) {
-        this.timesheet_id = timesheet_id;
+    
+    /**
+     * Setter for timesheet id.
+     * @param timesheetId id to be set
+     */
+    public void setTimesheetId(int timesheetId) {
+        this.timesheetId = timesheetId;
     }
     
     

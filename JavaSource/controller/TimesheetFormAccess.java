@@ -181,7 +181,7 @@ public class TimesheetFormAccess implements Serializable {
     public void deleteTimesheet(Timesheet sheet, Employees e)
             throws IOException {
         List<TimesheetRow> rowsToDelete = tsRowMgr
-                .getAllForTimesheet(sheet.getTimesheet_id());
+                .getAllForTimesheet(sheet.getTimesheetId());
         for (TimesheetRow row : rowsToDelete) {
             tsRowMgr.remove(row);
         }
@@ -222,7 +222,7 @@ public class TimesheetFormAccess implements Serializable {
 //        }
         if (!timesheetHasAllUniqueIds()) {
             for (EditableRow row : currentEditables) {
-                row.getRow().setWork_package(null);
+                row.getRow().setWorkPackage(null);
             }
             FacesMessage msg = new FacesMessage(
                     "Project and WP combination for each row must be unique.");
@@ -244,11 +244,11 @@ public class TimesheetFormAccess implements Serializable {
     public boolean timesheetHasAllUniqueIds() {
         HashSet<String> ids = new HashSet<>();
         for (EditableRow row : currentEditables) {
-            if (row.getRow().getWork_package().isEmpty()) {
+            if (row.getRow().getWorkPackage().isEmpty()) {
                 continue;
             }
-            String id = row.getRow().getWork_package() + row
-                    .getRow().getProject_id();
+            String id = row.getRow().getWorkPackage() + row
+                    .getRow().getProjectId();
             if (ids.contains(id)) {
                 return false;
             } else {
@@ -267,7 +267,7 @@ public class TimesheetFormAccess implements Serializable {
     public String viewTimesheet(Timesheet ts) {
         viewedTimesheet = ts;
         List<TimesheetRow> rows = tsRowMgr
-                .getAllForTimesheet(ts.getTimesheet_id());
+                .getAllForTimesheet(ts.getTimesheetId());
         currentEditables = new ArrayList<>();
         for (TimesheetRow row : rows) {
             currentEditables.add(new EditableRow(row));
@@ -303,7 +303,7 @@ public class TimesheetFormAccess implements Serializable {
      * @return employee number
      */
     public int getTimesheetEmpNumber() {
-        return viewedTimesheet.getEmp_number();
+        return viewedTimesheet.getEmpNumber();
     }
     
     /**
@@ -312,7 +312,7 @@ public class TimesheetFormAccess implements Serializable {
      */
     public int getTimesheetWeekNumber() {
         Calendar c = new GregorianCalendar();
-        c.setTime(viewedTimesheet.getEnd_week());
+        c.setTime(viewedTimesheet.getEndWeek());
         c.setFirstDayOfWeek(Calendar.SATURDAY);
         return c.get(Calendar.WEEK_OF_YEAR);
     }
@@ -322,7 +322,7 @@ public class TimesheetFormAccess implements Serializable {
      * @return employee name
      */
     public String getTimesheetEmployeeName() {
-        int empNum = viewedTimesheet.getEmp_number();
+        int empNum = viewedTimesheet.getEmpNumber();
         List<Employees> emps = empMgr.getAll();
         for (Employees e : emps) {
             if (e.getEmpNumber() == empNum) {
@@ -337,7 +337,7 @@ public class TimesheetFormAccess implements Serializable {
      * @return date
      */
     public Date getTimesheetDate() {
-        return viewedTimesheet.getEnd_week();
+        return viewedTimesheet.getEndWeek();
     }
     
     /**
@@ -345,7 +345,7 @@ public class TimesheetFormAccess implements Serializable {
      * @return id
      */
     public int getTimesheetID() {
-        return viewedTimesheet.getTimesheet_id();
+        return viewedTimesheet.getTimesheetId();
     }
     
     /**
@@ -367,7 +367,7 @@ public class TimesheetFormAccess implements Serializable {
      */
     public void addRowToCurrentSheet() {
         TimesheetRow newRow = new TimesheetRow(viewedTimesheet
-                .getTimesheet_id());
+                .getTimesheetId());
         currentEditables.add(new EditableRow(newRow));
     }
     
@@ -387,7 +387,7 @@ public class TimesheetFormAccess implements Serializable {
     public BigDecimal getTimesheetTotalSatHours() {
         BigDecimal total = BigDecimal.ZERO;
         for (EditableRow row : currentEditables) {
-            total = total.add(row.getRow().getSat_hours());
+            total = total.add(row.getRow().getSatHours());
         }
         return total;
     }
@@ -399,7 +399,7 @@ public class TimesheetFormAccess implements Serializable {
     public BigDecimal getTimesheetTotalSunHours() {
         BigDecimal total = BigDecimal.ZERO;
         for (EditableRow row : currentEditables) {
-            total = total.add(row.getRow().getSun_hours());
+            total = total.add(row.getRow().getSunHours());
         }
         return total;
     }
@@ -411,7 +411,7 @@ public class TimesheetFormAccess implements Serializable {
     public BigDecimal getTimesheetTotalMonHours() {
         BigDecimal total = BigDecimal.ZERO;
         for (EditableRow row : currentEditables) {
-            total = total.add(row.getRow().getMon_hours());
+            total = total.add(row.getRow().getMonHours());
         }
         return total;
     }
@@ -423,7 +423,7 @@ public class TimesheetFormAccess implements Serializable {
     public BigDecimal getTimesheetTotalTueHours() {
         BigDecimal total = BigDecimal.ZERO;
         for (EditableRow row : currentEditables) {
-            total = total.add(row.getRow().getTue_hours());
+            total = total.add(row.getRow().getTueHours());
         }
         return total;
     }
@@ -435,7 +435,7 @@ public class TimesheetFormAccess implements Serializable {
     public BigDecimal getTimesheetTotalWedHours() {
         BigDecimal total = BigDecimal.ZERO;
         for (EditableRow row : currentEditables) {
-            total = total.add(row.getRow().getWed_hours());
+            total = total.add(row.getRow().getWedHours());
         }
         return total;
     }
@@ -447,7 +447,7 @@ public class TimesheetFormAccess implements Serializable {
     public BigDecimal getTimesheetTotalThuHours() {
         BigDecimal total = BigDecimal.ZERO;
         for (EditableRow row : currentEditables) {
-            total = total.add(row.getRow().getThu_hours());
+            total = total.add(row.getRow().getThuHours());
         }
         return total;
     }
@@ -459,7 +459,7 @@ public class TimesheetFormAccess implements Serializable {
     public BigDecimal getTimesheetTotalFriHours() {
         BigDecimal total = BigDecimal.ZERO;
         for (EditableRow row : currentEditables) {
-            total = total.add(row.getRow().getFri_hours());
+            total = total.add(row.getRow().getFriHours());
         }
         return total;
     }
