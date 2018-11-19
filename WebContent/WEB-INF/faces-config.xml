@@ -6,8 +6,9 @@
 	version="2.0">
 	<application>
 		<resource-bundle>
-			<base-name>ca.bcit.comp3910.messages</base-name>
+			<base-name>messages</base-name>
 			<var>msgs</var>
 		</resource-bundle>
+		<message-bundle>pfMessages</message-bundle>
 	</application>
 </faces-config>

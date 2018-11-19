@@ -27,35 +27,23 @@
 				<div class="card">
 					<div class="card-content">
 						<div class="left-align">
-							<div class="row ">
-								<div class="col s5 input-field">
-									<i class="material-icons prefix">account_circle</i>
-									<p:inputText value="#{employeeTable.currentEditUser.empNumber}" id="employeeNum" required="true"
-										requiredMessage="#{msgs.eNumReq}" />
-									<h:outputLabel for="employeeNum" value="#{msgs.empNum}" />
-								</div><br/><br/><br/><br/>
+							<div class="row">
 								<div class="col s5 input-field">
 									<i class="material-icons prefix">account_circle</i>
 									<p:inputText value="#{employeeTable.currentEditUser.name}" id="name" required="true"
-										requiredMessage="#{msgs.nameReq}" />
+										label="Name" />
 									<h:outputLabel for="name" value="#{msgs.name}" />
 								</div><br/><br/><br/><br/>
 								<div class="col s5 input-field">
 									<i class="material-icons prefix">cloud_circle</i>
 									<p:inputText value="#{employeeTable.currentEditUser.userName}" id="username" required="true"
-										requiredMessage="#{msgs.idReq}" />
+										label="Username" />
 									<h:outputLabel for="username" value="#{msgs.username}" />
-								</div><br/><br/><br/><br/>
-								<div class="col s5 input-field">
-									<i class="material-icons prefix">lock</i>
-									<p:password id="password" value="#{employeeTable.newPassword}"/>
-									<h:outputLabel for="password" value="#{msgs.password}" />
-								</div>
-								
+								</div>								
 								<div class="col s12" >
 									<p:commandLink value="#{msgs.resetPass}" id="resetPassBtn" 
 										action="#{employeeTable.resetPassword(employeeTable.currentEditUser)}"
-										actionListener="#{growlView.passwordReset()}"
+										actionListener="#{growlView.growlMessageSuccess(msgs.passReset)}"
 										styleClass="btn waves-effect waves-light" update=":user-form:msgs" />
 								</div>
 							</div>
@@ -64,7 +52,7 @@
 				</div>
 				<div class="col s12" id="saveBtn">
 					<p:commandLink value="#{msgs.save}" id="saveBtn"
-						action="#{employeeTable.saveChanges()}" update=":user-form:msgs"
+						action="#{employeeTable.saveChanges(employeeTable.currentEditUser)}" update="user-form"
 						styleClass="btn-large waves-effect waves-light blue-grey darken-2" />
 				</div>
 			</h:form>

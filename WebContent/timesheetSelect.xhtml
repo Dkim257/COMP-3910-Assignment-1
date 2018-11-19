@@ -32,10 +32,18 @@
            					#{msgs.tsHistory}
        					</f:facet>
 						<p:column headerText="#{msgs.weekEnd}">
-							<p:commandLink value="#{sheet.dateInCustomizedFormat}" action="#{timesheettable.viewTimesheet(sheet)}" />
+							<i class="material-icons prefix tsSelectIcon">open_in_browser</i>  
+							<p:commandLink value="#{sheet.endWeek}" styleClass="tsSelectText" 
+								 action="#{timesheettable.viewTimesheet(sheet)}" />
 						</p:column>
 						<p:column headerText="#{msgs.timesheetOwner}">
-							<h:outputText value="#{sheet.employee.name}"/>
+							<h:outputText value="#{timesheettable.empMgr.find(sheet.empNumber).name}" />
+						</p:column>
+						<p:column headerText="#{msgs.removeTimesheet}" style="width:18%">
+							<p:commandButton value="#{msgs.remove}"
+								styleClass="waves-effect waves-light btn-small orange darken-4"
+								action="#{timesheettable.deleteTimesheet(sheet, employeeTable.currentUser)}" 
+								onConfirmComplete="#{timesheettable.reload}"/>
 						</p:column>
 					</p:dataTable>
 				</h:form>

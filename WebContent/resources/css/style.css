@@ -3,6 +3,7 @@ body {
 	font-family: Roboto;
 	width: 100%;
 	height: 100%;
+	margin-bottom: 45px !important;
 }
 
 .content {
@@ -10,7 +11,7 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	min-height: 100%;
-  	margin: 0 auto -50px;
+  	margin: 0 auto 0;
 }
 
 .header {
@@ -25,12 +26,13 @@ body {
 }
 
 footer {
-    position: absolute;
+    position: fixed;
     left: 0;
     bottom: 0;
-    height: 60px;
+    height: 45px;
     width: 100%;
     overflow: hidden;
+    z-index: 9999;
 }
 
 .footer {
@@ -39,7 +41,7 @@ footer {
 	margin-right: auto;
 	text-align: center;
 	color: white;
-	padding-top: 15px;
+	padding-top: 10px;
 }
 
 .loginForm {
@@ -62,8 +64,6 @@ footer {
     border: none !important;
     border-radius: 2px !important;
 }
-
-/* div[id="history-form:timesheetHistory"] thead {display: none;} */
 
 .dropdown-trigger {
 	font-size: 1.1rem;
@@ -97,3 +97,27 @@ footer {
 	background-image: none !important;
 	background-color: ##26a69a;
 }
+
+.passwordMessage {
+	font-style: italic;
+	padding-left: 14px;
+}
+
+.passMsgIcon {
+	font-size: 29px !important;
+	vertical-align: middle;
+}
+
+.tsSelectIcon {
+	vertical-align: middle !important;
+    padding-right: 5px !important;
+}
+
+.tsSelectText {
+	color: #607d8b !important;
+}
+
+.tsSelectText:hover {
+	text-decoration: underline !important;
+}
+
