@@ -1,8 +1,13 @@
+
+DROP DATABASE IF EXISTS timesheet ;
 CREATE DATABASE timesheet;
+DROP USER IF EXISTS 'timesheetuser'@'localhost';
+DROP USER IF EXISTS 'timesheetuser'@'%';
 CREATE USER 'timesheetuser'@'localhost' IDENTIFIED BY 'password';
 CREATE USER 'timesheetuser'@'%' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON timesheet.* TO 'timesheetuser'@'localhost' WITH GRANT OPTION;
 GRANT ALL PRIVILEGES ON timesheet.* TO 'timesheetuser'@'%' WITH GRANT OPTION;
+
 USE timesheet;
 
 DROP TABLE IF EXISTS employees;
