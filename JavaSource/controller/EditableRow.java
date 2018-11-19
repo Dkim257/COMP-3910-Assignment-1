@@ -3,12 +3,6 @@ package controller;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import javax.faces.application.FacesMessage;
-import javax.faces.context.FacesContext;
-
-import org.primefaces.event.CellEditEvent;
-import org.primefaces.event.RowEditEvent;
-
 import models.TimesheetRow;
 
 /**
@@ -62,13 +56,5 @@ public class EditableRow implements Serializable {
                  .add(row.getFriHours())
                  .add(row.getSatHours())
                  .add(row.getSunHours());
-    }
-    
-    /**
-     * Event listener for editing a cell.
-     * @param event holding the new and old values of edited cell
-     */
-    public void onCellEdit(CellEditEvent event) {
-
     }
 }
