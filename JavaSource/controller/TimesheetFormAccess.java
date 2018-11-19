@@ -143,13 +143,13 @@ public class TimesheetFormAccess implements Serializable {
      * @return a String representing navigation to the newTimesheet page.
      */
     public String addTimesheet(Employees e) {
-        int id = (int) mgr.getCount() + 1;
-        LocalDate sunday = today;
-        while (sunday.getDayOfWeek() != DayOfWeek.SUNDAY) {
-          sunday = sunday.plusDays(1);
+        int id = (mgr.getCount() != null) ? (int) mgr.getCount() + 1 : 1;
+        LocalDate friday = today;
+        while (friday.getDayOfWeek() != DayOfWeek.FRIDAY) {
+          friday = friday.plusDays(1);
         }
         Timesheet sheet = new Timesheet(id, e.getEmpNumber(),
-                java.sql.Date.valueOf(sunday));
+                java.sql.Date.valueOf(friday));
         mgr.persist(sheet);
         for (int i = 0; i < ROWS_TO_START_SHEET_WITH; ++i) {
             addRowToSheet(id);
